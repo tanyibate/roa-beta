@@ -8,6 +8,7 @@ export default function Login() {
       <img src="/assets/Logo/ROA_logowhite.png" className="login-logo" />
       <div className="form-input">
         <input type="text" id="username" placeholder="Email" />
+        123
       </div>
       <div className="form-input">
         <input type="text" id="password" placeholder="Password" />
