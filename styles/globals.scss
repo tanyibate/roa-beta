@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Mulish", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  color: white;
+  height: 100vh;
+}
+
+#__next {
+  height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.login-logo {
+  height: 120px;
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+.signin-with-images-container {
+  img {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(0.7);
+    }
+  }
+  display: flex;
+  width: 120px;
+  justify-content: space-between;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+.login-button {
+  margin-top: 10px;
+  color: rgba(29, 215, 96, 1);
+  background-color: #ffffff;
+  border-radius: 25px;
+  border: none;
+  height: 50px;
+  width: 240px;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    filter: brightness(0.7);
+  }
+  cursor: pointer;
+}
+.form-input {
+  height: 50px;
+  width: 200px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 30px;
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  input {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: white;
+    flex: 1;
+    height: 90%;
+    &::placeholder {
+      color: white;
+      opacity: 0.7;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
