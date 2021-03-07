@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import "./styles.module.scss";
 
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div className="login-container">
       <img src="/assets/Logo/ROA_logowhite.png" className="login-logo" />
