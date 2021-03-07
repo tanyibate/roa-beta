@@ -1,0 +1,67 @@
+.artist_card_image_container {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+  .artist_image {
+    height: 200px;
+    width: 200px;
+    border: 1px solid #1dd760;
+    border-radius: 50%;
+  }
+}
+
+.artist_card_container {
+  max-width: 500px;
+}
+
+.artist_social_media {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  img {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+  }
+}
+
+.artist_card_bio {
+  font-weight: 300;
+  max-width: 250px;
+  h1 {
+    margin: 0;
+  }
+}
+
+.artist_card_top {
+  border-bottom: 1px solid #1dd760;
+  display: flex;
+  justify-content: space-between;
+  max-height: 275px;
+  padding-bottom: 10px;
+}
+
+.artist_card_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #1dd760;
+  button {
+    border: 1px solid #1dd760;
+    cursor: pointer;
+    height: 60px;
+    font-size: 22px;
+    background-color: inherit;
+    color: #1dd760;
+    border-radius: 5px;
+    &:focus {
+      outline-width: 0;
+    }
+  }
+}
