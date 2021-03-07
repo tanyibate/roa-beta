@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./styles.module.scss";
 
 export default function Login() {
+  //state
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
