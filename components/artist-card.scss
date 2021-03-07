@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   width: 250px;
+  height: 260px;
   .artist_image {
     height: 200px;
     width: 200px;
@@ -19,7 +20,7 @@
 
 .artist_social_media {
   display: flex;
-  width: 100%;
+  width: 90%;
   justify-content: space-between;
   img {
     height: 40px;
@@ -31,6 +32,12 @@
 .artist_card_bio {
   font-weight: 300;
   max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  p {
+    margin: 0;
+  }
   h1 {
     margin: 0;
   }
