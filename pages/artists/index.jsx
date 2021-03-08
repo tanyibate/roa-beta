@@ -3,8 +3,12 @@ import ArtistCard from "../../components/ArtistCard";
 
 export default function index() {
   return (
-    <div className="artist-container">
-      <ArtistCard />
+    <div>
+      <div className="artist-container">
+        <ArtistCard />
+        <ArtistCard />
+        <ArtistCard />
+      </div>
     </div>
   );
 }
