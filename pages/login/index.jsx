@@ -33,7 +33,7 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <img src="/assets/Logo/ROA_logowhite.png" className="login-logo" />
+      <img src="/assets/Logo/ROA_logogreen.png" className="login-logo" />
       <div className="form-input">
         <input
           type="text"

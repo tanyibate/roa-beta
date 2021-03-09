@@ -6,7 +6,9 @@ body {
   font-family: "Mulish", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  //background-color: rgba(gray, $alpha: 0.7);
   background-color: black;
+
   color: white;
   height: 100vh;
 }
@@ -107,6 +109,7 @@ a {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  background-color: rgba($color: gray, $alpha: 0.7);
 }
 
 input:-webkit-autofill,

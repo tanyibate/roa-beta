@@ -1,17 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import classNames from "classnames";
 
 export default function ArtistCard(props) {
+  var x;
+  var artistid = Math.floor(Math.random() * 10);
+  const [currentPlayingMusic, setCurrentPlayingMusic] = useState(false);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    x = document.getElementById("myAudio");
+  });
+
+  var x = React.createRef();
+  function musicController() {
+    if (!currentPlayingMusic) {
+      playAudio();
+      setCurrentPlayingMusic(true);
+    } else {
+      pauseAudio();
+      setCurrentPlayingMusic(false);
+    }
+  }
+  function playAudio() {
+    x.play();
+  }
+
+  function pauseAudio() {
+    x.pause();
+  }
   return (
     <div>
       <h1>EBE Kastro</h1>
       <div className="artist_card_container">
         <div className="artist_card_top">
           <div className="artist_card_image_container">
-            <img
-              src="https://yt3.ggpht.com/ytc/AAUvwniFM4h3iOlRCk5VDjbKkWjNRuDntpo3pNm8-TpLXg=s900-c-k-c0x00ffffff-no-rj"
-              alt=""
-              className="artist_image"
-            />
+            <audio id={"myAudio"}>
+              <source src="/assets/drake.mp3" type="audio/mpeg" />
+              Your browser does not support the audio tag.
+            </audio>
+            <div>
+              <img
+                src="https://yt3.ggpht.com/ytc/AAUvwniFM4h3iOlRCk5VDjbKkWjNRuDntpo3pNm8-TpLXg=s900-c-k-c0x00ffffff-no-rj"
+                alt=""
+                className={classNames({
+                  artist_image: true,
+                  rotate_artist: currentPlayingMusic,
+                })}
+                onClick={musicController}
+              />
+            </div>
           </div>
           <div className="artist_card_bio">
             <p>
@@ -30,8 +67,8 @@ export default function ArtistCard(props) {
           </div>
         </div>
         <div className="artist_card_bottom">
-          <p>Remaining Slices: 300</p>
-          <button>Slice: $5.00</button>
+          <p>278/300</p>
+          <button>Slice $5.00</button>
         </div>
       </div>
     </div>
