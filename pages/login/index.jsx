@@ -44,7 +44,7 @@ export default function Login() {
       </div>
       <div className="form-input">
         <input
-          type="text"
+          type="password"
           id="password"
           placeholder="Password"
           onKeyUp={keyUpHandler}
