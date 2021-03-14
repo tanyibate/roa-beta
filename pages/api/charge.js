@@ -1,22 +1,38 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY_2);
 
 export default async (req, res) => {
-  try {
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: 500,
-      currency: "usd",
-      payment_method_types: ["card"],
-      receipt_email: "jenny.rosen@example.com",
-    });
+  if (req.method === "POST") {
+    try {
+      const YOUR_DOMAIN = "http://localhost:3000";
 
-    if (!paymentIntent) throw new Error("charge unsuccessful");
-
-    res.status(200).json({
-      message: "charge posted successfully",
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
+      const session = await stripe.checkout.sessions.create({
+        customer_email: "bate.tanyi@yahoo.com",
+        success_url: `${YOUR_DOMAIN}/artists`,
+        cancel_url: `${YOUR_DOMAIN}/artists`,
+        line_items: [
+          {
+            price_data: {
+              currency: "usd",
+              product_data: {
+                name: "EBE KASTRO Slice",
+                images: [
+                  "https://yt3.ggpht.com/ytc/AAUvwniFM4h3iOlRCk5VDjbKkWjNRuDntpo3pNm8-TpLXg=s900-c-k-c0x00ffffff-no-rj",
+                ],
+              },
+              unit_amount: 500,
+            },
+            quantity: 1,
+          },
+        ],
+        payment_method_types: ["card"],
+        mode: "payment",
+      });
+      console.log(session.id);
+      res.json({ id: session.id });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
   }
 };

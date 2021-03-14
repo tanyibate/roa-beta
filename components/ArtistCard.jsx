@@ -1,10 +1,61 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
+import { loadStripe } from "@stripe/stripe-js";
 
 export default function ArtistCard(props) {
   var x;
   var artistid = Math.floor(Math.random() * 10);
   const [currentPlayingMusic, setCurrentPlayingMusic] = useState(false);
+
+  const buySlice = async () => {
+    const stripe = await loadStripe(
+      process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_2
+    );
+
+    fetch("/api/charge", {
+      method: "POST",
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (session) {
+        return stripe.redirectToCheckout({ sessionId: session.id });
+      })
+      .then(function (result) {
+        // If redirectToCheckout fails due to a browser or network
+        // error, you should display the localized error message to your
+        // customer using error.message.
+        if (result.error) {
+          alert(result.error.message);
+        }
+      })
+      .catch(function (error) {
+        console.error("Error:", error);
+      });
+  };
+
+  function pay() {
+    fetch("/api/charge", {
+      method: "POST",
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (session) {
+        return stripe.redirectToCheckout({ sessionId: session.id });
+      })
+      .then(function (result) {
+        // If redirectToCheckout fails due to a browser or network
+        // error, you should display the localized error message to your
+        // customer using error.message.
+        if (result.error) {
+          alert(result.error.message);
+        }
+      })
+      .catch(function (error) {
+        console.error("Error:", error);
+      });
+  }
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -21,6 +72,7 @@ export default function ArtistCard(props) {
       setCurrentPlayingMusic(false);
     }
   }
+
   function playAudio() {
     x.play();
   }
@@ -34,7 +86,7 @@ export default function ArtistCard(props) {
       <div className="artist_card_container">
         <div className="artist_card_top">
           <div className="artist_card_image_container">
-            <audio id={"myAudio"}>
+            <audio id={"myAudio"} onEnded={() => setCurrentPlayingMusic(false)}>
               <source src="/assets/drake.mp3" type="audio/mpeg" />
               Your browser does not support the audio tag.
             </audio>
@@ -68,7 +120,7 @@ export default function ArtistCard(props) {
         </div>
         <div className="artist_card_bottom">
           <p>278/300</p>
-          <button>Slice $5.00</button>
+          <button onClick={buySlice}>Slice $5.00</button>
         </div>
       </div>
     </div>
