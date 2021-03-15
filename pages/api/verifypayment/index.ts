@@ -2,6 +2,7 @@ import { buffer } from "micro";
 import Cors from "micro-cors";
 import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
+import pool from "../../../postgres.config";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY_2);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -42,10 +43,11 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     // Cast event data to Stripe object.
     if (event.type === "payment_intent.succeeded") {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      console.log(paymentIntent.description);
+      console.log(paymentIntent.charges);
       console.log(`💰 PaymentIntent status: ${paymentIntent.status}`);
     } else if (event.type === "payment_intent.payment_failed") {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
+      console.log(paymentIntent);
       console.log(
         `❌ Payment failed: ${paymentIntent.last_payment_error?.message}`
       );
@@ -54,6 +56,16 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       console.log(session.customer_email);
       console.log(session);
       console.log(`💵 Session id: ${session.id}`);
+      pool.query(
+        "UPDATE TOP (1) slices SET user_id = 3 WHERE user_id IS NULL",
+        (error, response) => {
+          if (error) {
+            throw error;
+          }
+          res.status(200).json("slice purchased");
+          res.end();
+        }
+      );
     } else {
       console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
     }

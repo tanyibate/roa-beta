@@ -7,6 +7,11 @@ export default function index() {
       <ArtistCard />
       <ArtistCard />
       <ArtistCard />
+      <img
+        src="/assets/info-graphic.png"
+        alt=""
+        style={{ height: "600px", width: "1000px" }}
+      />
     </div>
   );
 }

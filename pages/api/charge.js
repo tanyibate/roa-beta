@@ -1,4 +1,4 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY_2);
+const stripe = require("stripe")(process.env.REAL_STRIPE_SECRET_KEY);
 
 export default async (req, res) => {
   if (req.method === "POST") {
@@ -6,7 +6,7 @@ export default async (req, res) => {
       const YOUR_DOMAIN = "http://localhost:3000";
 
       const session = await stripe.checkout.sessions.create({
-        customer_email: "bate.tanyi@yahoo.com",
+        customer_email: "henry@rogueonarrival.com",
         success_url: `${YOUR_DOMAIN}/artists`,
         cancel_url: `${YOUR_DOMAIN}/artists`,
         line_items: [

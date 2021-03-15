@@ -9,7 +9,7 @@ export default function ArtistCard(props) {
 
   const buySlice = async () => {
     const stripe = await loadStripe(
-      process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_2
+      process.env.NEXT_PUBLIC_REAL_STRIPE_PUBLIC_KEY
     );
 
     fetch("/api/charge", {
