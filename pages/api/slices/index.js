@@ -1,4 +1,4 @@
-import pool from "../../postgres.config";
+import pool from "../../../postgres.config";
 
 export default (req, res) => {
   if (req.method === "GET") {
@@ -11,12 +11,12 @@ export default (req, res) => {
   }
   if (req.method === "POST") {
     pool.query(
-      "UPDATE TOP (1) slices SET user_id = 3 WHERE user_id IS NULL",
+      "UPDATE slices SET user_id = 2 WHERE id IN (SELECT id FROM slices WHERE user_id IS NULL  LIMIT 1)",
       (error, results) => {
         if (error) {
           throw error;
         }
-        res.status(200).json(results.rows);
+        res.status(200).send("slice bought");
       }
     );
   }

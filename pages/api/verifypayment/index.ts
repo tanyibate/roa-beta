@@ -3,6 +3,7 @@ import Cors from "micro-cors";
 import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 import pool from "../../../postgres.config";
+import axios from "axios";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY_2);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -56,9 +57,23 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       console.log(session.customer_email);
       console.log(session);
       console.log(`💵 Session id: ${session.id}`);
-      pool.query(
-        "UPDATE TOP (1) slices SET user_id = 3 WHERE user_id IS NULL",
-        (error, response) => {
+      /*await axios
+        .post("/api/slices", {
+          timeout: 1000,
+        })
+        .then((response) => {
+          console.log(response);
+          res.status(200).json("slice purchased");
+          res.end();
+        })
+        .catch((response) => {
+          console.log(response);
+          res.status(400);
+          res.end;
+        });*/
+      await pool.query(
+        "UPDATE slices SET user_id = 2 WHERE id IN (SELECT id FROM slices WHERE user_id IS NULL  LIMIT 1)",
+        (error, results) => {
           if (error) {
             throw error;
           }

@@ -15,19 +15,36 @@ export default function (request, response) {
             bcrypt.compare(
               password,
               results.rows[0].password,
-              function (err, res) {
+              async function (err, res) {
                 console.log(res);
                 if (res === true) {
                   const user = { email: email };
                   const accessToken = jwt.sign(
                     user,
-                    process.env.ACCESS_TOKEN_SECRET
+                    process.env.ACCESS_TOKEN_SECRET,
+                    { expiresIn: "10m" }
                   );
-                  response.status(200).json(accessToken);
+                  const refreshToken = jwt.sign(
+                    user,
+                    process.env.REFRESH_TOKEN_SECRET
+                  );
+                  const refreshtoken_json = JSON.stringify(refreshToken);
+                  pool.query(
+                    "INSERT INTO refreshtokens (refresh_token) VALUES ($1)",
+                    [refreshtoken_json],
+                    (error, results) => {
+                      if (error) {
+                        response.status(400);
+                        response.end();
+                      }
+                      response.status(200).json({ accessToken, refreshToken });
+                      response.end();
+                    }
+                  );
                 } else {
                   response.status(403);
+                  response.end();
                 }
-                response.end();
               }
             );
           } else {

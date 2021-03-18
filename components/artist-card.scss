@@ -7,8 +7,12 @@
   }
 }
 
+.bring-in-artist {
+}
+
 .artist_card_container {
-  background-color: black;
+  background-image: linear-gradient(rgba(29, 215, 96, 1), black 50%);
+
   width: 400px;
   h1 {
     margin: 0;
@@ -17,7 +21,7 @@
   flex-direction: column;
   border-radius: 5px;
   //border: 1px solid #1dd760;
-  box-shadow: 0px 0px 8px rgba(black, $alpha: 1);
+  box-shadow: 0px 0px 8px rgba(white, $alpha: 1);
 }
 
 .rotate_artist {
@@ -69,7 +73,8 @@
 }
 
 .artist_card_top {
-  border-bottom: 1px solid #1dd760;
+  //border-bottom: 1px solid #1dd760;
+  //box-shadow: 0px 2px 4px #1dd760;
   justify-content: space-between;
   padding: 10px;
 }

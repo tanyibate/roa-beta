@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 import "./styles.module.scss";
 
 export default function Login() {
+  const router = useRouter();
   //state
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,10 +23,11 @@ export default function Login() {
     const user = { email, password };
     axios
       .post("/api/login", user, {
-        timeout: 1000,
+        timeout: 5000,
       })
       .then((response) => {
         console.log(response);
+        router.push("/artists");
       })
       .catch((response) => {
         console.log(response);

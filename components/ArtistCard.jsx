@@ -9,7 +9,7 @@ export default function ArtistCard(props) {
 
   const buySlice = async () => {
     const stripe = await loadStripe(
-      process.env.NEXT_PUBLIC_REAL_STRIPE_PUBLIC_KEY
+      process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_2
     );
 
     fetch("/api/charge", {
@@ -81,7 +81,7 @@ export default function ArtistCard(props) {
     x.pause();
   }
   return (
-    <div>
+    <div className="artist-appear">
       <h1>EBE Kastro</h1>
       <div className="artist_card_container">
         <div className="artist_card_top">

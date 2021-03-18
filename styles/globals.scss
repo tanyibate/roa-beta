@@ -109,7 +109,9 @@ a {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  background-color: rgba($color: gray, $alpha: 0.7);
+  //background-color: rgba($color: black, $alpha: 1);
+  background-image: linear-gradient(black, black);
+
   overflow: scroll;
 }
 
@@ -119,4 +121,56 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
   -webkit-transition-delay: 9999s;
+}
+
+@keyframes rotatelogo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes artistappear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes bringinartist {
+  from {
+    position: relative;
+    top: 50px;
+    opacity: 0;
+  }
+  to {
+    position: relative;
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes bringinartist2 {
+  from {
+    position: relative;
+    bottom: 100px;
+  }
+  to {
+    position: relative;
+    top: 0;
+  }
+}
+.artist-appear {
+  //animation: artistappear 1000ms ease-in;
+  animation: bringinartist 1000ms linear forwards;
+}
+
+.rotate-logo {
+  animation: rotatelogo 10000ms infinite linear;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
