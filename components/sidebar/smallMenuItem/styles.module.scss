@@ -1,0 +1,17 @@
+.menu_item {
+  z-index: 20;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  .title {
+    margin: 0;
+    padding: 2px;
+  }
+  .sidebar_icon {
+    height: 22px;
+    width: 22px;
+  }
+}

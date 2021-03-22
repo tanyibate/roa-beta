@@ -1,5 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "../components/artist-card.scss";
+@import "./hamburgers.css";
+@import "../node_modules/swiper/swiper.scss";
+@import "../node_modules/swiper/components/navigation/navigation.scss";
+@import "../node_modules/swiper/components/pagination/pagination.scss";
+@import "./accordion.scss";
+
+.swiper-pagination-bullet {
+  color: white;
+  background-color: white;
+  background: white;
+  opacity: 0.8;
+}
+.swiper-pagination-bullet-active {
+  color: green;
+  background-color: green;
+  background: green;
+}
+
 ////////
 body {
   margin: 0;
@@ -15,6 +33,8 @@ body {
 
 #__next {
   height: 100%;
+  box-sizing: border-box;
+  padding-left: 200px;
 }
 
 a {
@@ -165,6 +185,13 @@ input:-webkit-autofill:active {
 .artist-appear {
   //animation: artistappear 1000ms ease-in;
   animation: bringinartist 1000ms linear forwards;
+  max-width: 310px;
+  height: 545px;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
 }
 
 .rotate-logo {
@@ -173,4 +200,11 @@ input:-webkit-autofill:active {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 767px) {
+  #__next {
+    padding-top: 54px;
+    padding-left: 0;
+  }
 }

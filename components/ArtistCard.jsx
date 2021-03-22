@@ -82,7 +82,7 @@ export default function ArtistCard(props) {
   }
   return (
     <div className="artist-appear">
-      <h1>EBE Kastro</h1>
+      <h1 style={{ margin: "5px 0px", width: "300px" }}>EBE Kastro</h1>
       <div className="artist_card_container">
         <div className="artist_card_top">
           <div className="artist_card_image_container">
