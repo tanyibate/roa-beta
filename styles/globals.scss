@@ -32,7 +32,9 @@ body {
 }
 
 #__next {
+  position: fixed;
   height: 100%;
+  width: 100%;
   box-sizing: border-box;
   padding-left: 200px;
 }
@@ -131,8 +133,6 @@ a {
   flex-wrap: wrap;
   //background-color: rgba($color: black, $alpha: 1);
   background-image: linear-gradient(black, black);
-
-  overflow: scroll;
 }
 
 input:-webkit-autofill,
@@ -145,10 +145,10 @@ input:-webkit-autofill:active {
 
 @keyframes rotatelogo {
   from {
-    transform: rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -163,25 +163,17 @@ input:-webkit-autofill:active {
 @keyframes bringinartist {
   from {
     position: relative;
-    top: 50px;
+    transform: translateY(50px);
     opacity: 0;
   }
   to {
     position: relative;
+    transform: none;
     top: 0;
     opacity: 1;
   }
 }
-@keyframes bringinartist2 {
-  from {
-    position: relative;
-    bottom: 100px;
-  }
-  to {
-    position: relative;
-    top: 0;
-  }
-}
+
 .artist-appear {
   //animation: artistappear 1000ms ease-in;
   animation: bringinartist 1000ms linear forwards;
@@ -199,7 +191,7 @@ input:-webkit-autofill:active {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* bring your own prefixes */
 }
 
 @media only screen and (max-width: 767px) {

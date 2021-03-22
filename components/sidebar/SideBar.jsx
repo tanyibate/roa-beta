@@ -6,6 +6,9 @@ import classNames from "classnames";
 import { useState } from "react";
 export default function SideBar() {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
+  const closeHamburger = () => {
+    setHamburgerOpen(false);
+  };
   return (
     <>
       <div className={styles.sidebar}>
@@ -54,31 +57,37 @@ export default function SideBar() {
             name={"Home"}
             image={"/assets/icons/home.png"}
             url={"/"}
+            close={closeHamburger}
           />
           <LargeMenuItem
             name={"My Slices"}
             image={"/assets/icons/graph.png"}
             url={"/slices"}
+            close={closeHamburger}
           />
           <LargeMenuItem
             name={"Artists"}
             image={"/assets/icons/play-button.svg"}
             url={"/artists"}
+            close={closeHamburger}
           />
           <LargeMenuItem
             name={"Interactions"}
             image={"/assets/icons/megaphone.png"}
             url={"/interactions"}
+            close={closeHamburger}
           />
           <LargeMenuItem
             name={"FAQ"}
             image={"/assets/icons/faq.jpeg"}
             url={"/faq"}
+            close={closeHamburger}
           />
           <LargeMenuItem
             name={"Settings"}
             image={"/assets/icons/settings.png"}
             url={"/settings"}
+            close={closeHamburger}
           />
         </div>
       )}

@@ -47,7 +47,11 @@ export default function index() {
               pagination: false,
             },
           }}
-          style={{ margin: "0px", minWidth: "100%" }}
+          style={{
+            margin: "0px",
+            minWidth: "100%",
+            height: "550px",
+          }}
         >
           <SwiperSlide>
             <ArtistCard />

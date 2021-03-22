@@ -6,6 +6,7 @@ export default function menuItem(props) {
   const router = useRouter();
   function navigate() {
     router.push(props.url);
+    props.close();
   }
   return (
     <div className={style.menu_item} onClick={navigate}>
