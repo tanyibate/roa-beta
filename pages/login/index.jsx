@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import {
+  logIn,
+  setAccessToken,
+  setRefreshToken,
+} from "../../store/actions/index";
 
-import "./styles.module.scss";
+import styles from "./styles.module.scss";
 
 export default function Login() {
   const router = useRouter();
+  const dispatch = useDispatch();
   //state
   const [email, setEmail] = useState("");
+  const [incorrectDetails, setIncorrectDetails] = useState(false);
   const [password, setPassword] = useState("");
+  const [loadApp, setLoadApp] = useState(false);
 
   function keyUpHandler(event) {
     if (event.target.id === "email") {
@@ -27,10 +36,17 @@ export default function Login() {
       })
       .then((response) => {
         console.log(response);
-        router.push("/artists");
+        dispatch(logIn());
+        dispatch(setAccessToken(response.data.accessToken));
+        dispatch(setRefreshToken(response.data.refreshToken));
+        setLoadApp(true);
+        setTimeout(function () {
+          router.push("/artists");
+        }, 2000);
       })
       .catch((response) => {
         console.log(response);
+        setIncorrectDetails(true);
       });
   }
 
@@ -53,6 +69,7 @@ export default function Login() {
           onKeyUp={keyUpHandler}
         />
       </div>
+      {incorrectDetails && <p>Incorrect Login Details</p>}
 
       <button className="login-button" onClick={login}>
         Log In
@@ -62,6 +79,11 @@ export default function Login() {
         <img src="/assets/login-page/google-icon.svg" alt="" />
         <img src="/assets/login-page/facebook-icon.svg" alt="" />
       </div>
+      {loadApp && (
+        <div className={styles.app_transition}>
+          <img src="/assets/Logo/ROA_logowhite.png" alt="" />
+        </div>
+      )}
     </div>
   );
 }

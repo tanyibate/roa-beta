@@ -35,6 +35,11 @@ export default function SideBar() {
           image={"/assets/icons/settings.png"}
           url={"/settings"}
         />
+        <MenuItem
+          name={"Log Out"}
+          image={"/assets/icons/logout.png"}
+          url={"/login"}
+        />
       </div>
       <div className={styles.bottom_navigation}>
         <img src="./assets/Logo/ROA_FULLlogowhite.png" alt="" />

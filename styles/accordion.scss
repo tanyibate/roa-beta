@@ -2,8 +2,7 @@
 
 .accordion-container {
   box-sizing: border-box;
-  padding: 0 20px;
-  min-width: 100%;
+  max-width: 768px;
   overflow: hidden;
 }
 .accordion {

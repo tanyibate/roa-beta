@@ -4,4 +4,18 @@
   padding: 10px;
   box-sizing: border-box;
   padding-top: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.search_bar {
+  background-color: black;
+  color: white;
+  &:focus {
+    outline-width: 0px;
+  }
+  border: 1px solid gainsboro;
+  border-radius: 4px;
+  height: 40px;
+  width: 300px;
 }

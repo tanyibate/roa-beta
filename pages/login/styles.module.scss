@@ -70,3 +70,31 @@
     }
   }
 }
+
+@keyframes rotatelogo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.app_transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    animation: rotatelogo 10000ms infinite linear;
+    height: 120px;
+    width: 120px;
+  }
+}

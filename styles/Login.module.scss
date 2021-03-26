@@ -1,0 +1,22 @@
+@keyframes rotatelogo {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.app_transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+
+  img {
+    animation: rotatelogo 10000ms infinite linear;
+  }
+}

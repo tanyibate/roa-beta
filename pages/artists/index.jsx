@@ -10,27 +10,15 @@ export default function index() {
   // configure Swiper to use modules
 
   // init Swiper:
-  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
     // Update the document title using the browser API
-    setTimeout(function () {
-      setLoading(false);
-    }, 2000);
   }, []);
 
   return (
     <div className="artist-container">
-      {loading && (
-        <img
-          src="/assets/Logo/ROA_logowhite.png"
-          alt=""
-          style={{ height: "100px", width: "100px" }}
-          className="rotate-logo"
-        />
-      )}
-      {!loading && (
+      {
         <Swiper
           navigation
           pagination={{ clickable: true }}
@@ -63,7 +51,7 @@ export default function index() {
             <ArtistCard />
           </SwiperSlide>
         </Swiper>
-      )}
+      }
     </div>
   );
 }
