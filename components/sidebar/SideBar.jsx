@@ -94,6 +94,12 @@ export default function SideBar() {
             url={"/settings"}
             close={closeHamburger}
           />
+          <LargeMenuItem
+            name={"Log Out"}
+            image={"/assets/icons/logout.png"}
+            url={"/login"}
+            close={closeHamburger}
+          />
         </div>
       )}
     </>

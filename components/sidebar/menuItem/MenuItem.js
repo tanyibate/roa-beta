@@ -3,13 +3,33 @@ import style from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../../store/actions/index";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function menuItem(props) {
   const router = useRouter();
+  const refreshToken = useSelector((state) => state.refreshToken);
   const dispatch = useDispatch();
-  const navigate = () => {
-    if (props.url === "/login") dispatch(logOut());
-    router.push(props.url);
+  const navigate = async () => {
+    if (props.url === "/login") {
+      await axios({
+        method: "post",
+        url: "/api/logout",
+        headers: {
+          authorization: `Bearer ${refreshToken}`,
+        },
+      })
+        .then(() => {
+          dispatch(logOut());
+          router.push(props.url);
+        })
+        .catch(() => {
+          dispatch(logOut());
+          router.push(props.url);
+        });
+    } else {
+      router.push(props.url);
+    }
   };
 
   return (

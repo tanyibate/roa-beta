@@ -18,7 +18,7 @@ export default function (request, response) {
               async function (err, res) {
                 console.log(res);
                 if (res === true) {
-                  const user = { email: email };
+                  const user = { email: email, id: results.rows[0].id };
                   const accessToken = jwt.sign(
                     user,
                     process.env.ACCESS_TOKEN_SECRET,
@@ -30,8 +30,8 @@ export default function (request, response) {
                   );
                   const refreshtoken_json = JSON.stringify(refreshToken);
                   pool.query(
-                    "INSERT INTO refreshtokens (refresh_token) VALUES ($1)",
-                    [refreshtoken_json],
+                    "INSERT INTO refreshtokens (refresh_token,user_id) VALUES ($1,$2)",
+                    [refreshtoken_json, results.rows[0].id],
                     (error, results) => {
                       if (error) {
                         response.status(400);

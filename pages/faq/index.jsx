@@ -24,7 +24,7 @@ export default function index() {
   }, []);
   return (
     <div className={styles.faq_page}>
-      <div style={{ width: "100%" }}>
+      <div>
         <h2>FAQ: (Pronounced row-uh)</h2>
         <input type="text" className={styles.search_bar} />
 

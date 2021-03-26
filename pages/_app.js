@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <>
-          <Sidebar />
+          {store.getState().loggedIn && <Sidebar />}
           {allowed ? <Component {...pageProps} /> : <LogIn />}
         </>
       </PersistGate>
