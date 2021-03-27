@@ -15,9 +15,9 @@ export default function SideBar() {
         <img src="assets/Logo/ROA_logowhite.png" className={styles.logo} />
         <MenuItem name={"Home"} image={"/assets/icons/home.png"} url={"/"} />
         <MenuItem
-          name={"My Slices"}
+          name={"Portfolio"}
           image={"/assets/icons/graph.png"}
-          url={"/slices"}
+          url={"/portfolio"}
         />
         <MenuItem
           name={"Artists"}
@@ -65,9 +65,9 @@ export default function SideBar() {
             close={closeHamburger}
           />
           <LargeMenuItem
-            name={"My Slices"}
+            name={"Portfolio"}
             image={"/assets/icons/graph.png"}
-            url={"/slices"}
+            url={"/portfolio"}
             close={closeHamburger}
           />
           <LargeMenuItem

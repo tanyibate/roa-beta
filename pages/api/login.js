@@ -28,7 +28,7 @@ export default function (request, response) {
                     user,
                     process.env.REFRESH_TOKEN_SECRET
                   );
-                  const refreshtoken_json = JSON.stringify(refreshToken);
+                  const refreshtoken_json = refreshToken;
                   pool.query(
                     "INSERT INTO refreshtokens (refresh_token,user_id) VALUES ($1,$2)",
                     [refreshtoken_json, results.rows[0].id],
