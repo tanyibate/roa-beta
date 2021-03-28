@@ -18,40 +18,46 @@ export default function index() {
 
   return (
     <div className="artist-container">
-      {
-        <Swiper
-          navigation
-          pagination={{ clickable: true }}
-          breakpoints={{
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 25,
-            },
-            840: { slidesPerView: 2, spaceBetween: 25 },
-            1160: {
-              slidesPerView: 3,
-              spaceBetween: 25,
-              navigation: false,
-              pagination: false,
-            },
-          }}
-          style={{
-            margin: "0px",
-            minWidth: "100%",
-            height: "550px",
-          }}
-        >
-          <SwiperSlide>
-            <ArtistCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ArtistCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            <ArtistCard />
-          </SwiperSlide>
-        </Swiper>
-      }
+      <div className="swiper-container">
+        {
+          <Swiper
+            className="swiper"
+            navigation
+            pagination={{ clickable: true }}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 25,
+              },
+              840: { slidesPerView: 2, spaceBetween: 25 },
+              1160: {
+                slidesPerView: 3,
+                spaceBetween: 25,
+              },
+            }}
+            style={{
+              margin: "0px",
+              minWidth: "100%",
+              height: "550px",
+            }}
+          >
+            <SwiperSlide>
+              <ArtistCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ArtistCard />
+            </SwiperSlide>
+            <SwiperSlide>
+              <ArtistCard />
+            </SwiperSlide>
+          </Swiper>
+        }
+      </div>
+      <div className="swiper-container-large-artists">
+        <ArtistCard />
+        <ArtistCard />
+        <ArtistCard />
+      </div>
     </div>
   );
 }

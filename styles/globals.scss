@@ -198,10 +198,28 @@ input:-webkit-autofill:active {
   left: 50%;
   /* bring your own prefixes */
 }
+.swiper-container-large-artists {
+  display: none;
+}
 
 @media only screen and (max-width: 767px) {
   #__next {
     padding-top: 54px;
     padding-left: 0;
+  }
+}
+
+@media only screen and (min-width: 1160px) {
+  .swiper-container {
+    height: 100%;
+    width: 100%;
+    display: none;
+  }
+  .swiper-container-large-artists {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
   }
 }
