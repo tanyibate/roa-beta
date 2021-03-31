@@ -7,7 +7,7 @@ export default function Interaction() {
       <div className={styles.interaction_container_overlay}>
         <div className={styles.interaction_content}>
           <div className={styles.interaction_details}>
-            <h2>Zoom Meet and Greet</h2>
+            <h2>Sit down</h2>
             <h1>EBE Kastro</h1>
             <p>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -15,8 +15,7 @@ export default function Interaction() {
             </p>
           </div>
           <div className={styles.date}>
-            <p>Jan</p>
-            <h3>11</h3>
+            <h3>TBD</h3>
           </div>
         </div>
       </div>

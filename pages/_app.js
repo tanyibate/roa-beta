@@ -15,21 +15,27 @@ function MyApp({ Component, pageProps }) {
   //const [allowed, SetAllowed] = useState(true);
   const router = useRouter();
   let allowed = false;
+  let showSidebar = false;
   let route = router.pathname;
 
   if (
     router.pathname.startsWith("/login") ||
     router.pathname.startsWith("/register") ||
+    router.pathname.startsWith("/") ||
     store.getState().loggedIn
   ) {
     allowed = true;
+  }
+
+  if (router.pathname.startsWith("/") || store.getState().loggedIn) {
+    showSidebar = true;
   }
 
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <>
-          {store.getState().loggedIn && <Sidebar />}
+          {<Sidebar />}
           {allowed ? <Component {...pageProps} /> : <LogIn />}
         </>
       </PersistGate>

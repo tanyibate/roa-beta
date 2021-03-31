@@ -4,7 +4,10 @@ import SmallMenuItem from "./smallMenuItem/SmallMenuItem";
 import LargeMenuItem from "./largeMenuItem/LargeMenuItem";
 import classNames from "classnames";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 export default function SideBar() {
+  const loggedIn = useSelector((state) => state.loggedIn);
+
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const closeHamburger = () => {
     setHamburgerOpen(false);
@@ -14,32 +17,48 @@ export default function SideBar() {
       <div className={styles.sidebar}>
         <img src="assets/Logo/ROA_logowhite.png" className={styles.logo} />
         <MenuItem name={"Home"} image={"/assets/icons/home.png"} url={"/"} />
-        <MenuItem
-          name={"Portfolio"}
-          image={"/assets/icons/graph.png"}
-          url={"/portfolio"}
-        />
-        <MenuItem
-          name={"Artists"}
-          image={"/assets/icons/play-button.svg"}
-          url={"/artists"}
-        />
-        <MenuItem
-          name={"Interactions"}
-          image={"/assets/icons/megaphone.png"}
-          url={"/interactions"}
-        />
-        <MenuItem name={"FAQ"} image={"/assets/icons/faq.jpeg"} url={"/faq"} />
-        <MenuItem
-          name={"Settings"}
-          image={"/assets/icons/settings.png"}
-          url={"/settings"}
-        />
-        <MenuItem
-          name={"Log Out"}
-          image={"/assets/icons/logout.png"}
-          url={"/login"}
-        />
+        {loggedIn && (
+          <MenuItem
+            name={"Portfolio"}
+            image={"/assets/icons/graph.png"}
+            url={"/portfolio"}
+          />
+        )}
+        {loggedIn && (
+          <MenuItem
+            name={"Artists"}
+            image={"/assets/icons/play-button.svg"}
+            url={"/artists"}
+          />
+        )}
+        {loggedIn && (
+          <MenuItem
+            name={"Arrivals"}
+            image={"/assets/icons/megaphone.png"}
+            url={"/interactions"}
+          />
+        )}
+        {loggedIn && (
+          <MenuItem
+            name={"FAQ"}
+            image={"/assets/icons/faq.jpeg"}
+            url={"/faq"}
+          />
+        )}
+        {loggedIn && (
+          <MenuItem
+            name={"Settings"}
+            image={"/assets/icons/settings.png"}
+            url={"/settings"}
+          />
+        )}
+        {loggedIn && (
+          <MenuItem
+            name={"Log Out"}
+            image={"/assets/icons/logout.png"}
+            url={"/login"}
+          />
+        )}
       </div>
       <div className={styles.bottom_navigation}>
         <img src="./assets/Logo/ROA_FULLlogowhite.png" alt="" />
@@ -77,7 +96,7 @@ export default function SideBar() {
             close={closeHamburger}
           />
           <LargeMenuItem
-            name={"Interactions"}
+            name={"Arrivals"}
             image={"/assets/icons/megaphone.png"}
             url={"/interactions"}
             close={closeHamburger}

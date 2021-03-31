@@ -25,7 +25,7 @@ export default function index() {
   return (
     <div className={styles.faq_page}>
       <div>
-        <h2>FAQ: (Pronounced row-uh)</h2>
+        <h2> ? : (Pronounced row-uh)</h2>
         <input type="text" className={styles.search_bar} />
 
         <div className="accordion-container">

@@ -19,13 +19,7 @@ function slice() {
             <p>1 slice</p>
           </div>
           <div className={styles.slice_price}>
-            <img
-              src="/assets/slice.png"
-              alt=""
-              className={styles.slice_price_image}
-            />
             <p>$5.00</p>
-            <button>Buy More</button>
           </div>
         </div>
       </div>

@@ -5,6 +5,9 @@
 @import "../node_modules/swiper/components/navigation/navigation.scss";
 @import "../node_modules/swiper/components/pagination/pagination.scss";
 @import "./accordion.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .swiper-pagination-bullet {
   color: white;
