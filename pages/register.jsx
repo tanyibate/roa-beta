@@ -11,6 +11,8 @@ export default function Login() {
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
+  const [referralCode, setReferralCode] = useState("");
+
   const [page, setPage] = useState(1);
   function keyUpHandler(event) {
     if (event.target.id === "email") {
@@ -29,6 +31,9 @@ export default function Login() {
       setLastName(event.target.value);
     }
     if (event.target.id === "mobilenumber") {
+      setPhoneNumber(event.target.value);
+    }
+    if (event.target.id === "referralcode") {
       setPhoneNumber(event.target.value);
     }
   }
@@ -105,6 +110,13 @@ export default function Login() {
           id="mobilenumber"
           placeholder="Mobile Number"
           onKeyUp={keyUpHandler}
+        />
+        <input
+          type="text"
+          id="referralcode"
+          placeholder="Referral Code"
+          onKeyUp={keyUpHandler}
+          readonly
         />
       </div>
     </div>
