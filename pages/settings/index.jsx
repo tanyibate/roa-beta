@@ -28,9 +28,7 @@ export default function index() {
   return (
     <div className={styles.settingsContainer}>
       <div className={styles.header}>
-        <img src="/assets/Logo/ROA_logowhite.png" className={styles.logo} />
         <h1 className={styles.title}>Settings</h1>
-        <h3 classname={styles.logout}>Logout</h3>
       </div>
 
       <div className={styles.mainContent}>

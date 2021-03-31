@@ -9,9 +9,10 @@ import axios from "axios";
 export default function menuItem(props) {
   const router = useRouter();
   const refreshToken = useSelector((state) => state.refreshToken);
+  const loggedIn = useSelector((state) => state.loggedIn);
   const dispatch = useDispatch();
   const navigate = async () => {
-    if (props.url === "/login") {
+    if (props.url === "/login" && loggedIn) {
       await axios({
         method: "post",
         url: "/api/logout",

@@ -59,6 +59,20 @@ export default function SideBar() {
             url={"/login"}
           />
         )}
+        {!loggedIn && (
+          <MenuItem
+            name={"Log In"}
+            image={"/assets/icons/logout.png"}
+            url={"/login"}
+          />
+        )}
+        {!loggedIn && (
+          <MenuItem
+            name={"Register"}
+            image={"/assets/icons/logout.png"}
+            url={"/register"}
+          />
+        )}
       </div>
       <div className={styles.bottom_navigation}>
         <img src="./assets/Logo/ROA_FULLlogowhite.png" alt="" />
@@ -83,42 +97,70 @@ export default function SideBar() {
             url={"/"}
             close={closeHamburger}
           />
-          <LargeMenuItem
-            name={"Portfolio"}
-            image={"/assets/icons/graph.png"}
-            url={"/portfolio"}
-            close={closeHamburger}
-          />
-          <LargeMenuItem
-            name={"Artists"}
-            image={"/assets/icons/play-button.svg"}
-            url={"/artists"}
-            close={closeHamburger}
-          />
-          <LargeMenuItem
-            name={"Arrivals"}
-            image={"/assets/icons/megaphone.png"}
-            url={"/interactions"}
-            close={closeHamburger}
-          />
-          <LargeMenuItem
-            name={"FAQ"}
-            image={"/assets/icons/faq.jpeg"}
-            url={"/faq"}
-            close={closeHamburger}
-          />
-          <LargeMenuItem
-            name={"Settings"}
-            image={"/assets/icons/settings.png"}
-            url={"/settings"}
-            close={closeHamburger}
-          />
-          <LargeMenuItem
-            name={"Log Out"}
-            image={"/assets/icons/logout.png"}
-            url={"/login"}
-            close={closeHamburger}
-          />
+          {loggedIn && (
+            <LargeMenuItem
+              name={"Portfolio"}
+              image={"/assets/icons/graph.png"}
+              url={"/portfolio"}
+              close={closeHamburger}
+            />
+          )}
+          {loggedIn && (
+            <LargeMenuItem
+              name={"Artists"}
+              image={"/assets/icons/play-button.svg"}
+              url={"/artists"}
+              close={closeHamburger}
+            />
+          )}
+          {loggedIn && (
+            <LargeMenuItem
+              name={"Arrivals"}
+              image={"/assets/icons/megaphone.png"}
+              url={"/interactions"}
+              close={closeHamburger}
+            />
+          )}
+          {loggedIn && (
+            <LargeMenuItem
+              name={"FAQ"}
+              image={"/assets/icons/faq.jpeg"}
+              url={"/faq"}
+              close={closeHamburger}
+            />
+          )}
+          {loggedIn && (
+            <LargeMenuItem
+              name={"Settings"}
+              image={"/assets/icons/settings.png"}
+              url={"/settings"}
+              close={closeHamburger}
+            />
+          )}
+          {loggedIn && (
+            <LargeMenuItem
+              name={"Log Out"}
+              image={"/assets/icons/logout.png"}
+              url={"/login"}
+              close={closeHamburger}
+            />
+          )}
+          {!loggedIn && (
+            <LargeMenuItem
+              name={"Log In"}
+              image={"/assets/icons/logout.png"}
+              url={"/login"}
+              close={closeHamburger}
+            />
+          )}
+          {!loggedIn && (
+            <LargeMenuItem
+              name={"Register"}
+              image={"/assets/icons/logout.png"}
+              url={"/register"}
+              close={closeHamburger}
+            />
+          )}
         </div>
       )}
     </>
