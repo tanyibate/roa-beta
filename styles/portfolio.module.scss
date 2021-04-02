@@ -5,6 +5,32 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  position: relative;
+  button {
+    background-color: #1dd760;
+    color: white;
+    height: 50px;
+    padding: 0 20px;
+    margin: 10px 0;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    &:focus {
+      outline-width: 0;
+    }
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  background-color: black;
+  left: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  animation: modalanimation 200ms linear;
 }
 
 .slices_container {
@@ -29,17 +55,39 @@
     height: 30px;
     width: 300px;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 15px;
   }
 
   progress::-webkit-progress-value {
     background: #1dd760;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
   }
 
   progress::-webkit-progress-bar {
     background: white;
-    border-radius: 5px;
+    border-radius: 15px;
+  }
+}
+
+@keyframes modalanimation {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes modalanimation {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }

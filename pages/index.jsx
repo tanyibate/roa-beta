@@ -1,5 +1,6 @@
 import styles from "../styles/Home.module.scss";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
@@ -30,8 +31,9 @@ export default function Home() {
           </h3>
         </div>
         <div className={styles.block}>
-          <img
-            className={styles.infographic_image}
+          <Image
+            height={300}
+            width={300}
             src="/assets/ROA_Mobilemockup.jpg"
             alt=""
           />

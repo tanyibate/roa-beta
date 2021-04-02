@@ -11,6 +11,10 @@ export default function (request, response) {
         "SELECT * FROM users WHERE email = $1",
         [email],
         function (error, results, fields) {
+          if (error) {
+            response.status(403);
+            response.end();
+          }
           if (results.rows.length > 0) {
             bcrypt.compare(
               password,

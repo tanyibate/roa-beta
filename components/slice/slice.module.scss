@@ -96,5 +96,14 @@
 @media only screen and (min-width: 768px) {
   .slice_container_underlay {
     font-size: calc((100vw - 200px) * 0.01);
+    width: 550px;
+    max-height: 178px;
+    min-height: 178px;
+    box-sizing: border-box;
+    font-size: 5px;
+    padding-top: 0;
+  }
+  .slice_container {
+    border-radius: 1.5em;
   }
 }

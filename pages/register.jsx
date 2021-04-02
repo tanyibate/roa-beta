@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import styles from "../styles/register.module.scss";
 
 export default function Login() {
   const router = useRouter();
@@ -38,6 +39,12 @@ export default function Login() {
     }
   }
 
+  function backButtonHandler() {
+    if (page === 2) {
+      setPage(1);
+    }
+  }
+
   function buttonHandler() {
     if (page === 1) {
       setPage(2);
@@ -60,64 +67,73 @@ export default function Login() {
 
   const loginDetails = (
     <div>
-      <div className="form-input">
-        <input
-          type="text"
-          id="email"
-          placeholder="Email"
-          onKeyUp={keyUpHandler}
-        />
-      </div>
-      <div className="form-input">
-        <input
-          type="text"
-          id="password"
-          placeholder="Password"
-          onKeyUp={keyUpHandler}
-        />
-      </div>
-      <div className="form-input">
-        <input
-          type="text"
-          id="confirmpassword"
-          placeholder="Confirm Password"
-          onKeyUp={keyUpHandler}
-        />
+      <div className={styles.form_group_container}>
+        <p>Let's get your account set up!</p>
+        <div className={styles.form_group_wrapper}>
+          <div className="form-input">
+            <input
+              type="text"
+              id="email"
+              placeholder="Email"
+              onKeyUp={keyUpHandler}
+            />
+          </div>
+          <div className="form-input">
+            <input
+              type="text"
+              id="password"
+              placeholder="Password"
+              onKeyUp={keyUpHandler}
+            />
+          </div>
+          <div className="form-input">
+            <input
+              type="text"
+              id="confirmpassword"
+              placeholder="Confirm Password"
+              onKeyUp={keyUpHandler}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
   const personalDetails = (
     <div>
-      <div className="form-input">
-        <input
-          type="text"
-          id="firstname"
-          placeholder="First Name"
-          onKeyUp={keyUpHandler}
-        />
+      <div className={styles.form_group_container}>
+        <p>What do we call you?</p>
+        <div className={styles.form_group_wrapper}>
+          <div className="form-input">
+            <input
+              type="text"
+              id="firstname"
+              placeholder="Alfredo"
+              onKeyUp={keyUpHandler}
+            />
+          </div>
+          <div className="form-input">
+            <input
+              type="text"
+              id="lastname"
+              placeholder="Pacino"
+              onKeyUp={keyUpHandler}
+            />
+          </div>
+        </div>
       </div>
-      <div className="form-input">
-        <input
-          type="text"
-          id="lastname"
-          placeholder="Last Name"
-          onKeyUp={keyUpHandler}
-        />
-      </div>
-      <div className="form-input">
-        <input
-          type="text"
-          id="mobilenumber"
-          placeholder="Mobile Number"
-          onKeyUp={keyUpHandler}
-        />
-        <input
-          type="text"
-          id="referralcode"
-          placeholder="Referral Code"
-          onKeyUp={keyUpHandler}
-          readonly
-        />
+
+      <div className={styles.form_group_container}>
+        <p>How do we contact you?</p>
+        <div className={styles.form_group_wrapper}>
+          <div className="form-input">
+            <input
+              type="text"
+              id="mobilenumber"
+              placeholder="Mobile Number"
+              onKeyUp={keyUpHandler}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -127,7 +143,11 @@ export default function Login() {
       <img src="/assets/Logo/ROA_logowhite.png" className="login-logo" />
       {page === 1 && loginDetails}
       {page === 2 && personalDetails}
-
+      {page === 2 && (
+        <button className="login-button" onClick={backButtonHandler}>
+          Go Back One
+        </button>
+      )}
       <button className="login-button" onClick={buttonHandler}>
         {submitButton}
       </button>

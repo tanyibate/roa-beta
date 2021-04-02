@@ -19,7 +19,7 @@ export default function SideBar() {
         <MenuItem name={"Home"} image={"/assets/icons/home.png"} url={"/"} />
         {loggedIn && (
           <MenuItem
-            name={"Portfolio"}
+            name={"My Slices"}
             image={"/assets/icons/graph.png"}
             url={"/portfolio"}
           />
@@ -99,7 +99,7 @@ export default function SideBar() {
           />
           {loggedIn && (
             <LargeMenuItem
-              name={"Portfolio"}
+              name={"My Slices"}
               image={"/assets/icons/graph.png"}
               url={"/portfolio"}
               close={closeHamburger}
