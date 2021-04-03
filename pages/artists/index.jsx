@@ -48,10 +48,10 @@ export default function index() {
               height: "550px",
             }}
           >
-            {artists.map((el) => {
+            {artists.map((el, index) => {
               return (
-                <SwiperSlide>
-                  <ArtistCard artist={el} />
+                <SwiperSlide key={index + "slider"}>
+                  <ArtistCard artist={el} key={index + "artist-small"} />
                 </SwiperSlide>
               );
             })}
@@ -60,7 +60,7 @@ export default function index() {
       </div>
       <div className={styles.swipe_container_large_artists}>
         {artists.map((el, index) => {
-          return <ArtistCard artist={el} key={index} />;
+          return <ArtistCard artist={el} key={index + "artist-large"} />;
         })}
       </div>
     </div>

@@ -19,6 +19,8 @@ export default function ArtistCard(props) {
       method: "POST",
       body: JSON.stringify({
         email: session.user.email,
+        imageUrl: props.artist.artist_image_url,
+        artistAlias: props.artist.artist_alias,
       }),
     })
       .then(function (response) {

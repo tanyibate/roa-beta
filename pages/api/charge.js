@@ -16,10 +16,8 @@ export default async (req, res) => {
             price_data: {
               currency: "usd",
               product_data: {
-                name: "EBE KASTRO Slice",
-                images: [
-                  "https://yt3.ggpht.com/ytc/AAUvwniFM4h3iOlRCk5VDjbKkWjNRuDntpo3pNm8-TpLXg=s900-c-k-c0x00ffffff-no-rj",
-                ],
+                name: `${request.artistAlias} Slice`,
+                images: [request.imageUrl],
               },
               unit_amount: 500,
             },
