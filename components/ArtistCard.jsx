@@ -88,7 +88,9 @@ export default function ArtistCard(props) {
   }
   return (
     <div className="artist-appear">
-      <h1 style={{ margin: "5px 0px", width: "300px" }}>EBE Kastro</h1>
+      <h1 style={{ margin: "5px 0px", width: "300px" }}>
+        {props.artist.artist_alias}
+      </h1>
       <div className="artist_card_container">
         <div className="artist_card_top">
           <div className="artist_card_image_container">
@@ -98,7 +100,7 @@ export default function ArtistCard(props) {
             </audio>
             <div>
               <img
-                src="https://yt3.ggpht.com/ytc/AAUvwniFM4h3iOlRCk5VDjbKkWjNRuDntpo3pNm8-TpLXg=s900-c-k-c0x00ffffff-no-rj"
+                src={`${props.artist.artist_image_url}`}
                 alt=""
                 className={classNames({
                   artist_image: true,
@@ -110,12 +112,10 @@ export default function ArtistCard(props) {
           </div>
           <div className="artist_card_bio">
             <p>
-              Up and coming Music artist Ebe Kastro is ready to change the hip
-              hop industry! Formerly from Newport News, Virginia Ebe Kastro has
-              hustled hard and focused his sights on success. Spittin 'truth on
-              his latest single “UP” which is currently on all platforms has
-              caught everyone's attention!
+              <span className="bio">{props.artist.artist_description}</span>
+              <span className="read_more">Read more</span>
             </p>
+
             <div className="artist_social_media">
               <img src="/assets/icons/spotify.svg" alt="" />
               <img src="/assets/icons/instagram.svg" alt="" />

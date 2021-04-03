@@ -5,25 +5,30 @@ import { useRouter } from "next/router";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 import { getSession, useSession } from "next-auth/client";
-
+import axios from "axios";
+import styles from "./styles.module.scss";
 SwiperCore.use([Navigation, Pagination]);
 
 export default function index() {
   // configure Swiper to use modules
+  const [artists, setArtists] = useState([]);
 
   // init Swiper:
   const router = useRouter();
 
   useEffect(() => {
     // Update the document title using the browser API
+    axios.get("/api/artists").then((result) => {
+      setArtists(result.data);
+      console.log(result.data);
+    });
   }, []);
 
   return (
-    <div className="artist-container">
-      <div className="swiper-container">
+    <div className={styles.artist_container}>
+      <div className={styles.swipe_container}>
         {
           <Swiper
-            className="swiper"
             navigation
             pagination={{ clickable: true }}
             breakpoints={{
@@ -43,22 +48,20 @@ export default function index() {
               height: "550px",
             }}
           >
-            <SwiperSlide>
-              <ArtistCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ArtistCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ArtistCard />
-            </SwiperSlide>
+            {artists.map((el) => {
+              return (
+                <SwiperSlide>
+                  <ArtistCard artist={el} />
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         }
       </div>
-      <div className="swiper-container-large-artists">
-        <ArtistCard />
-        <ArtistCard />
-        <ArtistCard />
+      <div className={styles.swipe_container_large_artists}>
+        {artists.map((el, index) => {
+          return <ArtistCard artist={el} key={index} />;
+        })}
       </div>
     </div>
   );

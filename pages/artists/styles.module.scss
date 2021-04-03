@@ -1,0 +1,45 @@
+.artist_container {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  //background-color: rgba($color: black, $alpha: 1);
+  background-image: linear-gradient(black, black);
+}
+
+.swipe_container_large_artists {
+  display: none;
+}
+.swipe_container {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1160px) {
+  .swipe_container {
+    height: 100%;
+    width: 100%;
+    display: none;
+  }
+  .swipe_container_large_artists {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1260px) {
+  .swipe_container {
+    height: 100%;
+    width: 100%;
+    display: none;
+  }
+  .swipe_container_large_artists {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 1060px;
+  }
+}

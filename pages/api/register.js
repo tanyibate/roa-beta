@@ -1,5 +1,6 @@
 import pool from "../../postgres.config";
 const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 export default function (request, response) {
   if (request.method === "POST") {

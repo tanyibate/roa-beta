@@ -141,6 +141,7 @@ a {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  box-sizing: border-box;
   //background-color: rgba($color: black, $alpha: 1);
   background-image: linear-gradient(black, black);
 }
@@ -184,18 +185,6 @@ input:-webkit-autofill:active {
   }
 }
 
-.artist-appear {
-  //animation: artistappear 1000ms ease-in;
-  animation: bringinartist 1000ms linear forwards;
-  max-width: 310px;
-  height: 545px;
-  justify-content: center;
-  display: flex;
-  margin: 0 auto;
-  flex-direction: column;
-  align-items: center;
-}
-
 .rotate-logo {
   animation: rotatelogo 10000ms infinite linear;
   position: fixed;
@@ -203,8 +192,11 @@ input:-webkit-autofill:active {
   left: 50%;
   /* bring your own prefixes */
 }
-.swiper-container-large-artists {
+.swipe-container-large-artists {
   display: none;
+}
+.swipe-container {
+  width: 100%;
 }
 
 .swiper-button-prev,
@@ -220,12 +212,12 @@ input:-webkit-autofill:active {
 }
 
 @media only screen and (min-width: 1160px) {
-  .swiper-container {
+  .swipe-container {
     height: 100%;
     width: 100%;
     display: none;
   }
-  .swiper-container-large-artists {
+  .swipe-container-large-artists {
     display: flex;
     justify-content: space-evenly;
     align-items: center;

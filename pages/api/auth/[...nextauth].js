@@ -16,6 +16,7 @@ const providers = [
       password: { label: "Password", type: "password" },
     },
     async authorize(credentials) {
+      console.log(`${process.env.NEXTAUTH_URL}/api/nextlogin`);
       const result = await axios.post(
         `${process.env.NEXTAUTH_URL}/api/nextlogin`,
         {
