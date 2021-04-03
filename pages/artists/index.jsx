@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 // core version + navigation, pagination modules:
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
+import { getSession, useSession } from "next-auth/client";
+
 SwiperCore.use([Navigation, Pagination]);
 
 export default function index() {
@@ -60,4 +62,19 @@ export default function index() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (!session) {
+    ctx.res.writeHead(302, { Location: "/nextlogin" });
+    ctx.res.end();
+    return {};
+  }
+
+  return {
+    props: {
+      user: session.user.email,
+    },
+  };
 }

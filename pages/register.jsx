@@ -51,7 +51,7 @@ export default function Login() {
     } else {
       const user = { email, password, first_name, last_name, phone_number };
       axios
-        .post("/api/users", user, {
+        .post("/api/register", user, {
           timeout: 1000,
         })
         .then((response) => {

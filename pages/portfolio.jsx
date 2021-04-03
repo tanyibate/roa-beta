@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Slice from "../components/slice/Slice";
 import styles from "../styles/portfolio.module.scss";
+import { getSession, useSession } from "next-auth/client";
 
-export default function portfolio() {
+export default function portfolio({ user }) {
   const [modalActive, setModalActive] = useState(false);
   return (
     <div className={styles.portfolio_container}>
@@ -31,4 +32,19 @@ export default function portfolio() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (!session) {
+    ctx.res.writeHead(302, { Location: "/nextlogin" });
+    ctx.res.end();
+    return {};
+  }
+
+  return {
+    props: {
+      user: session.user.email,
+    },
+  };
 }

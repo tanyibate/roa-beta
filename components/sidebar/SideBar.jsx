@@ -5,8 +5,11 @@ import LargeMenuItem from "./largeMenuItem/LargeMenuItem";
 import classNames from "classnames";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useSession } from "next-auth/client";
+
 export default function SideBar() {
   const loggedIn = useSelector((state) => state.loggedIn);
+  const [session, loading] = useSession();
 
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
   const closeHamburger = () => {
@@ -17,56 +20,52 @@ export default function SideBar() {
       <div className={styles.sidebar}>
         <img src="assets/Logo/ROA_logowhite.png" className={styles.logo} />
         <MenuItem name={"Home"} image={"/assets/icons/home.png"} url={"/"} />
-        {loggedIn && (
+        {session && (
           <MenuItem
             name={"My Slices"}
             image={"/assets/icons/graph.png"}
             url={"/portfolio"}
           />
         )}
-        {loggedIn && (
+        {session && (
           <MenuItem
             name={"Artists"}
             image={"/assets/icons/play-button.svg"}
             url={"/artists"}
           />
         )}
-        {loggedIn && (
+        {session && (
           <MenuItem
             name={"Arrivals"}
             image={"/assets/icons/megaphone.png"}
             url={"/interactions"}
           />
         )}
-        {loggedIn && (
-          <MenuItem
-            name={"FAQ"}
-            image={"/assets/icons/faq.jpeg"}
-            url={"/faq"}
-          />
-        )}
-        {loggedIn && (
+
+        <MenuItem name={"FAQ"} image={"/assets/icons/faq.jpeg"} url={"/faq"} />
+
+        {session && (
           <MenuItem
             name={"Settings"}
             image={"/assets/icons/settings.png"}
             url={"/settings"}
           />
         )}
-        {loggedIn && (
+        {session && (
           <MenuItem
             name={"Log Out"}
             image={"/assets/icons/logout.png"}
-            url={"/login"}
+            url={"/nextlogin"}
           />
         )}
-        {!loggedIn && (
+        {!session && (
           <MenuItem
             name={"Log In"}
             image={"/assets/icons/logout.png"}
-            url={"/login"}
+            url={"/nextlogin"}
           />
         )}
-        {!loggedIn && (
+        {!session && (
           <MenuItem
             name={"Register"}
             image={"/assets/icons/logout.png"}

@@ -3,9 +3,11 @@ import styles from "../styles/interactions.module.scss";
 import Interaction from "../components/interaction/Interaction.jsx";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
+import { getSession, useSession } from "next-auth/client";
+
 SwiperCore.use([Navigation, Pagination]);
 
-export default function interactions() {
+export default function interactions({ user }) {
   return (
     <div className={styles.interactions_container}>
       <div className={styles.swiper_container}>
@@ -47,4 +49,19 @@ export default function interactions() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (!session) {
+    ctx.res.writeHead(302, { Location: "/nextlogin" });
+    ctx.res.end();
+    return {};
+  }
+
+  return {
+    props: {
+      user: session.user.email,
+    },
+  };
 }

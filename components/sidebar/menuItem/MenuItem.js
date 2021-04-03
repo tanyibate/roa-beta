@@ -5,13 +5,16 @@ import { useDispatch } from "react-redux";
 import { logOut } from "../../../store/actions/index";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { getSession, useSession, signOut } from "next-auth/client";
 
 export default function menuItem(props) {
+  const [session] = useSession();
+
   const router = useRouter();
   const refreshToken = useSelector((state) => state.refreshToken);
   const loggedIn = useSelector((state) => state.loggedIn);
   const dispatch = useDispatch();
-  const navigate = async () => {
+  /*const navigate = async () => {
     if (props.url === "/login" && loggedIn) {
       await axios({
         method: "post",
@@ -28,6 +31,13 @@ export default function menuItem(props) {
           dispatch(logOut());
           router.push(props.url);
         });
+    } else {
+      router.push(props.url);
+    }
+  };*/
+  const navigate = async () => {
+    if (props.url === "/nextlogin" && session) {
+      signOut({ callbackUrl: "http://localhost:3000/nextlogin" });
     } else {
       router.push(props.url);
     }

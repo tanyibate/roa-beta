@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { loadStripe } from "@stripe/stripe-js";
+import { useSession } from "next-auth/client";
 
 export default function ArtistCard(props) {
+  const [session] = useSession();
+
   var x;
   var artistid = Math.floor(Math.random() * 10);
   const [currentPlayingMusic, setCurrentPlayingMusic] = useState(false);
@@ -14,6 +17,9 @@ export default function ArtistCard(props) {
 
     fetch("/api/charge", {
       method: "POST",
+      body: JSON.stringify({
+        email: session.user.email,
+      }),
     })
       .then(function (response) {
         return response.json();

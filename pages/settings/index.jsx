@@ -23,7 +23,7 @@ export default function index() {
         <p>Do you want to change your login details?</p>
         <div className={styles.form_group_wrapper}>
           <p>Email</p>
-          <div className="form-input">
+          <div className={styles.form_input}>
             <input
               type="text"
               id="email"
@@ -32,7 +32,7 @@ export default function index() {
             />
           </div>
           <p>Old Password</p>
-          <div className="form-input">
+          <div className={styles.form_input}>
             <input
               type="password"
               id="password"
@@ -41,7 +41,7 @@ export default function index() {
             />
           </div>
           <p>New Password</p>
-          <div className="form-input">
+          <div className={styles.form_input}>
             <input
               type="password"
               id="password"
@@ -55,7 +55,7 @@ export default function index() {
       <div className={styles.form_group_container}>
         <p>Where are you hiding at?</p>
         <div className={styles.form_group_wrapper}>
-          <div className="form-input">
+          <div className={styles.form_input}>
             <input
               type="text"
               id="country"
@@ -63,7 +63,7 @@ export default function index() {
               onKeyUp={keyUpHandler}
             />
           </div>
-          <div className="form-input">
+          <div className={styles.form_input}>
             <input
               type="text"
               id="city"

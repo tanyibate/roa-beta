@@ -1,12 +1,14 @@
+import { request } from "express";
+
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY_2);
 
 export default async (req, res) => {
   if (req.method === "POST") {
     try {
-      const YOUR_DOMAIN = "http://localhost:3000";
-
+      const YOUR_DOMAIN = process.env.NEXTAUTH_URL;
+      const request = JSON.parse(req.body);
       const session = await stripe.checkout.sessions.create({
-        customer_email: "henry@rogueonarrival.com",
+        customer_email: request.email,
         success_url: `${YOUR_DOMAIN}/artists`,
         cancel_url: `${YOUR_DOMAIN}/artists`,
         line_items: [
