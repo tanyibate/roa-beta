@@ -96,7 +96,7 @@ export default function SideBar() {
             url={"/"}
             close={closeHamburger}
           />
-          {loggedIn && (
+          {session && (
             <LargeMenuItem
               name={"My Slices"}
               image={"/assets/icons/graph.png"}
@@ -104,7 +104,7 @@ export default function SideBar() {
               close={closeHamburger}
             />
           )}
-          {loggedIn && (
+          {session && (
             <LargeMenuItem
               name={"Artists"}
               image={"/assets/icons/play-button.svg"}
@@ -112,7 +112,7 @@ export default function SideBar() {
               close={closeHamburger}
             />
           )}
-          {loggedIn && (
+          {session && (
             <LargeMenuItem
               name={"Arrivals"}
               image={"/assets/icons/megaphone.png"}
@@ -120,15 +120,15 @@ export default function SideBar() {
               close={closeHamburger}
             />
           )}
-          {loggedIn && (
+          {
             <LargeMenuItem
               name={"FAQ"}
               image={"/assets/icons/faq.jpeg"}
               url={"/faq"}
               close={closeHamburger}
             />
-          )}
-          {loggedIn && (
+          }
+          {session && (
             <LargeMenuItem
               name={"Settings"}
               image={"/assets/icons/settings.png"}
@@ -136,15 +136,15 @@ export default function SideBar() {
               close={closeHamburger}
             />
           )}
-          {loggedIn && (
+          {session && (
             <LargeMenuItem
               name={"Log Out"}
               image={"/assets/icons/logout.png"}
-              url={"/login"}
+              url={"/nextlogin"}
               close={closeHamburger}
             />
           )}
-          {!loggedIn && (
+          {!session && (
             <LargeMenuItem
               name={"Log In"}
               image={"/assets/icons/logout.png"}
@@ -152,7 +152,7 @@ export default function SideBar() {
               close={closeHamburger}
             />
           )}
-          {!loggedIn && (
+          {!session && (
             <LargeMenuItem
               name={"Register"}
               image={"/assets/icons/logout.png"}

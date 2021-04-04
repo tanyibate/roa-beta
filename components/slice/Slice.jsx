@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./slice.module.scss";
 
-function slice() {
+function slice(props) {
   return (
     <div className={styles.slice_container_underlay}>
       <div className={styles.slice_container}>
         <div className={styles.artist_image_container}>
           <img
-            src="https://yt3.ggpht.com/ytc/AAUvwniFM4h3iOlRCk5VDjbKkWjNRuDntpo3pNm8-TpLXg=s900-c-k-c0x00ffffff-no-rj"
+            src={props.artist.artist_image_url}
             alt=""
             className={styles.artist_image}
           />
@@ -15,7 +15,7 @@ function slice() {
 
         <div className={styles.slice_contents}>
           <div className={styles.slice_details}>
-            <h3>EBE Kastro</h3>
+            <h3>{props.artist.artist_alias}</h3>
             <p>1 slice</p>
           </div>
           <div className={styles.slice_price}>

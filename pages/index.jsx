@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Home() {
   const router = useRouter();
   return (
-    <div className={styles.container}>
+    <div className={styles.home_container}>
       <div className={styles.login_button_container}>
         <p>Already have an account? </p>
         <button

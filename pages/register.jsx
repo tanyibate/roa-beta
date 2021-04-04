@@ -140,6 +140,16 @@ export default function Login() {
 
   return (
     <div className="login-container">
+      <div className={styles.login_button_container}>
+        <p>Already have an account? </p>
+        <button
+          onClick={() => {
+            router.push("/login");
+          }}
+        >
+          Log in
+        </button>
+      </div>
       <img src="/assets/Logo/ROA_logowhite.png" className="login-logo" />
       {page === 1 && loginDetails}
       {page === 2 && personalDetails}

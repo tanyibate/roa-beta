@@ -16,12 +16,20 @@ export default function index() {
   // init Swiper:
   const router = useRouter();
 
-  useEffect(() => {
+  useEffect(async () => {
     // Update the document title using the browser API
-    axios.get("/api/artists").then((result) => {
-      setArtists(result.data);
-      console.log(result.data);
-    });
+    const getArtists = async () => {
+      let artists = await axios.get("/api/artists");
+      artists = artists.data;
+      for (let i = 0; i < artists.length; i++) {
+        let slices = await axios.get(`/api/slices/${artists[i].id}`);
+        slices = slices.data;
+        artists[i].slices = slices;
+      }
+      console.log(artists);
+      setArtists(artists);
+    };
+    getArtists();
   }, []);
 
   return (

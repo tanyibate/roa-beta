@@ -13,3 +13,33 @@
 
 .form_group_wrapper {
 }
+
+.login_button_container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 5px;
+  p {
+    font-size: 12px;
+    margin-right: 5px;
+  }
+  button {
+    cursor: pointer;
+    margin: 5px 0;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 60px;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    background-color: #1dd760;
+    font-size: 12px;
+    color: white;
+    &:focus {
+      outline-width: 0;
+    }
+  }
+}

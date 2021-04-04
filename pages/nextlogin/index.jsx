@@ -3,14 +3,13 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { signIn } from "next-auth/client";
+import styles from "../../styles/Login.module.scss";
 
 import {
   logIn,
   setAccessToken,
   setRefreshToken,
 } from "../../store/actions/index";
-
-import styles from "./styles.module.scss";
 
 export default function Login() {
   const router = useRouter();
@@ -64,6 +63,16 @@ export default function Login() {
 
   return (
     <div className="login-container">
+      <div className={styles.register_button_container}>
+        <p>Dont't have an account? </p>
+        <button
+          onClick={() => {
+            router.push("/register");
+          }}
+        >
+          Register
+        </button>
+      </div>
       <img src="/assets/Logo/ROA_logogreen.png" className="login-logo" />
       <div className="form-input">
         <input
