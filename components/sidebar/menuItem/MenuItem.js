@@ -14,30 +14,10 @@ export default function menuItem(props) {
   const refreshToken = useSelector((state) => state.refreshToken);
   const loggedIn = useSelector((state) => state.loggedIn);
   const dispatch = useDispatch();
-  /*const navigate = async () => {
-    if (props.url === "/login" && loggedIn) {
-      await axios({
-        method: "post",
-        url: "/api/logout",
-        headers: {
-          authorization: `Bearer ${refreshToken}`,
-        },
-      })
-        .then(() => {
-          dispatch(logOut());
-          router.push(props.url);
-        })
-        .catch(() => {
-          dispatch(logOut());
-          router.push(props.url);
-        });
-    } else {
-      router.push(props.url);
-    }
-  };*/
+
   const navigate = async () => {
-    if (props.url === "/nextlogin" && session) {
-      signOut({ callbackUrl: "http://localhost:3000/nextlogin" });
+    if (props.url === "/login" && session) {
+      signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/login` });
     } else {
       router.push(props.url);
     }

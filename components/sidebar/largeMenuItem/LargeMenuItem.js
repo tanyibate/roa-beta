@@ -5,34 +5,18 @@ import { useDispatch } from "react-redux";
 import { logOut } from "../../../store/actions/index";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { getSession, useSession, signOut } from "next-auth/client";
 
 export default function menuItem(props) {
+  const [session] = useSession();
+
   const router = useRouter();
   const refreshToken = useSelector((state) => state.refreshToken);
   const dispatch = useDispatch();
   const navigate = async () => {
-    if (props.url === "/login") {
-      await axios({
-        method: "post",
-        url: "/api/logout",
-        headers: {
-          authorization: `Bearer ${refreshToken}`,
-        },
-      })
-        .then(() => {
-          dispatch(logOut());
-          props.close();
-
-          router.push(props.url);
-        })
-        .catch(() => {
-          dispatch(logOut());
-          props.close();
-          router.push(props.url);
-        });
+    if (props.url === "/login" && session) {
+      signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/login` });
     } else {
-      props.close();
-      props.close();
       router.push(props.url);
     }
   };

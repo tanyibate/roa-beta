@@ -78,7 +78,7 @@ export default function index() {
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
   if (!session) {
-    ctx.res.writeHead(302, { Location: "/nextlogin" });
+    ctx.res.writeHead(302, { Location: "/login" });
     ctx.res.end();
     return {};
   }

@@ -55,14 +55,14 @@ export default function SideBar() {
           <MenuItem
             name={"Log Out"}
             image={"/assets/icons/logout.png"}
-            url={"/nextlogin"}
+            url={"/login"}
           />
         )}
         {!session && (
           <MenuItem
             name={"Log In"}
             image={"/assets/icons/logout.png"}
-            url={"/nextlogin"}
+            url={"/login"}
           />
         )}
         {!session && (
@@ -140,7 +140,7 @@ export default function SideBar() {
             <LargeMenuItem
               name={"Log Out"}
               image={"/assets/icons/logout.png"}
-              url={"/nextlogin"}
+              url={"/login"}
               close={closeHamburger}
             />
           )}

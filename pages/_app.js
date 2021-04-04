@@ -2,7 +2,7 @@ import "../styles/globals.scss";
 import Sidebar from "../components/sidebar/SideBar.jsx";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import LogIn from "./nextlogin/index";
+import LogIn from "./login/index";
 import { Provider as ReduxProvider } from "react-redux";
 import persistedStore from "../store/index";
 import actions from "../store/actions/index";

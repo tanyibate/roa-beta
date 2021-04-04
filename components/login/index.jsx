@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { signIn } from "next-auth/client";
-import styles from "../../styles/Login.module.scss";
-
 import {
   logIn,
   setAccessToken,
   setRefreshToken,
 } from "../../store/actions/index";
+
+import styles from "./styles.module.scss";
 
 export default function Login() {
   const router = useRouter();
@@ -19,17 +18,6 @@ export default function Login() {
   const [incorrectDetails, setIncorrectDetails] = useState(false);
   const [password, setPassword] = useState("");
   const [loadApp, setLoadApp] = useState(false);
-
-  const handleLogin = async () => {
-    const res = await signIn("credentials", {
-      email,
-      password,
-      callbackUrl: `${window.location.origin}/artists`,
-      redirect: false,
-    });
-    if (res?.error) setIncorrectDetails(true);
-    if (res.url) router.push(res.url);
-  };
 
   function keyUpHandler(event) {
     if (event.target.id === "email") {
@@ -57,22 +45,13 @@ export default function Login() {
         }, 2000);
       })
       .catch((response) => {
+        console.log(response);
         setIncorrectDetails(true);
       });
   }
 
   return (
     <div className="login-container">
-      <div className={styles.register_button_container}>
-        <p>Dont't have an account? </p>
-        <button
-          onClick={() => {
-            router.push("/register");
-          }}
-        >
-          Register
-        </button>
-      </div>
       <img src="/assets/Logo/ROA_logogreen.png" className="login-logo" />
       <div className="form-input">
         <input
@@ -92,7 +71,7 @@ export default function Login() {
       </div>
       {incorrectDetails && <p>Incorrect Login Details</p>}
 
-      <button className="login-button" onClick={handleLogin}>
+      <button className="login-button" onClick={login}>
         Log In
       </button>
       <p>Or Sign in With</p>
