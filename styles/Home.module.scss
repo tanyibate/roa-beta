@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 0 5%;
+  padding: 50px 5%;
   box-sizing: border-box;
   position: relative;
 }
@@ -81,7 +81,7 @@
 .login_button_container {
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 10px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
