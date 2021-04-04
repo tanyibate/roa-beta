@@ -44,41 +44,40 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     // Cast event data to Stripe object.
     if (event.type === "payment_intent.succeeded") {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      console.log(paymentIntent.charges);
+      console.log(paymentIntent);
       console.log(`💰 PaymentIntent status: ${paymentIntent.status}`);
     } else if (event.type === "payment_intent.payment_failed") {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      console.log(paymentIntent);
+      //console.log(paymentIntent);
       console.log(
         `❌ Payment failed: ${paymentIntent.last_payment_error?.message}`
       );
     } else if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
+      const { line_items } = await stripe.checkout.sessions.retrieve(
+        session.id,
+        {
+          expand: ["line_items"],
+        }
+      );
       console.log(session.customer_email);
-      console.log(session);
+      console.log(line_items);
+      //console.log(session);
       console.log(`💵 Session id: ${session.id}`);
-      /*await axios
-        .post("/api/slices", {
-          timeout: 1000,
-        })
-        .then((response) => {
-          console.log(response);
-          res.status(200).json("slice purchased");
-          res.end();
-        })
-        .catch((response) => {
-          console.log(response);
-          res.status(400);
-          res.end;
-        });*/
+      const sliceDescription = line_items.data[0].description;
+      const artistAlias = sliceDescription.substring(
+        0,
+        sliceDescription.length - 6
+      );
+
+      console.log(artistAlias);
       await pool.query(
-        "UPDATE slices SET user_id = 2 WHERE id IN (SELECT id FROM slices WHERE user_id IS NULL  LIMIT 1)",
+        "UPDATE slices SET user_id = (SELECT id FROM users WHERE email = $1) WHERE id IN (SELECT id FROM slices WHERE user_id IS NULL AND artist_id = (SELECT id FROM artists WHERE artist_alias = $2)  LIMIT 1)",
+        [session.customer_email, artistAlias],
         (error, results) => {
           if (error) {
             throw error;
           }
-          res.status(200).json("slice purchased");
-          res.end();
         }
       );
     } else {
