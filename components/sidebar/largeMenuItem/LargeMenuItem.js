@@ -14,6 +14,7 @@ export default function menuItem(props) {
   const refreshToken = useSelector((state) => state.refreshToken);
   const dispatch = useDispatch();
   const navigate = async () => {
+    props.close();
     if (props.url === "/login" && session) {
       signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/login` });
     } else {

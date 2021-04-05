@@ -1,12 +1,93 @@
 .artist_container {
   height: 100%;
   display: flex;
+  position: relative;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   box-sizing: border-box;
   //background-color: rgba($color: black, $alpha: 1);
   background-image: linear-gradient(black, black);
+}
+
+.progress {
+  margin-top: 50px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  h3 {
+    margin: 6px 0;
+  }
+
+  input {
+    width: 260px;
+    height: 30px;
+    &:focus {
+      outline-width: 0;
+    }
+    border: none;
+    border-radius: 15px;
+    padding-left: 20px;
+    box-sizing: border-box;
+  }
+
+  progress {
+    height: 30px;
+    width: 300px;
+    background-color: white;
+    border-radius: 15px;
+  }
+
+  progress::-webkit-progress-value {
+    background: #1dd760;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  progress::-webkit-progress-bar {
+    background: white;
+    border-radius: 15px;
+  }
+}
+
+@keyframes modalanimation {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  background-color: black;
+  left: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  animation: modalanimation 200ms linear;
+  z-index: 10;
+  button {
+    background-color: #1dd760;
+    color: white;
+    min-height: 50px;
+    padding: 0 20px;
+    margin: 10px 0;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    &:focus {
+      outline-width: 0;
+    }
+  }
 }
 
 .swipe_container_large_artists {

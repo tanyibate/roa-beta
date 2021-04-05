@@ -12,9 +12,19 @@ SwiperCore.use([Navigation, Pagination]);
 export default function index() {
   // configure Swiper to use modules
   const [artists, setArtists] = useState([]);
+  const [modalActive, setModalActive] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [level, setLevel] = useState(1);
+  const [referralCode, setReferralCode] = useState(0);
 
   // init Swiper:
   const router = useRouter();
+  const updateModal = (message, level, referralCode) => {
+    setModalActive(true);
+    setErrorMessage(message);
+    setLevel(level);
+    setReferralCode(referralCode);
+  };
 
   useEffect(async () => {
     // Update the document title using the browser API
@@ -59,7 +69,11 @@ export default function index() {
             {artists.map((el, index) => {
               return (
                 <SwiperSlide key={index + "slider"}>
-                  <ArtistCard artist={el} key={index + "artist-small"} />
+                  <ArtistCard
+                    artist={el}
+                    key={index + "artist-small"}
+                    updateModal={updateModal}
+                  />
                 </SwiperSlide>
               );
             })}
@@ -68,9 +82,35 @@ export default function index() {
       </div>
       <div className={styles.swipe_container_large_artists}>
         {artists.map((el, index) => {
-          return <ArtistCard artist={el} key={index + "artist-large"} />;
+          return (
+            <ArtistCard
+              artist={el}
+              key={index + "artist-large"}
+              updateModal={updateModal}
+            />
+          );
         })}
       </div>
+      {modalActive && (
+        <div className={styles.modal}>
+          <button onClick={() => setModalActive(false)}>Back to Artists</button>
+          <h2>{errorMessage}</h2>
+          <div className={styles.progress}>
+            <h1>Tier 1</h1>
+
+            <progress id="file" value={`${(level / 3) * 100}`} max="100">
+              {" "}
+              {`${(level / 3) * 100}`}{" "}
+            </progress>
+            <h3>Referral Link</h3>
+            <input
+              type="text"
+              value={`${process.env.NEXT_PUBLIC_APP_URL}/register/${referralCode}`}
+              readOnly
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

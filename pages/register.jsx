@@ -56,7 +56,7 @@ export default function Login() {
         })
         .then((response) => {
           console.log(response);
-          router.push("/artists");
+          router.push("/login");
         })
         .catch((response) => {
           console.log(response);

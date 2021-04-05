@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSession } from "next-auth/client";
+import axios from "axios";
 
 export default function ArtistCard(props) {
   const [session] = useSession();
@@ -15,19 +16,23 @@ export default function ArtistCard(props) {
       process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_2
     );
 
-    fetch("/api/charge", {
-      method: "POST",
-      body: JSON.stringify({
+    axios
+      .post("/api/charge", {
         email: session.user.email,
         imageUrl: props.artist.artist_image_url,
         artistAlias: props.artist.artist_alias,
-      }),
-    })
-      .then(function (response) {
-        return response.json();
       })
-      .then(function (session) {
-        return stripe.redirectToCheckout({ sessionId: session.id });
+      .then(function (result) {
+        if (result.data.message) {
+          console.log(result.data);
+          props.updateModal(
+            result.data.message,
+            result.data.level,
+            result.data.referral_code
+          );
+          return result;
+        }
+        return stripe.redirectToCheckout({ sessionId: result.data.id });
       })
       .then(function (result) {
         // If redirectToCheckout fails due to a browser or network
@@ -38,7 +43,7 @@ export default function ArtistCard(props) {
         }
       })
       .catch(function (error) {
-        console.error("Error:", error);
+        if (error) console.error("Error:", error);
       });
   };
 
@@ -47,6 +52,7 @@ export default function ArtistCard(props) {
       method: "POST",
     })
       .then(function (response) {
+        console.log(response.json());
         return response.json();
       })
       .then(function (session) {
