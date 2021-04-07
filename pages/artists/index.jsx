@@ -96,7 +96,7 @@ export default function index() {
           <button onClick={() => setModalActive(false)}>Back to Artists</button>
           <h2>{errorMessage}</h2>
           <div className={styles.progress}>
-            <h1>Tier 1</h1>
+            <h1>{`Tier ${level}`}</h1>
 
             <progress id="file" value={`${(level / 3) * 100}`} max="100">
               {" "}

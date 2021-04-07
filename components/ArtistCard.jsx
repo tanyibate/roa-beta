@@ -25,6 +25,8 @@ export default function ArtistCard(props) {
       .then(function (result) {
         if (result.data.message) {
           console.log(result.data);
+          if (result.data.level > 3) result.data.level = 3;
+          console.log(result.data.level);
           props.updateModal(
             result.data.message,
             result.data.level,

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import styles from "../styles/register.module.scss";
+import styles from "../../styles/register.module.scss";
+import { useSelector } from "react-redux";
 
 export default function Login() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export default function Login() {
   const [last_name, setLastName] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
   const [referralCode, setReferralCode] = useState("");
+  const referralCodeRedux = useSelector((state) => state.referralCode);
 
   const [page, setPage] = useState(1);
   function keyUpHandler(event) {
@@ -49,7 +51,14 @@ export default function Login() {
     if (page === 1) {
       setPage(2);
     } else {
-      const user = { email, password, first_name, last_name, phone_number };
+      const user = {
+        email,
+        password,
+        first_name,
+        last_name,
+        phone_number,
+        referral_code: referralCodeRedux,
+      };
       axios
         .post("/api/register", user, {
           timeout: 1000,
@@ -59,7 +68,7 @@ export default function Login() {
           router.push("/login");
         })
         .catch((response) => {
-          console.log(response);
+          console.log(response.response);
         });
     }
   }

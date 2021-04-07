@@ -30,7 +30,7 @@ export default async (req, res) => {
             } else if (result.rows[0].total_number_of_slices >= 3) {
               res.json({
                 message:
-                  "You have bought the maximum number of slices for the beta, thank for your participation, have a lookout on the Arrivals page for interactions with our artists.",
+                  "You have bought the maximum number of slices for the beta, thank you for your participation, have a lookout on the Arrivals page for interactions with our artists.",
                 maxSlices: true,
                 outOfStock: false,
                 level: result.rows[0].level,
@@ -59,9 +59,13 @@ export default async (req, res) => {
               try {
                 const YOUR_DOMAIN = process.env.NEXTAUTH_URL;
                 const request = req.body;
+                const artist_alias = req.body.artistAlias;
+                console.log(`${YOUR_DOMAIN}/success/` + artist_alias);
                 const session = await stripe.checkout.sessions.create({
                   customer_email: authSession.user.email,
-                  success_url: `${YOUR_DOMAIN}/artists`,
+                  success_url:
+                    `${YOUR_DOMAIN}/success/` +
+                    artist_alias.replace(" ", "%20"),
                   cancel_url: `${YOUR_DOMAIN}/artists`,
                   line_items: [
                     {

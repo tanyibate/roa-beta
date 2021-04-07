@@ -11,6 +11,7 @@ export default function (request, response) {
         first_name,
         last_name,
         phone_number,
+        referral_code,
       } = request.body;
 
       bcrypt.genSalt(saltRounds, function (err, salt) {
@@ -22,11 +23,19 @@ export default function (request, response) {
             [email, hash, first_name, last_name, phone_number, starterLevel],
             (error, results) => {
               if (error) {
-                throw error;
+                response.status(400).send("Registration failed try again");
+              } else {
+                if (referral_code) {
+                  pool.query(
+                    "UPDATE users SET level = level + 1 WHERE id = (SELECT id FROM users WHERE referral_code = $1)",
+                    [referral_code]
+                  );
+                }
+
+                response
+                  .status(201)
+                  .send(`User added with ID: ${results.rows[0].id}`);
               }
-              response
-                .status(201)
-                .send(`User added with ID: ${results.rows[0].id}`);
             }
           );
         });

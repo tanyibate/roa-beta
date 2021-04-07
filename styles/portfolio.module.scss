@@ -7,6 +7,7 @@
   justify-content: flex-start;
   position: relative;
   button {
+    cursor: pointer;
     background-color: #1dd760;
     color: white;
     min-height: 50px;
@@ -19,6 +20,9 @@
       outline-width: 0;
     }
   }
+  p {
+    font-size: 16px;
+  }
 }
 
 .modal {
@@ -26,11 +30,35 @@
   top: 0;
   background-color: black;
   left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 10px;
+  padding-top: 60px;
   box-sizing: border-box;
   height: 100%;
   width: 100%;
   animation: modalanimation 200ms linear;
+  z-index: 10;
+  h2 {
+    max-width: 768px;
+  }
+  button {
+    cursor: pointer;
+    background-color: #1dd760;
+    position: absolute;
+    color: white;
+    top: 15px;
+    left: 15px;
+    min-height: 50px;
+    padding: 0 20px;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    &:focus {
+      outline-width: 0;
+    }
+  }
 }
 
 .slices_container {
@@ -43,19 +71,35 @@
 }
 
 .progress {
-  margin-top: 50px;
+  margin-top: 10px;
   justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0 10px;
+  h3 {
+    margin: 6px 0;
+  }
+
+  input {
+    width: 260px;
+    height: 30px;
+    &:focus {
+      outline-width: 0;
+    }
+    border: none;
+    border-radius: 15px;
+    padding-left: 20px;
+    box-sizing: border-box;
+  }
 
   progress {
     height: 30px;
     width: 300px;
     background-color: white;
     border-radius: 15px;
+    overflow: hidden;
   }
 
   progress::-webkit-progress-value {

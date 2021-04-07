@@ -104,7 +104,6 @@ a {
   background-color: rgba(255, 255, 255, 0.3);
   border: none;
   color: white;
-  font-size: 20px;
   padding-left: 10px;
   padding-right: 30px;
   display: flex;
@@ -113,7 +112,11 @@ a {
 
   input {
     background-color: rgba(0, 0, 0, 0);
-    font-size: 16px;
+    font-size: 16px !important;
+    &:-webkit-autofill::first-line {
+      font-size: 16px;
+    }
+
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,

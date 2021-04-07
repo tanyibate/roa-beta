@@ -23,6 +23,12 @@ export const setAccessToken = (accessToken) => {
     accessToken,
   };
 };
+export const setReferralCode = (referralCode) => {
+  return {
+    type: "SET_REFERRAL_CODE",
+    referralCode,
+  };
+};
 
 export const setRefreshToken = (refreshToken) => {
   return {
