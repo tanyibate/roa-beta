@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import styles from "../../styles/success.module.scss";
 
 export default function artist_alias() {
   const [artist, setArtist] = useState({});
@@ -14,15 +15,20 @@ export default function artist_alias() {
     axios
       .post(`/api/artists/artist`, { artist_alias: artist })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data[0]);
+        setArtist(res.data[0]);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
   return (
-    <div>
-      <h1>{artist_alias}</h1>
+    <div className={styles.success_container}>
+      <div></div>
+      <h1>
+        Thank you for buying a {artist.artist_alias} slice! Watch out for
+        upcoming arrivals{" "}
+      </h1>
     </div>
   );
 }

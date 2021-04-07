@@ -18,7 +18,7 @@ export default function SideBar() {
   return (
     <>
       <div className={styles.sidebar}>
-        <img src="assets/Logo/ROA_logowhite.png" className={styles.logo} />
+        <img src="/assets/Logo/ROA_logowhite.png" className={styles.logo} />
         <MenuItem name={"Home"} image={"/assets/icons/home.png"} url={"/"} />
         {session && (
           <MenuItem

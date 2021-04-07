@@ -1,0 +1,17 @@
+.success_container {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 1px solid #1dd760;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 4px #1dd76167;
+  }
+  h1 {
+    margin: 5px;
+  }
+}
