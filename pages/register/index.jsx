@@ -174,17 +174,3 @@ export default function Login() {
     </div>
   );
 }
-export async function getServerSideProps(ctx) {
-  const session = await getSession(ctx);
-  if (session) {
-    ctx.res.writeHead(302, { Location: "/portfolio" });
-    ctx.res.end();
-    return {};
-  }
-
-  return {
-    props: {
-      user: session.user.email,
-    },
-  };
-}
