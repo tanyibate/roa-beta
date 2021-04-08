@@ -34,7 +34,7 @@ export default function Home() {
           <Image
             height={300}
             width={300}
-            src="/assets/ROA_Mobilemockup.jpg"
+            src="/assets/ROA_Mobilemockup_low.jpg"
             alt=""
           />
         </div>

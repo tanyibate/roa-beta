@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/register.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { setReferralCode as setReferralCodeRedux } from "../../store/actions/index";
+import { getSession, useSession } from "next-auth/client";
 
 export default function Login() {
   const router = useRouter();
@@ -175,4 +176,18 @@ export default function Login() {
       </button>
     </div>
   );
+}
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (session) {
+    ctx.res.writeHead(302, { Location: "/portfolio" });
+    ctx.res.end();
+    return {};
+  }
+
+  return {
+    props: {
+      user: session.user.email,
+    },
+  };
 }

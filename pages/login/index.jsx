@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { signIn } from "next-auth/client";
 import styles from "../../styles/Login.module.scss";
+import { getSession, useSession } from "next-auth/client";
 
 import {
   logIn,
@@ -107,4 +108,19 @@ export default function Login() {
       )}
     </div>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (session) {
+    ctx.res.writeHead(302, { Location: "/portfolio" });
+    ctx.res.end();
+    return {};
+  }
+
+  return {
+    props: {
+      user: session.user.email,
+    },
+  };
 }

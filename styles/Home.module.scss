@@ -48,6 +48,12 @@
 }
 
 .block {
+  animation: landinganimation 700ms linear;
+  &:last-of-type {
+    animation: landinganimationreverse 700ms linear;
+    padding: 0;
+  }
+
   margin: 0 auto;
   padding: 0 5px;
   max-width: 300px;
@@ -131,5 +137,24 @@
 @media only screen and (min-width: 1200px) {
   .infographic_container {
     width: 1000px;
+  }
+}
+
+@keyframes landinganimation {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes landinganimationreverse {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
   }
 }

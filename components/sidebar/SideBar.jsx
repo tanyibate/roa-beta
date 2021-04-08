@@ -74,7 +74,7 @@ export default function SideBar() {
         )}
       </div>
       <div className={styles.bottom_navigation}>
-        <img src="./assets/Logo/ROA_FULLlogowhite.png" alt="" />
+        <img src="/assets/Logo/ROA_FULLlogowhite.png" alt="" />
 
         <div
           className={classNames({

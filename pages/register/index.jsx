@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import styles from "../../styles/register.module.scss";
 import { useSelector } from "react-redux";
+import { getSession, useSession } from "next-auth/client";
 
 export default function Login() {
   const router = useRouter();
@@ -172,4 +173,18 @@ export default function Login() {
       </button>
     </div>
   );
+}
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (session) {
+    ctx.res.writeHead(302, { Location: "/portfolio" });
+    ctx.res.end();
+    return {};
+  }
+
+  return {
+    props: {
+      user: session.user.email,
+    },
+  };
 }
