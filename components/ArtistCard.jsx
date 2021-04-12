@@ -135,7 +135,9 @@ export default function ArtistCard(props) {
           </div>
         </div>
         <div className="artist_card_bottom">
-          <p>{`${props.artist.slices.numOfRemainingSlices}/${props.artist.slices.numOfSlices}`}</p>
+          <p>{`${props.artist.total_slices - props.artist.purchased_slices}/${
+            props.artist.total_slices
+          }`}</p>
           <button onClick={buySlice}>Slice $5.00</button>
         </div>
       </div>

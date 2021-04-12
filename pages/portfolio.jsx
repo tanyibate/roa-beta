@@ -23,9 +23,9 @@ export default function portfolio({ user }) {
     axios
       .get("/api/canbuyaslice")
       .then((result) => {
-        if (result.data[0].slice_count < result.data[0].level)
-          router.push("/artists");
-        else if (result.data[0].slice_count >= 3) {
+        console.log(result.data[0].slice_count);
+        console.log("12344");
+        if (result.data[0].slice_count >= 2) {
           setReferralCode(result.data[0].referral_code);
           setModalText(
             "You have bought the maximum number of slices for the beta, thank you for your participation, have a lookout on the Arrivals page for interactions with our artists."
@@ -33,15 +33,15 @@ export default function portfolio({ user }) {
           if (result.data[0].level > 3) result.data[0].level = 3;
           setLevel(result.data[0].level);
           setModalActive(true);
-        } else {
+        } else if (result.data[0].level < 3 && result.data[0].slice_count > 0) {
+          if (result.data[0].level > 3) result.data[0].level = 3;
           setReferralCode(result.data[0].referral_code);
           setModalText(
-            "Refer a friend to buy more slices! You're help will be very appreciated."
+            `Refer ${3 - result.data[0].level} friend/s to buy another slice!`
           );
-          if (result.data[0].level > 3) result.data[0].level = 3;
           setLevel(result.data[0].level);
           setModalActive(true);
-        }
+        } else router.push("/artists");
       })
       .catch((err) => {
         console.log(err);

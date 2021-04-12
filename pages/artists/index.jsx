@@ -31,11 +31,6 @@ export default function index() {
     const getArtists = async () => {
       let artists = await axios.get("/api/artists");
       artists = artists.data;
-      for (let i = 0; i < artists.length; i++) {
-        let slices = await axios.get(`/api/slices/${artists[i].id}`);
-        slices = slices.data;
-        artists[i].slices = slices;
-      }
       console.log(artists);
       setArtists(artists);
     };

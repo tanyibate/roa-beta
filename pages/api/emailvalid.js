@@ -10,7 +10,7 @@ export default function (request, response) {
         function (error, results, fields) {
           if (results.rows.length > 0) {
             response
-              .status(403)
+              .status(200)
               .json({ valid: false, message: "Email already present" });
           } else {
             response.status(200).json({ valid: true });

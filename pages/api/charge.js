@@ -14,7 +14,16 @@ export default async (req, res) => {
         async (error, result) => {
           console.log(result.rows[0]);
           if (result) {
-            if (
+            if (result.rows[0].total_number_of_slices >= 2) {
+              res.json({
+                message:
+                  "You have bought the maximum number of slices for the beta, thank you for your participation, have a lookout on the Arrivals page for interactions with our artists.",
+                maxSlices: true,
+                outOfStock: false,
+                level: result.rows[0].level,
+                referral_code: result.rows[0].referral_code,
+              });
+            } else if (
               result.rows[0].remaining_slices === 0 ||
               !result.rows[0].remaining_slices
             ) {
@@ -27,15 +36,6 @@ export default async (req, res) => {
                 level: result.rows[0].level,
                 referral_code: result.rows[0].referral_code,
               });
-            } else if (result.rows[0].total_number_of_slices >= 3) {
-              res.json({
-                message:
-                  "You have bought the maximum number of slices for the beta, thank you for your participation, have a lookout on the Arrivals page for interactions with our artists.",
-                maxSlices: true,
-                outOfStock: false,
-                level: result.rows[0].level,
-                referral_code: result.rows[0].referral_code,
-              });
             } else if (result.rows[0].num_of_slices_of_artist >= 1) {
               res.json({
                 message: `Let's not be too excited ;) and let someone else buy a slice of ${req.body.artistAlias} check out all our other amazing artists.`,
@@ -45,11 +45,13 @@ export default async (req, res) => {
                 referral_code: result.rows[0].referral_code,
               });
             } else if (
-              result.rows[0].total_number_of_slices >= result.rows[0].level
+              result.rows[0].total_number_of_slices > 0 &&
+              result.rows[0].level < 3
             ) {
               res.json({
-                message:
-                  "Refer a friend to buy more slices! You're help will be very appreciated.",
+                message: `Refer ${
+                  3 - result.rows[0].level
+                } friend/s to buy more slices!`,
                 maxSlices: true,
                 outOfStock: false,
                 level: result.rows[0].level,
