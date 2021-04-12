@@ -17,7 +17,7 @@ export default function (request, response) {
       bcrypt.genSalt(saltRounds, function (err, salt) {
         bcrypt.hash(password, salt, function (err, hash) {
           // Store hash in your password DB.
-          const starterLevel = 1;
+          const starterLevel = 0;
           pool.query(
             "INSERT INTO users (email,password,first_name,last_name,phone_number,level) VALUES ($1, $2, $3, $4, $5,$6) RETURNING id",
             [email, hash, first_name, last_name, phone_number, starterLevel],

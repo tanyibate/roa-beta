@@ -26,7 +26,6 @@ export default function index() {
     <div className={styles.faq_page}>
       <div>
         <h2> ? : (Pronounced row-uh)</h2>
-        <input type="text" className={styles.search_bar} />
 
         <div className="accordion-container">
           <button className="accordion">What the f**k is ROA?</button>

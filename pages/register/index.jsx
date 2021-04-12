@@ -70,53 +70,77 @@ export default function Register() {
       .is()
       .not()
       .oneOf(["Passw0rd", "Password123"]); // Blacklist these values
-    let emailValid2;
-    try {
-      const emailValidData = await axios.post("/api/emailvalid", {
-        email: email,
-      });
-      console.log(emailValidData.data.valid);
-      emailValid2 = emailValidData.data.valid;
-    } catch (err) {
-      emailValid2 = false;
-    }
+    let emailValid2 = true;
 
     let [emailValid, passwordValid, confirmPasswordValid] = Array(3).fill(true);
-
-    if (!first_name) setFirstNameValid(false);
-    if (!last_name) setLastNameValid(false);
-    if (!emailValid2) {
-      emailValid = false;
-      setEmailValid(false);
+    if (!email) {
+      setEmailEntered(false);
+      emailValid2 = false;
+    } else {
+      try {
+        const emailValidData = await axios.post("/api/emailvalid", {
+          email: email,
+        });
+        emailValid2 = emailValidData.data.valid;
+      } catch (err) {
+        emailValid2 = false;
+      }
+      if (!emailValid2) {
+        emailValid = false;
+        setEmailValid(false);
+      }
     }
+    if (email && emailValid2) {
+      setEmailEntered(true);
+      setEmailValid(true);
+    }
+
     if (!schema.validate(password)) {
       setPasswordValid(false);
       passwordValid = false;
+    } else {
+      setPasswordValid(true);
     }
     if (!(password === confirmPassword)) {
       confirmPasswordValid = false;
       setConfirmPasswordValid(false);
+    } else {
+      setConfirmPasswordValid(true);
     }
 
-    if (emailValid && passwordValid && confirmPasswordValid && page === 1) {
+    if (emailValid2 && passwordValid && confirmPasswordValid && page === 1) {
       setPage(2);
     }
   };
 
   async function validate2() {
-    let phoneNumberValid2;
-
-    try {
-      const phoneNumberValidData = await axios.post("/api/phonenumbervalid", {
-        phone_number: phone_number,
-      });
-      phoneNumberValid2 = phoneNumberValidData.data.valid;
-    } catch (err) {
-      phoneNumberValid2 = false;
-    }
+    let phoneNumberValid2 = true;
     if (!first_name) setFirstNameValid(false);
+    else {
+      setFirstNameValid(true);
+    }
     if (!last_name) setLastNameValid(false);
-    if (!phoneNumberValid2) setPhoneNumberValid(false);
+    else {
+      setLastNameValid(true);
+    }
+    if (!phone_number) {
+      phoneNumberValid2 = false;
+      setEmailEntered(false);
+    } else {
+      try {
+        const phoneNumberValidData = await axios.post("/api/phonenumbervalid", {
+          phone_number: phone_number,
+        });
+        phoneNumberValid2 = phoneNumberValidData.data.valid;
+      } catch (err) {
+        phoneNumberValid2 = false;
+      }
+      if (!phoneNumberValid2) setPhoneNumberValid(false);
+    }
+    if (phoneNumberValid2 && phone_number) {
+      setPhoneNumberValid(true);
+      setPhoneNumberEntered(true);
+    }
     if (phoneNumberValid2 && first_name && last_name) {
       return true;
     }
@@ -174,6 +198,7 @@ export default function Register() {
                 onKeyUp={keyUpHandler}
               />
             </div>
+            {!emailEntered && <p>Please enter an email!</p>}
             {!emailValid && <p>Email is already in use</p>}
           </div>
 
@@ -234,8 +259,8 @@ export default function Register() {
                 placeholder="Pacino"
                 onKeyUp={keyUpHandler}
               />
-              {!last_nameValid && <p>We need your last name!</p>}
             </div>
+            {!last_nameValid && <p>We need your last name!</p>}
           </div>
         </div>
       </div>
@@ -243,13 +268,17 @@ export default function Register() {
       <div className={styles.form_group_container}>
         <p>How do we contact you?</p>
         <div className={styles.form_group_wrapper}>
-          <div className={styles.form_input}>
-            <input
-              type="text"
-              id="mobilenumber"
-              placeholder="Mobile Number"
-              onKeyUp={keyUpHandler}
-            />
+          <div className={styles.form_element}>
+            <div className={styles.form_input}>
+              <input
+                type="text"
+                id="mobilenumber"
+                placeholder="Mobile Number"
+                onKeyUp={keyUpHandler}
+              />
+            </div>
+            {!phone_numberEntered && <p>Please enter an phone number!</p>}
+            {!phone_numberValid && <p>Phone number is already in use</p>}
           </div>
         </div>
       </div>
