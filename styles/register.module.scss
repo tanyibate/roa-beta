@@ -10,6 +10,20 @@
     font-size: 12px;
   }
 }
+.register_container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background-color: black;
+}
 
 .form_group_wrapper {
 }

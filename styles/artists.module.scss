@@ -39,10 +39,8 @@
   position: relative;
   display: -webkit-flex;
   display: flex;
-
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   //background-color: rgba($color: black, $alpha: 1);
   background-image: linear-gradient(black, black);
 }

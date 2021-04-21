@@ -51,7 +51,7 @@ export default async (req, res) => {
               res.json({
                 message: `Refer ${
                   3 - result.rows[0].level
-                } friend/s to buy more slices!`,
+                } friend/s to buy another slice!`,
                 maxSlices: true,
                 outOfStock: false,
                 level: result.rows[0].level,

@@ -10,6 +10,7 @@ SwiperCore.use([Navigation, Pagination]);
 export default function interactions({ user }) {
   return (
     <div className={styles.interactions_container}>
+      <h1>Arrivals</h1>
       <div className={styles.swiper_container}>
         <Swiper
           navigation

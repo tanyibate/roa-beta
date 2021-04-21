@@ -74,33 +74,43 @@ export default function Login() {
           Register
         </button>
       </div>
-      <img src="/assets/Logo/ROA_logogreen.png" className="login-logo" />
-      <div className="form-input">
+      <img
+        src="/assets/Logo/ROA_logogreen.png"
+        style={{ height: "120px", width: "120px" }}
+      />
+
+      <div className="form-container">
+        <label htmlFor="email" className="form-label">
+          Email
+        </label>
         <input
           type="text"
+          className="form-input"
           id="email"
-          placeholder="Email"
           onKeyUp={keyUpHandler}
         />
-      </div>
-      <div className="form-input">
+        <br />
+        <label htmlFor="email" className="form-label">
+          Password
+        </label>
         <input
           type="password"
+          className="form-input"
           id="password"
-          placeholder="Password"
           onKeyUp={keyUpHandler}
         />
+        {incorrectDetails && <p>Incorrect Login Details</p>}
+        <button className="form-button" onClick={handleLogin}>
+          Log In
+        </button>
       </div>
-      {incorrectDetails && <p>Incorrect Login Details</p>}
 
-      <button className="login-button" onClick={handleLogin}>
-        Log In
-      </button>
       <p>Or Sign in With</p>
       <div className="signin-with-images-container">
         <img src="/assets/login-page/google-icon.svg" alt="" />
         <img src="/assets/login-page/facebook-icon.svg" alt="" />
       </div>
+
       {loadApp && (
         <div className={styles.app_transition}>
           <img src="/assets/Logo/ROA_logowhite.png" alt="" />

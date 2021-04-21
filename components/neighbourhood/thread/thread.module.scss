@@ -1,0 +1,36 @@
+.thread_container_underlay {
+  width: 96%;
+  padding-top: 30%;
+  position: relative;
+  font-size: 1vw;
+  margin-bottom: 10px;
+}
+
+.thread_container {
+  height: 100%;
+  width: 100%;
+  background: rgba(37, 37, 37, 0.6);
+  border-radius: 1em;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .thread_container_underlay {
+    font-size: calc((100vw - 200px) * 0.01);
+    width: 550px;
+    max-height: 178px;
+    min-height: 178px;
+    box-sizing: border-box;
+    font-size: 5px;
+    padding-top: 0;
+  }
+  .thread_container {
+    border-radius: 1.5em;
+  }
+}

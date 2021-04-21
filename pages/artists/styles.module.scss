@@ -2,9 +2,8 @@
   height: 100%;
   display: flex;
   position: relative;
-  justify-content: space-around;
   align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
   box-sizing: border-box;
   //background-color: rgba($color: black, $alpha: 1);
   background-image: linear-gradient(black, black);

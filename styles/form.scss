@@ -5,45 +5,12 @@ $light-gray: #8e8e8e;
 $green: #1cdb58;
 $darker-green: #16ac46;
 $red: red;
-@keyframes rotatelogo {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-.register_button_container {
-  position: absolute;
-  top: 5px;
-  right: 10px;
+.form-container {
+  width: 300px;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-top: 5px;
-  p {
-    font-size: 12px;
-    margin-right: 5px;
-  }
-  button {
-    cursor: pointer;
-    margin: 5px 0;
-    margin-bottom: 5px;
-    height: 30px;
-    width: 70px;
-    border-radius: 15px;
-    border: none;
-    font-weight: bold;
-    background-color: #1dd760;
-    font-size: 12px;
-    color: white;
-    &:focus {
-      outline-width: 0;
-    }
-  }
+  flex-direction: column;
+  align-items: flex-start;
 }
-
 .form-or {
   font-size: 1rem;
   padding: 0.625rem 0;
@@ -89,10 +56,29 @@ $red: red;
   margin-bottom: calc(0.625rem + 0.2em);
   transform: scale(1.025);
 }
+
+.form-button {
+  margin-top: 20px;
+  color: $white;
+  background-color: $green;
+  border-radius: 25px;
+  border: none;
+  font-size: 18px;
+  height: 50px;
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    filter: brightness(0.7);
+  }
+  cursor: pointer;
+}
 .form-input {
   font-size: 1.4rem;
   padding: 0.625rem;
-
+  width: 100%;
+  max-width: 300px;
   border-radius: 8px;
   background-color: $black;
   border: 1px solid $green;
@@ -104,18 +90,4 @@ $red: red;
 .form-input-error {
   border: 1px solid $red;
   color: $red;
-}
-
-.app_transition {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 15;
-  height: 100%;
-  width: 100%;
-  background-color: black;
-
-  img {
-    animation: rotatelogo 10000ms infinite linear;
-  }
 }

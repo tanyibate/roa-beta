@@ -12,6 +12,7 @@ export default function (request, response) {
         last_name,
         phone_number,
         referral_code,
+        username,
       } = request.body;
 
       bcrypt.genSalt(saltRounds, function (err, salt) {
@@ -19,8 +20,16 @@ export default function (request, response) {
           // Store hash in your password DB.
           const starterLevel = 0;
           pool.query(
-            "INSERT INTO users (email,password,first_name,last_name,phone_number,level) VALUES ($1, $2, $3, $4, $5,$6) RETURNING id",
-            [email, hash, first_name, last_name, phone_number, starterLevel],
+            "INSERT INTO users (email,password,first_name,last_name,phone_number,level,username) VALUES ($1, $2, $3, $4, $5,$6) RETURNING id",
+            [
+              email,
+              hash,
+              first_name,
+              last_name,
+              phone_number,
+              starterLevel,
+              username,
+            ],
             (error, results) => {
               if (error) {
                 response.status(400).send("Registration failed try again");

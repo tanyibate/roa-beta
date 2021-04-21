@@ -5,9 +5,23 @@
 @import "../node_modules/swiper/components/navigation/navigation.scss";
 @import "../node_modules/swiper/components/pagination/pagination.scss";
 @import "./accordion.scss";
+@import "./form.scss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #afafaf;
+  --red: #e31b23;
+  --bodyColor: #292a2b;
+  --borderFormEls: hsl(0, 0%, 10%);
+  --bgFormEls: hsl(0, 0%, 14%);
+  --bgFormElsFocus: hsl(0, 7%, 20%);
+}
 
 .swiper-pagination-bullet {
   color: white;
@@ -27,6 +41,7 @@ body {
   font-family: "Mulish", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: scroll;
 
   background-color: black;
 
@@ -69,25 +84,27 @@ a {
 }
 
 .login-container {
-  position: fixed;
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100%;
-  width: 100%;
+  padding-top: 60px;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 100;
   left: 0;
   top: 0;
   background-color: black;
-  z-index: 100;
 }
 .login-button {
-  margin-top: 10px;
+  margin: 10px 0;
   color: rgba(29, 215, 96, 1);
   background-color: #ffffff;
   border-radius: 25px;
   border: none;
-  height: 50px;
+  min-height: 50px !important;
   width: 240px;
   &:focus {
     outline: none;
@@ -98,45 +115,13 @@ a {
   cursor: pointer;
 }
 .form-input {
-  height: 50px;
-  width: 200px;
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.3);
-  border: none;
-  color: white;
-  padding-left: 10px;
-  padding-right: 30px;
-  display: flex;
-  margin-bottom: 10px;
-  align-items: center;
-
-  input {
-    background-color: rgba(0, 0, 0, 0);
-    font-size: 16px !important;
-    &:-webkit-autofill::first-line {
-      font-size: 16px;
-    }
-
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover,
-    &:-webkit-autofill:focus,
-    &:-webkit-autofill:active {
-      -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
-      -webkit-transition-delay: 9999s;
-    }
-    border: none;
-    color: white;
-    flex: 1;
-    height: 90%;
-    &::placeholder {
-      color: white;
-      opacity: 0.7;
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
+  /*&:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+  }*/
 }
 
 .artist-container {
