@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/register.module.scss";
 import { useSelector } from "react-redux";
 import { getSession, useSession } from "next-auth/client";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Register() {
   var classNames = require("classnames");
@@ -29,6 +30,8 @@ export default function Register() {
   const [phone_numberEntered, setPhoneNumberEntered] = useState(true);
   const [referralCode, setReferralCode] = useState("");
   const [registrationError, setRegistrationError] = useState(false);
+  const [recaptchaResponse, setRecaptchaResponse] = useState("");
+  const [recaptchaValid, setRecaptchaValid] = useState(true);
 
   const referralCodeRedux = useSelector((state) => state.referralCode);
 
@@ -51,7 +54,7 @@ export default function Register() {
       if (last_name) setLastNameValid(true);
       setLastName(event.target.value);
     }
-    if (event.target.id === "mobilenumber") {
+    if (event.target.id === "phonenumber") {
       setPhoneNumber(event.target.value);
     }
 
@@ -212,6 +215,7 @@ export default function Register() {
             phone_number,
             referral_code: referralCodeRedux,
             username,
+            recaptchaResponse,
           };
           axios
             .post("/api/register", user, {
@@ -350,7 +354,6 @@ export default function Register() {
           {!last_nameValid && <p>We need your last name!</p>}
         </div>
       </div>
-
       <p>How do we contact you?</p>
       <div className={styles.form_group_wrapper}>
         <div className={styles.form_element}>
@@ -372,6 +375,13 @@ export default function Register() {
           {!phone_numberValid && <p>Phone number is already in use</p>}
         </div>
       </div>
+      <ReCAPTCHA
+        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+        onChange={(e) => {
+          setRecaptchaResponse(e);
+        }}
+      />
+      {!recaptchaValid && <p>Please tell us if you're a robot or not</p>}
     </div>
   );
 
