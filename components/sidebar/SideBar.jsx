@@ -22,6 +22,13 @@ export default function SideBar() {
         <MenuItem name={"Home"} image={"/assets/icons/home.png"} url={"/"} />
         {session && (
           <MenuItem
+            name={"Neighbourhood"}
+            image={"/assets/icons/communities.svg"}
+            url={"/portal"}
+          />
+        )}
+        {session && (
+          <MenuItem
             name={"My Slices"}
             image={"/assets/icons/graph.png"}
             url={"/portfolio"}
@@ -96,6 +103,14 @@ export default function SideBar() {
             url={"/"}
             close={closeHamburger}
           />
+          {session && (
+            <LargeMenuItem
+              name={"Neighbourhood"}
+              image={"/assets/icons/communities.svg"}
+              url={"/portal"}
+              close={closeHamburger}
+            />
+          )}
           {session && (
             <LargeMenuItem
               name={"My Slices"}

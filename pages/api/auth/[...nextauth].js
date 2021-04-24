@@ -37,6 +37,20 @@ const providers = [
 
 const options = {
   providers,
+  callbacks: {
+    async jwt(token, user) {
+      // Add access_token to the token right after signin
+      if (user) {
+        token.accessToken = user.accessToken;
+      }
+
+      return token;
+    },
+    async session(session, token) {
+      session.accessToken = token.accessToken;
+      return session;
+    },
+  },
   session: {
     jwt: true,
     maxAge: 30 * 24 * 60 * 60, // 30 days
