@@ -48,10 +48,16 @@ export default async (req, res) => {
               result.rows[0].total_number_of_slices > 0 &&
               result.rows[0].level < 3
             ) {
+              let message =
+                result.rows[0].level > 1
+                  ? `Refer ${
+                      3 - result.rows[0].level
+                    } friend to buy another slice!`
+                  : `Refer ${
+                      3 - result.rows[0].level
+                    } friends to buy another slice!`;
               res.json({
-                message: `Refer ${
-                  3 - result.rows[0].level
-                } friend/s to buy another slice!`,
+                message,
                 maxSlices: true,
                 outOfStock: false,
                 level: result.rows[0].level,

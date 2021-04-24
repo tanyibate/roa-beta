@@ -28,13 +28,10 @@ export default function Register() {
   const [last_nameValid, setLastNameValid] = useState(true);
   const [phone_numberValid, setPhoneNumberValid] = useState(true);
   const [phone_numberEntered, setPhoneNumberEntered] = useState(true);
-  const [referralCode, setReferralCode] = useState("");
   const [registrationError, setRegistrationError] = useState(false);
   const [recaptchaResponse, setRecaptchaResponse] = useState("");
   const [recaptchaValid, setRecaptchaValid] = useState(true);
-
-  const referralCodeRedux = useSelector((state) => state.referralCode);
-
+  const { referral_code } = router.query;
   const [page, setPage] = useState(1);
   function keyUpHandler(event) {
     if (event.target.id === "email") {
@@ -213,7 +210,7 @@ export default function Register() {
             first_name,
             last_name,
             phone_number,
-            referral_code: referralCodeRedux,
+            referral_code,
             username,
             recaptchaResponse,
           };
@@ -223,6 +220,13 @@ export default function Register() {
             })
             .then((response) => {
               console.log(response);
+              setConfirmPassword("");
+              setPassword("");
+              setEmail("");
+              setUsername("");
+              setPhoneNumber("");
+              setFirstName("");
+              setLastName("");
               router.push("/login");
             })
             .catch((response) => {

@@ -36,6 +36,12 @@ export default function portfolio({ user }) {
         } else if (result.data[0].level < 3 && result.data[0].slice_count > 0) {
           if (result.data[0].level > 3) result.data[0].level = 3;
           setReferralCode(result.data[0].referral_code);
+          let message =
+            result.data[0].level > 1
+              ? `Refer ${3 - result.data[0].level} friend to buy another slice!`
+              : `Refer ${
+                  3 - result.data[0].level
+                } friends to buy another slice!`;
           setModalText(
             `Refer ${3 - result.data[0].level} friend/s to buy another slice!`
           );

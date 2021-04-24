@@ -39,7 +39,7 @@ export default function index() {
 
   return (
     <div className={styles.artist_container}>
-      <h1>Artists</h1>
+      <h1 style={{ margin: "3px" }}>Artists</h1>
       <div className={styles.swipe_container}>
         {
           <Swiper

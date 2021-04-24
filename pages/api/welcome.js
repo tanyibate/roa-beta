@@ -8,8 +8,8 @@ export default async (req, res) => {
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
-        user: "AKIATXTAIET2O73JHHP6",
-        pass: "BNJLkRUml/I1jxyAZN57/Rm6LG2KvCsmN7keBuD1k3AY",
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
     // send mail with defined transport object
