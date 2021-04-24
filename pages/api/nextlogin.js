@@ -1,5 +1,6 @@
 import pool from "../../postgres.config";
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 export default function (request, response) {
   if (request.method === "POST") {
@@ -22,6 +23,17 @@ export default function (request, response) {
                 if (res === true) {
                   const user = results.rows[0];
                   delete user.password;
+                  const tokenContent = {
+                    email: user.email,
+                    name: user.first_name + " " + user.last_name,
+                    sub: user.id,
+                  };
+                  const accessToken = jwt.sign(
+                    tokenContent,
+                    process.env.TRIBE_SSO_KEY
+                  );
+                  user.accessToken = accessToken;
+
                   response.status(200).json(user);
                   response.end();
                 } else {
