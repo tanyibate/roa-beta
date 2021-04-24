@@ -41,27 +41,6 @@ export default function Login() {
     }
   }
 
-  function login() {
-    const user = { email, password };
-    axios
-      .post("/api/login", user, {
-        timeout: 5000,
-      })
-      .then((response) => {
-        console.log(response);
-        dispatch(logIn());
-        dispatch(setAccessToken(response.data.accessToken));
-        dispatch(setRefreshToken(response.data.refreshToken));
-        setLoadApp(true);
-        setTimeout(function () {
-          router.push("/artists");
-        }, 2000);
-      })
-      .catch((response) => {
-        setIncorrectDetails(true);
-      });
-  }
-
   return (
     <div className="login-container">
       <div className={styles.register_button_container}>

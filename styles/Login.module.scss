@@ -106,6 +106,18 @@ $red: red;
   color: $red;
 }
 
+.email_sent {
+  max-width: 300px;
+  font-size: 12px;
+  color: #1dd760;
+}
+
+.email_sent_error {
+  max-width: 300px;
+  font-size: 12px;
+  color: red;
+}
+
 .app_transition {
   position: fixed;
   top: 0;
