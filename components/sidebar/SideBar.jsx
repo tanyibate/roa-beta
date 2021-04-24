@@ -58,13 +58,6 @@ export default function SideBar() {
             url={"/settings"}
           />
         )}
-        {session && (
-          <MenuItem
-            name={"Log Out"}
-            image={"/assets/icons/logout.png"}
-            url={"/login"}
-          />
-        )}
         {!session && (
           <MenuItem
             name={"Log In"}
@@ -72,11 +65,25 @@ export default function SideBar() {
             url={"/login"}
           />
         )}
+        {
+          <MenuItem
+            name={"Contact"}
+            image={"/assets/icons/contact.png"}
+            url={"/contact"}
+          />
+        }
         {!session && (
           <MenuItem
             name={"Register"}
             image={"/assets/icons/logout.png"}
             url={"/register"}
+          />
+        )}
+        {session && (
+          <MenuItem
+            name={"Log Out"}
+            image={"/assets/icons/logout.png"}
+            url={"/login"}
           />
         )}
       </div>
@@ -167,6 +174,12 @@ export default function SideBar() {
               close={closeHamburger}
             />
           )}
+          <LargeMenuItem
+            name={"Contact"}
+            image={"/assets/icons/contact.png"}
+            url={"/contact"}
+            close={closeHamburger}
+          />
           {!session && (
             <LargeMenuItem
               name={"Register"}
