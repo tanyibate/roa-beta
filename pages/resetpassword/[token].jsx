@@ -52,6 +52,9 @@ export default function Login() {
           setPasswordResetSuccess(true);
           setPasswordResetFailure(false);
           setMessage(response.data.message);
+          setTimeout(() => {
+            router.push("/login");
+          }, 2000);
         } else {
           setPasswordResetSuccess(false);
           setPasswordResetFailure(true);

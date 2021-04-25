@@ -83,12 +83,18 @@ export default function Login() {
           Log In
         </button>
       </div>
+      <p>
+        Did you forget your password?{" "}
+        <a style={{ color: "#1dd760" }} href="/resetpassword">
+          Click here
+        </a>
+      </p>
 
-      <p>Or Sign in With</p>
+      {/*<p>Or Sign in With</p>
       <div className="signin-with-images-container">
         <img src="/assets/login-page/google-icon.svg" alt="" />
         <img src="/assets/login-page/facebook-icon.svg" alt="" />
-      </div>
+      </div>*/}
 
       {loadApp && (
         <div className={styles.app_transition}>
