@@ -23,7 +23,7 @@ export default async (req, res) => {
                 level: result.rows[0].level,
                 referral_code: result.rows[0].referral_code,
               });
-            } else if (
+            } /*else if (
               result.rows[0].remaining_slices === 0 ||
               !result.rows[0].remaining_slices
             ) {
@@ -36,7 +36,9 @@ export default async (req, res) => {
                 level: result.rows[0].level,
                 referral_code: result.rows[0].referral_code,
               });
-            } else if (result.rows[0].num_of_slices_of_artist >= 1) {
+            }*/ else if (
+              result.rows[0].num_of_slices_of_artist >= 1
+            ) {
               res.json({
                 message: `Let's not be too excited ;) and let someone else buy a slice of ${req.body.artistAlias} check out all our other amazing artists.`,
                 maxSlices: true,

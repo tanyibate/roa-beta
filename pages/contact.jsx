@@ -128,8 +128,9 @@ export default function contact() {
               id="query"
               className="form-input-contact"
               onChange={keyUpHandler}
+              defaultValue={""}
             >
-              <option value="" selected disabled hidden>
+              <option value="" disabled hidden>
                 Choose here
               </option>
               <option value="feedback">Feedback</option>

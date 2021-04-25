@@ -7,12 +7,15 @@ import SwiperCore, { Navigation, Pagination } from "swiper";
 import { getSession, useSession } from "next-auth/client";
 import axios from "axios";
 import styles from "./styles.module.scss";
+import ReadMore from "../../components/read-more-container/ReadMore";
 SwiperCore.use([Navigation, Pagination]);
 
 export default function index() {
   // configure Swiper to use modules
   const [artists, setArtists] = useState([]);
+  const [artistInFocus, setArtistInFocus] = useState({});
   const [modalActive, setModalActive] = useState(false);
+  const [readMoreActive, setReadMoreActive] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [level, setLevel] = useState(1);
   const [referralCode, setReferralCode] = useState(0);
@@ -24,6 +27,10 @@ export default function index() {
     setErrorMessage(message);
     setLevel(level);
     setReferralCode(referralCode);
+  };
+  const activateReadMore = (artist) => {
+    setArtistInFocus(artist);
+    setReadMoreActive(!readMoreActive);
   };
 
   useEffect(async () => {
@@ -69,6 +76,7 @@ export default function index() {
                     artist={el}
                     key={index + "artist-small"}
                     updateModal={updateModal}
+                    readMore={activateReadMore}
                   />
                 </SwiperSlide>
               );
@@ -83,6 +91,7 @@ export default function index() {
               artist={el}
               key={index + "artist-large"}
               updateModal={updateModal}
+              readMore={activateReadMore}
             />
           );
         })}
@@ -106,6 +115,9 @@ export default function index() {
             />
           </div>
         </div>
+      )}
+      {readMoreActive && (
+        <ReadMore cancel={activateReadMore} artist={artistInFocus} />
       )}
     </div>
   );

@@ -71,8 +71,11 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       );
 
       console.log(artistAlias);
+      //const queryLimitedSlices = 'UPDATE slices SET user_id = (SELECT id FROM users WHERE email = $1) WHERE id IN (SELECT id FROM slices WHERE user_id IS NULL AND artist_id = (SELECT id FROM artists WHERE artist_alias = $2)  LIMIT 1'
+      const query =
+        "INSERT INTO slices (user_id,artist_id) VALUES((SELECT id FROM users WHERE email = $1),(SELECT id FROM artists WHERE artist_alias = $2))";
       await pool.query(
-        "UPDATE slices SET user_id = (SELECT id FROM users WHERE email = $1) WHERE id IN (SELECT id FROM slices WHERE user_id IS NULL AND artist_id = (SELECT id FROM artists WHERE artist_alias = $2)  LIMIT 1)",
+        query,
         [session.customer_email, artistAlias],
         (error, results) => {
           if (error) {

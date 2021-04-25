@@ -6,6 +6,22 @@ import axios from "axios";
 
 export default function ArtistCard(props) {
   const [session] = useSession();
+  function openLink(event) {
+    let link;
+    if (event.target.id === "spotify") {
+      link = props.artist.artist_social_media.spotify;
+    }
+    if (event.target.id === "instagram") {
+      link = props.artist.artist_social_media.instagram;
+    }
+    if (event.target.id === "youtube") {
+      link = props.artist.artist_social_media.youtube;
+    }
+    if (event.target.id === "apple_music") {
+      link = props.artist.artist_social_media.apple_music;
+    }
+    window.open(link, "_blank");
+  }
 
   var x;
   var artistid = Math.floor(Math.random() * 10);
@@ -123,14 +139,43 @@ export default function ArtistCard(props) {
           <div className="artist_card_bio">
             <p>
               <span className="bio">{props.artist.artist_description}</span>
-              <span className="read_more">Read more</span>
+              <span
+                className="read_more"
+                onClick={() => {
+                  const artist = props.artist;
+                  console.log(artist);
+                  props.readMore(artist);
+                }}
+              >
+                Read more
+              </span>
             </p>
 
             <div className="artist_social_media">
-              <img src="/assets/icons/spotify.svg" alt="" />
-              <img src="/assets/icons/instagram.svg" alt="" />
-              <img src="/assets/icons/applemusic.png" alt="" />
-              <img src="/assets/icons/youtube.svg" alt="" />
+              <img
+                src="/assets/icons/spotify.svg"
+                alt=""
+                id="spotify"
+                onClick={(event) => openLink(event)}
+              />
+              <img
+                src="/assets/icons/instagram.svg"
+                alt=""
+                id="instagram"
+                onClick={(event) => openLink(event)}
+              />
+              <img
+                src="/assets/icons/applemusic.png"
+                alt=""
+                id="apple_music"
+                onClick={(event) => openLink(event)}
+              />
+              <img
+                src="/assets/icons/youtube.svg"
+                alt=""
+                id="youtube"
+                onClick={(event) => openLink(event)}
+              />
             </div>
           </div>
         </div>
