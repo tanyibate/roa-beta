@@ -51,6 +51,7 @@ export default function index() {
         {
           <Swiper
             navigation
+            loop="true"
             pagination={{ clickable: true }}
             breakpoints={{
               320: {

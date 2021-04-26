@@ -65,6 +65,12 @@ export default function ArtistCard(props) {
       });
   };
 
+  function getMusic() {
+    if (props.artist.artist_alias === "EBE Kastro")
+      return "/assets/ebe_kastro.m4a";
+    else return "/assets/chase_paves.m4a";
+  }
+
   function pay() {
     fetch("/api/charge", {
       method: "POST",
@@ -91,7 +97,7 @@ export default function ArtistCard(props) {
 
   useEffect(() => {
     // Update the document title using the browser API
-    x = document.getElementById("myAudio");
+    x = document.getElementById("myAudio" + props.artist.artist_alias);
   });
 
   var x = React.createRef();
@@ -103,6 +109,11 @@ export default function ArtistCard(props) {
       pauseAudio();
       setCurrentPlayingMusic(false);
     }
+  }
+
+  function musicEnded() {
+    setCurrentPlayingMusic(false);
+    console.log("music ended");
   }
 
   function playAudio() {
@@ -120,11 +131,14 @@ export default function ArtistCard(props) {
       <div className="artist_card_container">
         <div className="artist_card_top">
           <div className="artist_card_image_container">
-            <audio id={"myAudio"} onEnded={() => setCurrentPlayingMusic(false)}>
-              <source src="/assets/drake.mp3" type="audio/mpeg" />
+            <audio
+              id={"myAudio" + props.artist.artist_alias}
+              onEnded={musicEnded}
+            >
+              <source src={getMusic()} type="audio/mp4" />
               Your browser does not support the audio tag.
             </audio>
-            <div>
+            <div className="artist-image-container">
               <img
                 src={`${props.artist.artist_image_url}`}
                 alt=""
@@ -134,6 +148,7 @@ export default function ArtistCard(props) {
                 })}
                 onClick={musicController}
               />
+              <p>Click me</p>
             </div>
           </div>
           <div className="artist_card_bio">

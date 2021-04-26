@@ -55,8 +55,7 @@ const options = {
     jwt: true,
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  database:
-    "postgres://jnogzitlovusmz:141dec94d96c480b938e7c8e234ebd4f69ba203966e9dc4e3ca047a7cb8b231a@ec2-176-34-222-188.eu-west-1.compute.amazonaws.com:5432/d8ipf54rndhvv",
+  database: process.env.DATABASE_URL,
 };
 
 export default (req, res) => NextAuth(req, res, options);

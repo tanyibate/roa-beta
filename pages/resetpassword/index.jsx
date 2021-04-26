@@ -12,7 +12,7 @@ export default function Login() {
 
   function resetPassword() {
     axios
-      .post("/api/forgotpassword", { email })
+      .post("/api/forgotpassword", { email: email })
       .then(() => {
         setEmailSent(true);
         setEmailError(false);

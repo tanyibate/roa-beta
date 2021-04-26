@@ -1,21 +1,26 @@
 import styles from "../styles/Home.module.scss";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { useSession } from "next-auth/client";
 
 export default function Home() {
+  const [session, loading] = useSession();
+
   const router = useRouter();
   return (
     <div className={styles.home_container}>
-      <div className={styles.login_button_container}>
-        <p>Already have an account? </p>
-        <button
-          onClick={() => {
-            router.push("/login");
-          }}
-        >
-          Log in
-        </button>
-      </div>
+      {!session && (
+        <div className={styles.login_button_container}>
+          <p>Already have an account? </p>
+          <button
+            onClick={() => {
+              router.push("/login");
+            }}
+          >
+            Log in
+          </button>
+        </div>
+      )}
       <div className={styles.infographic_container}>
         <div className={styles.block}>
           <h2>A first of its kind marketplace for exclusice fan clubs</h2>
@@ -39,16 +44,18 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className={styles.button_container}>
-        <img src="/assets/icons/down-arrow.svg" alt="" />
-        <button
-          onClick={() => {
-            router.push("/register");
-          }}
-        >
-          Sign Up Now
-        </button>
-      </div>
+      {!session && (
+        <div className={styles.button_container}>
+          <img src="/assets/icons/down-arrow.svg" alt="" />
+          <button
+            onClick={() => {
+              router.push("/register");
+            }}
+          >
+            Sign Up Now
+          </button>
+        </div>
+      )}
     </div>
   );
 }
