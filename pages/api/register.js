@@ -17,7 +17,6 @@ export default async function (request, response) {
     } = request.body;
     let recaptchaSuccess = false;
     try {
-      console.log(recaptchaResponse);
       let recaptchaSuccessData = await axios.post(
         `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaResponse}`
       );

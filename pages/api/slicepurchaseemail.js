@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import pool from "../../postgres.config";
 const nodemailer = require("nodemailer");
 
 export default async (req, res) => {

@@ -23,16 +23,17 @@ export default function Home() {
       )}
       <div className={styles.infographic_container}>
         <div className={styles.block}>
-          <h2>A first of its kind marketplace for exclusice fan clubs</h2>
+          <h2>A first of its kind marketplace for exclusive fan clubs</h2>
           <h3>Slices</h3>
-          <h3>These are the keys to an artist fan clubs.</h3>
+          <h3>These are the key to an artist’s neighborhood</h3>
         </div>
         <div className={styles.block}>
           <h3>Fan Club</h3>
           <h3>Exclusive access to your favorite artists</h3>
           <h3>Marketplace</h3>
           <h3>
-            Slice may be bought and sold our bid/ask marketplace. (Coming Soon)
+            Slices may be bought and sold on our bid/ask marketplace (Coming
+            soon)
           </h3>
         </div>
         <div className={styles.block}>

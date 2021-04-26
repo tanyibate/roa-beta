@@ -24,6 +24,7 @@ export default function ArtistCard(props) {
   }
 
   var x;
+  let random = Math.floor(Math.random() * 101);
   var artistid = Math.floor(Math.random() * 10);
   const [currentPlayingMusic, setCurrentPlayingMusic] = useState(false);
 
@@ -97,7 +98,7 @@ export default function ArtistCard(props) {
 
   useEffect(() => {
     // Update the document title using the browser API
-    x = document.getElementById("myAudio" + props.artist.artist_alias);
+    x = document.getElementById("myAudio" + props.artist.artist_alias + random);
   });
 
   var x = React.createRef();
@@ -132,7 +133,7 @@ export default function ArtistCard(props) {
         <div className="artist_card_top">
           <div className="artist_card_image_container">
             <audio
-              id={"myAudio" + props.artist.artist_alias}
+              id={"myAudio" + props.artist.artist_alias + random}
               onEnded={musicEnded}
             >
               <source src={getMusic()} type="audio/mp4" />

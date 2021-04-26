@@ -215,9 +215,7 @@ export default function Register() {
             recaptchaResponse,
           };
           axios
-            .post("/api/register", user, {
-              timeout: 1000,
-            })
+            .post("/api/register", user)
             .then((response) => {
               console.log(response);
               setConfirmPassword("");
