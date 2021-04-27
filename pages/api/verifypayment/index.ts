@@ -22,6 +22,7 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const buf = await buffer(req);
     const sig = req.headers["stripe-signature"]!;
+    let emailSent;
 
     let event: Stripe.Event;
 
@@ -77,9 +78,22 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       await pool.query(
         query,
         [session.customer_email, artistAlias],
-        (error, results) => {
+        async (error, results) => {
           if (error) {
             throw error;
+          } else {
+            try {
+              let info = await axios.post(
+                `${process.env.NEXTAUTH_URL}/api/slicepurchaseemail`,
+                {
+                  email: session.customer_email,
+                  artist_alias: artistAlias,
+                }
+              );
+              if (info) emailSent = true;
+            } catch (err) {
+              emailSent = false;
+            }
           }
         }
       );
@@ -88,7 +102,7 @@ const webhookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     // Return a response to acknowledge receipt of the event.
-    res.json({ received: true });
+    res.json({ received: true, emailSent });
   } else {
     res.setHeader("Allow", "POST");
     res.status(405).end("Method Not Allowed");

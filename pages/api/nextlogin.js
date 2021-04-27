@@ -30,7 +30,8 @@ export default function (request, response) {
                   };
                   const accessToken = jwt.sign(
                     tokenContent,
-                    process.env.TRIBE_SSO_KEY
+                    process.env.TRIBE_SSO_KEY,
+                    { algorithm: "HS256" }
                   );
                   user.accessToken = accessToken;
 

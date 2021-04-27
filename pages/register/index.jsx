@@ -246,7 +246,7 @@ export default function Register() {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             className={classNames({
               "form-input": true,
               "form-input-error": !emailValid || !emailEntered,

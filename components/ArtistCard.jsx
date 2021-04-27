@@ -20,6 +20,9 @@ export default function ArtistCard(props) {
     if (event.target.id === "apple_music") {
       link = props.artist.artist_social_media.apple_music;
     }
+    if (event.target.id === "tiktok") {
+      link = props.artist.artist_social_media.tiktok;
+    }
     window.open(link, "_blank");
   }
 
@@ -139,7 +142,7 @@ export default function ArtistCard(props) {
               <source src={getMusic()} type="audio/mp4" />
               Your browser does not support the audio tag.
             </audio>
-            <div className="artist-image-container">
+            <div className="artist-image-container" onClick={musicController}>
               <img
                 src={`${props.artist.artist_image_url}`}
                 alt=""
@@ -147,7 +150,6 @@ export default function ArtistCard(props) {
                   artist_image: true,
                   rotate_artist: currentPlayingMusic,
                 })}
-                onClick={musicController}
               />
               <p>Click me</p>
             </div>
@@ -168,30 +170,46 @@ export default function ArtistCard(props) {
             </p>
 
             <div className="artist_social_media">
-              <img
-                src="/assets/icons/spotify.svg"
-                alt=""
-                id="spotify"
-                onClick={(event) => openLink(event)}
-              />
-              <img
-                src="/assets/icons/instagram.svg"
-                alt=""
-                id="instagram"
-                onClick={(event) => openLink(event)}
-              />
-              <img
-                src="/assets/icons/applemusic.png"
-                alt=""
-                id="apple_music"
-                onClick={(event) => openLink(event)}
-              />
-              <img
-                src="/assets/icons/youtube.svg"
-                alt=""
-                id="youtube"
-                onClick={(event) => openLink(event)}
-              />
+              {props.artist.artist_social_media.spotify && (
+                <img
+                  src="/assets/icons/spotify.svg"
+                  alt=""
+                  id="spotify"
+                  onClick={(event) => openLink(event)}
+                />
+              )}
+              {props.artist.artist_social_media.instagram && (
+                <img
+                  src="/assets/icons/instagram.svg"
+                  alt=""
+                  id="instagram"
+                  onClick={(event) => openLink(event)}
+                />
+              )}
+              {props.artist.artist_social_media.apple_music && (
+                <img
+                  src="/assets/icons/applemusic.png"
+                  alt=""
+                  id="apple_music"
+                  onClick={(event) => openLink(event)}
+                />
+              )}
+              {props.artist.artist_social_media.youtube && (
+                <img
+                  src="/assets/icons/youtube.svg"
+                  alt=""
+                  id="youtube"
+                  onClick={(event) => openLink(event)}
+                />
+              )}
+              {props.artist.artist_social_media.tiktok && (
+                <img
+                  src="/assets/icons/tik-tok.png"
+                  alt=""
+                  id="tiktok"
+                  onClick={(event) => openLink(event)}
+                />
+              )}
             </div>
           </div>
         </div>

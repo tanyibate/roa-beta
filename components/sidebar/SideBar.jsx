@@ -22,7 +22,7 @@ export default function SideBar() {
         <MenuItem name={"Home"} image={"/assets/icons/home.png"} url={"/"} />
         {session && (
           <MenuItem
-            name={"Neighbourhood"}
+            name={"Neighborhood"}
             image={"/assets/icons/communities.svg"}
             url={"/portal"}
           />
@@ -112,7 +112,7 @@ export default function SideBar() {
           />
           {session && (
             <LargeMenuItem
-              name={"Neighbourhood"}
+              name={"Neighborhood"}
               image={"/assets/icons/communities.svg"}
               url={"/portal"}
               close={closeHamburger}

@@ -23,6 +23,13 @@ export const setAccessToken = (accessToken) => {
     accessToken,
   };
 };
+
+export const setEmail = (email) => {
+  return {
+    type: "SET_EMAIL",
+    email,
+  };
+};
 export const setReferralCode = (referralCode) => {
   return {
     type: "SET_REFERRAL_CODE",

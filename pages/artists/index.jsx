@@ -12,6 +12,7 @@ SwiperCore.use([Navigation, Pagination]);
 
 export default function index() {
   // configure Swiper to use modules
+
   const [artists, setArtists] = useState([]);
   const [artistInFocus, setArtistInFocus] = useState({});
   const [modalActive, setModalActive] = useState(false);
@@ -51,7 +52,6 @@ export default function index() {
         {
           <Swiper
             navigation
-            loop="true"
             pagination={{ clickable: true }}
             breakpoints={{
               320: {

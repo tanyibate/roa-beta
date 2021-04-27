@@ -55,7 +55,7 @@ export default function Login() {
       <img src="/assets/Logo/ROA_logogreen.png" className="login-logo" />
       <div className="form-input">
         <input
-          type="text"
+          type="email"
           id="email"
           placeholder="Email"
           onKeyUp={keyUpHandler}

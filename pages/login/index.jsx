@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "next-auth/client";
 import styles from "../../styles/Login.module.scss";
 import { getSession, useSession } from "next-auth/client";

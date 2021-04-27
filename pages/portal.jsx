@@ -2,13 +2,16 @@ import styles from "../styles/portal.module.scss";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { getSession, useSession } from "next-auth/client";
+import { useState, useEffect } from "react";
 
 export default function Portal({ accessToken }) {
   const router = useRouter();
+  useEffect(() => {}, []);
+
   return (
     <div className={styles.portal_container}>
       <iframe
-        src={`https://community.rogueonarrival.com/auth/sso?ssoToken=${accessToken}&redirect=/answers`}
+        src={`http://community.rogueonarrival.com/auth/sso?ssoToken=${accessToken}&redirect=/answers`}
         frameBorder="0"
         allowtransparency="true"
         style={{
