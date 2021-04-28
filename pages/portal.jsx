@@ -11,7 +11,7 @@ export default function Portal({ accessToken }) {
   return (
     <div className={styles.portal_container}>
       <iframe
-        src={`https://community.rogueonarrival.com/auth/sso?ssoToken=${accessToken}`}
+        src={`https://community.roabeta.com/auth/sso?ssoToken=${accessToken}`}
         frameBorder="0"
         allowtransparency="true"
         style={{
