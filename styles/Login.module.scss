@@ -118,6 +118,13 @@ $red: red;
   color: red;
 }
 
+.form_element {
+  margin: 5px 0;
+  p {
+    font-size: 10px;
+  }
+}
+
 .app_transition {
   position: fixed;
   top: 0;

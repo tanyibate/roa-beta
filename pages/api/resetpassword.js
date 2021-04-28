@@ -26,7 +26,8 @@ export default (req, res) => {
                   ])
                   .then(() => {
                     res.status(200).json({
-                      message: "password has succesfully been reset",
+                      message:
+                        "password has succesfully been reset, redirecting to login page",
                       error: false,
                     });
                   })

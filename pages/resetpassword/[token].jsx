@@ -37,7 +37,7 @@ export default function Login() {
       setToken(query.token);
       console.log(query.token);
       axios.post("/api/getemail", { token: query.token }).then((res) => {
-        if (email) setEmail(res.data.email);
+        if (res.data.email) setEmail(res.data.email);
         else {
           setMessage("Invalid or expired link");
           setPasswordResetFailure(true);
@@ -59,7 +59,6 @@ export default function Login() {
           if (!response.data.error) {
             setPasswordResetSuccess(true);
             setPasswordResetFailure(false);
-            setErr;
             setMessage(response.data.message);
             setTimeout(() => {
               router.push("/login");
@@ -120,21 +119,22 @@ export default function Login() {
       />
 
       <div className="form-container">
-        <label htmlFor="email" className="form-label">
-          Email
-        </label>
-        <input
-          type="text"
-          className="form-input"
-          id="email"
-          value={email}
-          readOnly={!passwordResetFailure}
-          onChange={keyUpHandler}
-        />
-        <br />
+        <div className={styles.form_element}>
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            type="text"
+            className="form-input"
+            id="email"
+            value={email}
+            readOnly={!passwordResetFailure}
+            onChange={keyUpHandler}
+          />
+        </div>
 
         {!passwordResetFailure && (
-          <div>
+          <div className={styles.form_element}>
             <label htmlFor="password" className="form-label">
               New Password
             </label>
@@ -144,12 +144,11 @@ export default function Login() {
               id="password"
               onKeyUp={keyUpHandler}
             />
-            <br />
           </div>
         )}
 
         {!passwordResetFailure && (
-          <div>
+          <div className={styles.form_element}>
             <label htmlFor="password" className="form-label">
               Confirm Password
             </label>
@@ -159,7 +158,6 @@ export default function Login() {
               id="confirmpassword"
               onKeyUp={keyUpHandler}
             />
-            <br />
           </div>
         )}
 
