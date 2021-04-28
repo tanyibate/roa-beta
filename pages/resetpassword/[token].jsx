@@ -19,53 +19,75 @@ export default function Login() {
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+
   const [passwordResetSuccess, setPasswordResetSuccess] = useState(false);
   const [passwordResetFailure, setPasswordResetFailure] = useState(false);
   const [token, setToken] = useState("");
   const [message, setMessage] = useState("");
+  const [buttonText, setButtonText] = useState("Reset Password");
+
   useEffect(() => {
     if (!query) {
       return;
     }
     if (query) {
-      const tokenWithId = query.token;
-      const token = query.token.slice(0, -1);
-      setToken(token);
-      const id = tokenWithId.charAt(tokenWithId.length - 1);
-      axios.post("/api/getemail", { id: id }).then((res) => {
-        setEmail(res.data.email);
+      setToken(query.token);
+      console.log(query.token);
+      axios.post("/api/getemail", { token: query.token }).then((res) => {
+        if (email) setEmail(res.data.email);
+        else {
+          setMessage("Invalid or expired link");
+          setPasswordResetFailure(true);
+        }
       });
     }
-    console.log("my query exists!!", query);
   }, [query]);
 
   function resetPassword() {
-    axios
-      .post("/api/resetpassword", {
-        email: email,
-        token: token,
-        password: password,
-      })
-      .then((response) => {
-        console.log(response);
-        if (!response.data.error) {
-          setPasswordResetSuccess(true);
-          setPasswordResetFailure(false);
-          setMessage(response.data.message);
-          setTimeout(() => {
-            router.push("/login");
-          }, 2000);
-        } else {
+    if (!passwordResetFailure) {
+      axios
+        .post("/api/resetpassword", {
+          email: email,
+          token: token,
+          password: password,
+        })
+        .then((response) => {
+          console.log(response);
+          if (!response.data.error) {
+            setPasswordResetSuccess(true);
+            setPasswordResetFailure(false);
+            setErr;
+            setMessage(response.data.message);
+            setTimeout(() => {
+              router.push("/login");
+            }, 2000);
+          } else {
+            setButtonText("Resend Email");
+            setPasswordResetSuccess(false);
+            setPasswordResetFailure(true);
+            setMessage(response.data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
           setPasswordResetSuccess(false);
           setPasswordResetFailure(true);
-          setMessage(response.data.message);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setPasswordResetSuccess(false);
-        setPasswordResetFailure(true);
-      });
+        });
+    } else {
+      axios
+        .post("/api/forgotpassword", { email: email })
+        .then(() => {
+          setEmailSent(true);
+          setEmailError(false);
+        })
+        .catch(() => {
+          setEmailSent(false);
+          setEmailError(true);
+        });
+    }
   }
 
   function keyUpHandler(event) {
@@ -74,6 +96,9 @@ export default function Login() {
     }
     if (event.target.id === "password") {
       setPassword(event.target.value);
+    }
+    if (event.target.id === "confirmpassword") {
+      setConfirmPassword(event.target.value);
     }
   }
 
@@ -103,26 +128,60 @@ export default function Login() {
           className="form-input"
           id="email"
           value={email}
-          readOnly
-        />
-        <br />
-        <label htmlFor="password" className="form-label">
-          New Password
-        </label>
-        <input
-          type="text"
-          className="form-input"
-          id="password"
-          onKeyUp={keyUpHandler}
+          readOnly={!passwordResetFailure}
+          onChange={keyUpHandler}
         />
         <br />
 
-        {passwordResetSuccess && <p className={styles.email_sent}>{message}</p>}
-        {passwordResetFailure && (
+        {!passwordResetFailure && (
+          <div>
+            <label htmlFor="password" className="form-label">
+              New Password
+            </label>
+            <input
+              type="password"
+              className="form-input"
+              id="password"
+              onKeyUp={keyUpHandler}
+            />
+            <br />
+          </div>
+        )}
+
+        {!passwordResetFailure && (
+          <div>
+            <label htmlFor="password" className="form-label">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              className="form-input"
+              id="confirmpassword"
+              onKeyUp={keyUpHandler}
+            />
+            <br />
+          </div>
+        )}
+
+        {passwordResetSuccess && !(emailSent || emailError) && (
+          <p className={styles.email_sent}>{message}</p>
+        )}
+        {passwordResetFailure && !(emailSent || emailError) && (
           <p className={styles.email_sent_error}>{message}</p>
         )}
+        {emailSent && (
+          <p className={styles.email_sent}>
+            If an account with the email exists you will receive an email to
+            reset your password
+          </p>
+        )}
+        {emailError && (
+          <p className={styles.email_sent_error}>
+            There was an error with sending the email please try again
+          </p>
+        )}
         <button className="form-button" onClick={resetPassword}>
-          Reset Password
+          {buttonText}
         </button>
       </div>
     </div>

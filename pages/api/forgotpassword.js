@@ -1,11 +1,18 @@
 import pool from "../../postgres.config";
-import crypto from "crypto";
 const nodemailer = require("nodemailer");
+import jwt from "jsonwebtoken";
 
 export default async (req, res) => {
   if (req.method === "POST") {
     const email = req.body.email;
-    const token = crypto.randomBytes(20).toString("hex");
+
+    const token = jwt.sign(
+      {
+        email: email,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: 60 * 5 }
+    );
     var d = new Date();
     var n = d.getTime();
     const expiry_time = (n + 300000).toString();
@@ -35,9 +42,7 @@ export default async (req, res) => {
             text:
               `Looks like you've forgotten your password, we've all been here before \n` +
               `Click or copy paste this link to reset your password \n` +
-              `${process.env.NEXT_PUBLIC_APP_URL}/resetpassword/${
-                token + user_id
-              } \n` +
+              `${process.env.NEXT_PUBLIC_APP_URL}/resetpassword/${token} \n` +
               `You'll have 5 minutes to click on this link before the link expires`,
 
             // plain text body

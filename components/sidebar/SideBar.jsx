@@ -51,13 +51,6 @@ export default function SideBar() {
 
         <MenuItem name={"FAQ"} image={"/assets/icons/faq.jpeg"} url={"/faq"} />
 
-        {session && (
-          <MenuItem
-            name={"Settings"}
-            image={"/assets/icons/settings.png"}
-            url={"/settings"}
-          />
-        )}
         {!session && (
           <MenuItem
             name={"Log In"}
@@ -150,14 +143,7 @@ export default function SideBar() {
               close={closeHamburger}
             />
           }
-          {session && (
-            <LargeMenuItem
-              name={"Settings"}
-              image={"/assets/icons/settings.png"}
-              url={"/settings"}
-              close={closeHamburger}
-            />
-          )}
+
           {session && (
             <LargeMenuItem
               name={"Log Out"}

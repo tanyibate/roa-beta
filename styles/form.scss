@@ -136,11 +136,11 @@ $red: red;
 }
 
 .form-input-error {
-  border: 1px solid $red;
+  border: 1px solid $red !important;
   color: $red;
 }
 
 .form-input-contact-error {
-  border: 1px solid $red;
+  border: 1px solid $red !important;
   color: $red;
 }

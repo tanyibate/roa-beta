@@ -247,10 +247,10 @@ export default function Register() {
           </label>
           <input
             type="email"
-            className={classNames({
-              "form-input": true,
-              "form-input-error": !emailValid || !emailEntered,
-            })}
+            className={
+              "form-input " +
+              ((!emailEntered || !emailValid) && "form-input-error")
+            }
             id="email"
             value={email}
             onChange={keyUpHandler}
@@ -432,13 +432,16 @@ export default function Register() {
             Go Back One
           </button>
         )}
-        <button
-          className="form-button"
-          onClick={buttonHandler}
-          style={{ marginBottom: "10px", minHeight: "50px" }}
-        >
-          {submitButton}
-        </button>
+        <div style={{ width: "100%", padding: "5px 0" }}>
+          <button
+            className="form-button"
+            onClick={buttonHandler}
+            style={{ minHeight: "50px" }}
+          >
+            {submitButton}
+          </button>
+        </div>
+
         {registrationError && (
           <p>Registration error, refresh your page and try again</p>
         )}
