@@ -1,4 +1,6 @@
 import "../styles/globals.scss";
+import "react-tabs/style/react-tabs.css";
+
 import Sidebar from "../components/sidebar/SideBar.jsx";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";

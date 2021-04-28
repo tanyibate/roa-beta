@@ -96,7 +96,8 @@
 
   progress {
     height: 30px;
-    width: 300px;
+    min-width: 100%;
+    max-width: 100%;
     background-color: white;
     border-radius: 15px;
     overflow: hidden;
@@ -111,6 +112,23 @@
   progress::-webkit-progress-bar {
     background: white;
     border-radius: 15px;
+  }
+}
+
+.copy_button {
+  width: 55px;
+  height: 30px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background-color: #1dd760;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 2px;
+  border-radius: 15px;
+  margin-left: 5px;
+  img {
+    height: 100%;
   }
 }
 

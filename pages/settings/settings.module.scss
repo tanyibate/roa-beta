@@ -3,9 +3,14 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: center;
   align-items: center;
   overflow: scroll;
+  padding-top: 10px;
+}
+
+.button_container {
+  width: 100%;
+  padding: 10px 0;
 }
 .title {
   margin: 4px 0;

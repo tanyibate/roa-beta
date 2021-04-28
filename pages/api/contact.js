@@ -15,6 +15,7 @@ export default async (req, res) => {
       recaptchaResponse,
     } = req.body;
     const authSession = await getSession({ req });
+    console.log(message);
     let realPerson = false;
     if (authSession) {
       realPerson = true;
@@ -58,8 +59,20 @@ export default async (req, res) => {
 
               // plain text body
             });
-            res.status(200).json(info);
+            let adminemail = await transporter.sendMail({
+              from: `"${name}" <${email}>`, // sender address
+              to: "contact@rogueonarrival.com", // list of receivers
+              subject: query, // Subject line
+              text: message,
+
+              // plain text body
+            });
+            res.status(200).json({
+              adminemail,
+              info,
+            });
           } catch (err) {
+            console.log(err);
             res.status(400).send("There was an error with sending the email");
           }
         })

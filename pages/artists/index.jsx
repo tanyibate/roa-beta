@@ -21,7 +21,12 @@ export default function index() {
   const [level, setLevel] = useState(1);
   const [referralCode, setReferralCode] = useState(0);
 
-  // init Swiper:
+  function copyCode() {
+    navigator.clipboard.writeText(
+      `${process.env.NEXT_PUBLIC_APP_URL}/register/${referralCode}`
+    );
+  }
+
   const router = useRouter();
   const updateModal = (message, level, referralCode) => {
     setModalActive(true);
@@ -109,11 +114,16 @@ export default function index() {
               {`${(level / 3) * 100}`}{" "}
             </progress>
             <h3>Referral Link</h3>
-            <input
-              type="text"
-              value={`${process.env.NEXT_PUBLIC_APP_URL}/register/${referralCode}`}
-              readOnly
-            />
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <input
+                type="text"
+                value={`${process.env.NEXT_PUBLIC_APP_URL}/register/${referralCode}`}
+                readOnly
+              />
+              <div className={styles.copy_button} onClick={copyCode}>
+                <img src="/assets/icons/copy.svg" alt="" />
+              </div>
+            </div>
           </div>
         </div>
       )}

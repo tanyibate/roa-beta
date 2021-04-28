@@ -12,6 +12,12 @@ export default function portfolio({ user }) {
   const [modalText, setModalText] = useState("");
   const [level, setLevel] = useState(1);
 
+  function copyCode() {
+    navigator.clipboard.writeText(
+      `${process.env.NEXT_PUBLIC_APP_URL}/register/${referralCode}`
+    );
+  }
+
   useEffect(() => {
     axios.get(`/api/users/slices`).then((result) => {
       console.log(result.data);
@@ -42,9 +48,7 @@ export default function portfolio({ user }) {
               : `Refer ${
                   3 - result.data[0].level
                 } friends to buy another slice!`;
-          setModalText(
-            `Refer ${3 - result.data[0].level} friend/s to buy another slice!`
-          );
+          setModalText(message);
           setLevel(result.data[0].level);
           setModalActive(true);
         } else router.push("/artists");
@@ -79,11 +83,16 @@ export default function portfolio({ user }) {
                 {`${(level / 3) * 100}`}{" "}
               </progress>
               <h3>Referral Link</h3>
-              <input
-                type="text"
-                value={`${process.env.NEXT_PUBLIC_APP_URL}/register/${referralCode}`}
-                readOnly
-              />
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <input
+                  type="text"
+                  value={`${process.env.NEXT_PUBLIC_APP_URL}/register/${referralCode}`}
+                  readOnly
+                />
+                <div className={styles.copy_button} onClick={copyCode}>
+                  <img src="/assets/icons/copy.svg" alt="" />
+                </div>
+              </div>
             </div>
           </div>
         )}

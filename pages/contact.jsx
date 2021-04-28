@@ -17,6 +17,7 @@ export default function contact() {
   const [recaptchaError, setRecaptchaError] = useState(false);
   const [media_link, setMediaLink] = useState("");
   const [session, loading] = useSession();
+  const [success, setSuccess] = useState(false);
 
   function keyUpHandler(event) {
     if (event.target.id === "email") {
@@ -77,7 +78,15 @@ export default function contact() {
           query: query,
         })
         .then((res) => {
-          console.log(res);
+          setSuccess(true);
+          setEmail("");
+          setMessage("");
+          setName("");
+          setQuery("");
+          setEmailError(false);
+          setMessageError(false);
+          setNameError(false);
+          setQueryError(false);
         })
         .catch((err) => {
           console.log(err);
@@ -89,7 +98,7 @@ export default function contact() {
       <div className={styles.form}>
         <div className={styles.form_element}>
           <h1>Contact Us</h1>
-          <p>Please fil the form below so that we can answer your query.</p>
+          <p>Please fill the form below so that we can answer your query.</p>
         </div>
 
         <div className={styles.form_row}>
@@ -99,6 +108,7 @@ export default function contact() {
             </label>
             <input
               type="text"
+              value={email}
               id="email"
               className="form-input-contact"
               onChange={keyUpHandler}
@@ -111,6 +121,7 @@ export default function contact() {
             </label>
             <input
               type="text"
+              value={name}
               id="name"
               className="form-input-contact"
               onChange={keyUpHandler}
@@ -128,7 +139,7 @@ export default function contact() {
               id="query"
               className="form-input-contact"
               onChange={keyUpHandler}
-              defaultValue={""}
+              value={query}
             >
               <option value="" disabled hidden>
                 Choose here
@@ -150,6 +161,7 @@ export default function contact() {
               className="form-input-contact"
               rows="4"
               onChange={keyUpHandler}
+              value={message}
             />
             {messageError && <p>Please provide us with a message.</p>}
           </div>
@@ -170,6 +182,9 @@ export default function contact() {
             Submit
           </button>
         </div>
+        {success && (
+          <p style={{ color: "#1dd760", textAlign: "center" }}>Thank you!</p>
+        )}
       </div>
     </div>
   );
