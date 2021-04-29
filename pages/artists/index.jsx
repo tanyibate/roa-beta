@@ -133,6 +133,13 @@ export default function index() {
     </div>
   );
 }
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (!session) {
+    ctx.res.writeHead(302, { Location: "/login" });
+    ctx.res.end();
+    return {};
+  }
 
   return {
     props: {
