@@ -114,8 +114,32 @@
     border-radius: 15px;
   }
 }
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.copied {
+  margin-top: 10px;
+  width: 160px;
+  height: 30px;
+  justify-content: center;
+  background: gray;
+  border-radius: 15px;
+  color: white;
+  animation: fade 2s linear forwards;
+  display: none;
+  align-items: center;
+}
 
 .copy_button {
+  &:hover {
+    filter: brightness(0.6);
+  }
   width: 55px;
   height: 30px;
   overflow: hidden;

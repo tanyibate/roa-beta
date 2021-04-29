@@ -28,12 +28,7 @@ export default function index() {
     );
 
     let clipboard = document.querySelector("#clipboard");
-    if (clipboard.style.display === "none") clipboard.style.display = "flex";
-    else {
-      clipboard.style.display === "none";
-      clipboard.style.opacity = 1;
-      clipboard.style.display = "flex";
-    }
+    clipboard.style.display = "flex";
   }
 
   const router = useRouter();

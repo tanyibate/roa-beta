@@ -16,6 +16,8 @@ export default function portfolio({ user }) {
     navigator.clipboard.writeText(
       `${process.env.NEXT_PUBLIC_APP_URL}/register/${referralCode}`
     );
+    let clipboard = document.querySelector("#clipboard");
+    clipboard.style.display = "flex";
   }
 
   useEffect(() => {
@@ -95,6 +97,9 @@ export default function portfolio({ user }) {
                   <img src="/assets/icons/copy.svg" alt="" />
                 </div>
               </div>
+            </div>
+            <div className={styles.copied} id="clipboard">
+              Copied to clipboard
             </div>
           </div>
         )}
