@@ -44,8 +44,10 @@ export default function portfolio({ user }) {
           setReferralCode(result.data[0].referral_code);
           let message =
             result.data[0].level > 1
-              ? `Refer ${3 - result.data[0].level} friend to buy another slice!`
-              : `Refer ${
+              ? `What's neighborhood without your friends. Refer ${
+                  3 - result.data[0].level
+                } friend to buy another slice!`
+              : `What's neighborhood without your friends. Refer ${
                   3 - result.data[0].level
                 } friends to buy another slice!`;
           setModalText(message);

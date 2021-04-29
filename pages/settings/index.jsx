@@ -203,7 +203,9 @@ export default function index() {
       <Tabs style={{ maxWidth: "522px", width: "100%", padding: "0 2px" }}>
         <TabList>
           <Tab>Personal Details</Tab>
-          <Tab>Password</Tab>
+          {
+            //<Tab>Password</Tab>
+          }
         </TabList>
 
         <TabPanel>
@@ -352,7 +354,7 @@ export default function index() {
             </button>
           </div>
         </TabPanel>
-        <TabPanel>
+        {/*<TabPanel>
           <div className={styles.form_group_container}>
             <p>Do you want to change your login details?</p>
             <div className={styles.form_group_wrapper}>
@@ -384,7 +386,7 @@ export default function index() {
               Change password
             </button>
           </div>
-        </TabPanel>
+        </TabPanel>*/}
       </Tabs>
     </div>
   );

@@ -52,10 +52,10 @@ export default async (req, res) => {
             ) {
               let message =
                 result.rows[0].level > 1
-                  ? `Refer ${
+                  ? `What's neighborhood without your friends. Refer ${
                       3 - result.rows[0].level
                     } friend to buy another slice!`
-                  : `Refer ${
+                  : `What's neighborhood without your friends. Refer ${
                       3 - result.rows[0].level
                     } friends to buy another slice!`;
               res.json({
