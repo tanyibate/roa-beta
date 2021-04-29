@@ -15,13 +15,13 @@ export default function interactions({ user }) {
       title: "Coming Soon",
       description: "Coming Soon",
       date: "TBD",
-      artist_alias: "CHASE PAVES",
+      artist_alias: "EBE Kastro",
     },
     {
       title: "Coming Soon",
       description: "Coming Soon",
       date: "TBD",
-      artist_alias: "EBE Kastro",
+      artist_alias: "CHASE PAVES",
     },
   ];
   return (
