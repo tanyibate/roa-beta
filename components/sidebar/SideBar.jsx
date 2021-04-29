@@ -79,6 +79,13 @@ export default function SideBar() {
             url={"/login"}
           />
         )}
+        {session && (
+          <MenuItem
+            name={"Settings"}
+            image={"/assets/icons/settings.png"}
+            url={"/settings"}
+          />
+        )}
       </div>
       <div className={styles.bottom_navigation}>
         <img src="/assets/Logo/ROA_FULLlogowhite.png" alt="" />
@@ -171,6 +178,14 @@ export default function SideBar() {
               name={"Register"}
               image={"/assets/icons/logout.png"}
               url={"/register"}
+              close={closeHamburger}
+            />
+          )}
+          {session && (
+            <LargeMenuItem
+              name={"Settings"}
+              image={"/assets/icons/settings.png"}
+              url={"/settings"}
               close={closeHamburger}
             />
           )}

@@ -25,7 +25,7 @@ export default function Login() {
     const res = await signIn("credentials", {
       email,
       password,
-      callbackUrl: `${window.location.origin}/artists`,
+      callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/portal`,
       redirect: false,
     });
     if (res?.error) setIncorrectDetails(true);
