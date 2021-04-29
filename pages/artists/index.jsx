@@ -125,6 +125,7 @@ export default function index() {
               </div>
             </div>
           </div>
+          <div className={styles.copied}>Copied to clipboard</div>
         </div>
       )}
       {readMoreActive && (
