@@ -133,7 +133,6 @@ export default function index() {
     </div>
   );
 }
-
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
   if (!session) {
