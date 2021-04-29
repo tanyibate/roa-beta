@@ -1,6 +1,8 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import Cookies from "js-cookie";
 import Router, { useRouter } from "next/router";
+import HttpsRedirect from 'react-https-redirect';
+
 
 //api here is an axios instance which has the baseURL set according to the env.
 import api from "../services/Api";
