@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { getSession, useSession } from "next-auth/client";
 
 import styles from "./settings.module.scss";
 
@@ -387,4 +388,19 @@ export default function index() {
       </Tabs>
     </div>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+  if (!session) {
+    ctx.res.writeHead(302, { Location: "/login" });
+    ctx.res.end();
+    return {};
+  }
+
+  return {
+    props: {
+      user: session.user.email,
+    },
+  };
 }
