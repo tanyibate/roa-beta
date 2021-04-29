@@ -104,7 +104,7 @@ export default function index() {
               ROA is an invite only platform for artists. We want to keep the
               roster exclusive, ensure talent, and artists who are hungry to
               engage with their fans and grow together. We will only be
-              releasing 1-3 artbaists every/every other month. If you are an
+              releasing 1-3 artists every/every other month. If you are an
               artist and think this is the platform for you, email us!
             </p>
           </div>
