@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "../styles/interactions.module.scss";
 import Interaction from "../components/interaction/Interaction.jsx";
+import InteractionPaves from "../components/interactionpaves/InteractionPaves";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 import { getSession, useSession } from "next-auth/client";
@@ -8,6 +10,20 @@ import { getSession, useSession } from "next-auth/client";
 SwiperCore.use([Navigation, Pagination]);
 
 export default function interactions({ user }) {
+  const arrivals = [
+    {
+      title: "Coming Soon",
+      description: "Coming Soon",
+      date: "TBD",
+      artist_alias: "CHASE PAVES",
+    },
+    {
+      title: "Coming Soon",
+      description: "Coming Soon",
+      date: "TBD",
+      artist_alias: "EBE Kastro",
+    },
+  ];
   return (
     <div className={styles.interactions_container}>
       <h1>Arrivals</h1>
@@ -33,20 +49,16 @@ export default function interactions({ user }) {
           }}
         >
           <SwiperSlide>
-            <Interaction />
+            <Interaction arrival={arrivals[1]} />
           </SwiperSlide>
           <SwiperSlide>
-            <Interaction />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Interaction />
+            <InteractionPaves arrival={arrivals[0]} />
           </SwiperSlide>
         </Swiper>
       </div>
       <div className={styles.swiper_container_large}>
-        <Interaction />
-        <Interaction />
-        <Interaction />
+        <Interaction arrival={arrivals[1]} />
+        <InteractionPaves arrival={arrivals[0]} />
       </div>
     </div>
   );

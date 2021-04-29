@@ -4,7 +4,7 @@
   border-radius: 50px;
   background-color: #000000;
   border: 1px solid #1cc558;
-  background-image: url("https://i1.sndcdn.com/avatars-UySlb5YVi55v2XSz-LzWRxA-t500x500.jpg");
+  background-image: url("https://yt3.ggpht.com/ytc/AAUvwniFM4h3iOlRCk5VDjbKkWjNRuDntpo3pNm8-TpLXg=s900-c-k-c0x00ffffff-no-rj");
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -31,6 +31,8 @@
 }
 
 .interaction_details {
+  min-width: 250px;
+
   p {
     font-size: 10px;
     margin: 0;
@@ -44,7 +46,6 @@
     font-size: 22px;
     margin: 4px 0;
   }
-  min-width: 250px;
 }
 
 .date {

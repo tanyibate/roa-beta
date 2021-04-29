@@ -30,6 +30,20 @@
   justify-content: center;
 }
 
+.update_success {
+  color: #1dd760;
+  text-align: center;
+}
+
+.update_error {
+  color: red;
+  text-align: center;
+}
+
+.error {
+  color: red;
+}
+
 .field {
   font-size: 1.5em;
 
@@ -138,6 +152,7 @@
 }
 
 .form_group_wrapper {
+  width: 100%;
   p {
     font-size: 10px;
     margin: 3px 0;
@@ -145,9 +160,15 @@
   }
 }
 
+.form_element {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
 .form_input {
   height: 50px;
-  width: 200px;
+  min-width: 100%;
+
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.3);
   border: none;
@@ -156,7 +177,6 @@
   padding-left: 10px;
   padding-right: 30px;
   display: flex;
-  margin-bottom: 10px;
   align-items: center;
 
   input {
