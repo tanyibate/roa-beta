@@ -5,7 +5,7 @@ import Stripe from "stripe";
 import pool from "../../../postgres.config";
 import axios from "axios";
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY_2);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 export const config = {

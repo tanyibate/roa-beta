@@ -32,9 +32,7 @@ export default function ArtistCard(props) {
   const [currentPlayingMusic, setCurrentPlayingMusic] = useState(false);
 
   const buySlice = async () => {
-    const stripe = await loadStripe(
-      process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_2
-    );
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
     axios
       .post("/api/charge", {

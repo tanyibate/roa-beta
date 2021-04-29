@@ -1,6 +1,6 @@
 import { getSession, session } from "next-auth/client";
 import pool from "../../postgres.config";
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY_2);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export default async (req, res) => {
   const authSession = await getSession({ req });
