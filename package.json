@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "start": "set HTTPS=true&&react-scripts start"
+
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^1.4.0",
