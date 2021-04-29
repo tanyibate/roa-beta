@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSession } from "next-auth/client";
 import axios from "axios";
+import Countdown from "react-countdown";
 
 export default function ArtistCard(props) {
   const [session] = useSession();
@@ -212,9 +213,14 @@ export default function ArtistCard(props) {
           </div>
         </div>
         <div className="artist_card_bottom">
-          <p>{`${props.artist.total_slices - props.artist.purchased_slices}/${
-            props.artist.total_slices
-          }`}</p>
+          {false && (
+            <p>{`${props.artist.total_slices - props.artist.purchased_slices}/${
+              props.artist.total_slices
+            }`}</p>
+          )}
+          <div>
+            <Countdown date={"2021-05-06T16:15:00"} />
+          </div>
           <button onClick={buySlice}>Slice $5.00</button>
         </div>
       </div>

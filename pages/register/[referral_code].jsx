@@ -321,7 +321,7 @@ export default function Register() {
       <p>What do we call you?</p>
       <div className={styles.form_group_wrapper}>
         <div className={styles.form_element}>
-          <label htmlFor="confirmpassword" className="form-label">
+          <label htmlFor="firstname" className="form-label">
             First Name
           </label>
           <input
@@ -371,7 +371,7 @@ export default function Register() {
             id="phonenumber"
             onChange={keyUpHandler}
             value={phone_number}
-            placeholder="+1-1223-232324"
+            placeholder="+1-541-754-3010"
           />
           {!phone_numberEntered && <p>Please enter an phone number!</p>}
           {!phone_numberValid && <p>Phone number is already in use</p>}
