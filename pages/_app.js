@@ -1,5 +1,6 @@
 import "../styles/globals.scss";
 import "react-tabs/style/react-tabs.css";
+import HttpsRedirect from "react-https-redirect";
 
 import Sidebar from "../components/sidebar/SideBar.jsx";
 import { useState, useEffect } from "react";
@@ -36,16 +37,18 @@ function MyApp({ Component, pageProps }) {
   }*/
 
   return (
-    <Provider session={pageProps.session}>
-      <ReduxProvider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <>
-            <Sidebar />
-            <Component {...pageProps} />
-          </>
-        </PersistGate>
-      </ReduxProvider>
-    </Provider>
+    <HttpsRedirect>
+      <Provider session={pageProps.session}>
+        <ReduxProvider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <>
+              <Sidebar />
+              <Component {...pageProps} />
+            </>
+          </PersistGate>
+        </ReduxProvider>
+      </Provider>
+    </HttpsRedirect>
   );
 }
 

@@ -63,13 +63,13 @@ export default function Login() {
           Email
         </label>
         <input
-          type="text"
+          type="email"
           className="form-input"
           id="email"
           onKeyUp={keyUpHandler}
         />
         <br />
-        <label htmlFor="email" className="form-label">
+        <label htmlFor="password" className="form-label">
           Password
         </label>
         <input
