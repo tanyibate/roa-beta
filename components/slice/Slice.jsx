@@ -7,7 +7,7 @@ function slice(props) {
       <div className={styles.slice_container}>
         <div className={styles.artist_image_container}>
           <img
-            src={props.artist.artist_image_url}
+            src={props.artist.artist_slice_image_url}
             alt=""
             className={styles.artist_image}
           />

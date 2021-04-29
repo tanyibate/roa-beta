@@ -32,7 +32,7 @@ export default function artist_alias() {
       <h1>Thank you for your purchase.</h1>
       <div className={styles.text_container}>
         {artist.artist_image_url && (
-          <img src={artist.artist_image_url} alt="" />
+          <img src={artist.artist_slice_image_url} alt="" />
         )}
         Watch out for upcoming arrivals with {artist.artist_alias} on the
         arrivals page!!!

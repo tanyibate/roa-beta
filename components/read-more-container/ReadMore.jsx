@@ -31,7 +31,7 @@ export default function ReadMore(props) {
         </p>
         <h1>{props.artist.artist_alias}</h1>
         <img
-          src={`${props.artist.artist_image_url}`}
+          src={`${props.artist.artist_slice_image_url}`}
           alt=""
           className={styles.artist_image}
         />

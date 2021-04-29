@@ -144,7 +144,7 @@ export default function ArtistCard(props) {
             </audio>
             <div className="artist-image-container" onClick={musicController}>
               <img
-                src={`${props.artist.artist_image_url}`}
+                src={`${props.artist.artist_slice_image_url}`}
                 alt=""
                 className={classNames({
                   artist_image: true,
