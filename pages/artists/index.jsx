@@ -133,15 +133,6 @@ export default function index() {
     </div>
   );
 }
-<script src="https://cdn.logwork.com/widget/countdown.js"></script>
-<a href="https://logwork.com/countdown-pp3o" class="countdown-timer" data-timezone="America/New_York" data-textcolor="#000000" data-date="2021-05-06 12:15" data-background="#000000" data-digitscolor="#048c3d" data-unitscolor="#ffffff"></a>
-export async function getServerSideProps(ctx) {
-  const session = await getSession(ctx);
-  if (!session) {
-    ctx.res.writeHead(302, { Location: "/login" });
-    ctx.res.end();
-    return {};
-  }
 
   return {
     props: {
