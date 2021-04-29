@@ -26,6 +26,8 @@ export default function index() {
   const [last_nameValid, setLastNameValid] = useState(true);
   const [phone_numberValid, setPhoneNumberValid] = useState(true);
   const [phone_numberEntered, setPhoneNumberEntered] = useState(true);
+  const [submitDetailSuccess, setSubmitDetailSuccess] = useState(false);
+  const [submitDetailFailure, setSubmitDetailFailure] = useState(false);
 
   useEffect(() => {
     axios.get("/api/user").then((res) => {
@@ -75,6 +77,8 @@ export default function index() {
   }
 
   async function validateDetails() {
+    setSubmitDetailFailure(false);
+    setSubmitDetailSuccess(false);
     let valid = true;
     if (email) {
       setEmailEntered(true);
@@ -152,7 +156,7 @@ export default function index() {
       valid = false;
     }
 
-    if (last_name) setLastNameValid(valid);
+    if (last_name) setLastNameValid(true);
     else {
       setLastNameValid(false);
       valid = false;
@@ -162,24 +166,40 @@ export default function index() {
   }
 
   function submitDetails() {
-    if (validateDetails()) {
-      axios.put("/api/updatedetails", {
-        email: email,
-        username: username,
-        first_name: first_name,
-        last_name: last_name,
-        phone_number: phone_number,
-        city: city,
-        country: country,
-      });
-    }
+    validateDetails().then((res) => {
+      if (res) {
+        axios
+          .put("/api/updatedetails", {
+            email: email,
+            username: username,
+            first_name: first_name,
+            last_name: last_name,
+            phone_number: phone_number,
+            city: city,
+            country: country,
+          })
+          .then((res) => {
+            if (res.data.updated) {
+              setSubmitDetailSuccess(true);
+              setSubmitDetailFailure(false);
+            } else {
+              setSubmitDetailSuccess(false);
+              setSubmitDetailFailure(true);
+            }
+          })
+          .catch(() => {
+            setSubmitDetailSuccess(false);
+            setSubmitDetailFailure(true);
+          });
+      }
+    });
   }
 
   return (
     <div className={styles.settingsContainer}>
       <h1 className={styles.title}>Settings</h1>
 
-      <Tabs style={{ maxWidth: "522px", padding: "0 2px" }}>
+      <Tabs style={{ maxWidth: "522px", width: "100%", padding: "0 2px" }}>
         <TabList>
           <Tab>Personal Details</Tab>
           <Tab>Password</Tab>
@@ -309,10 +329,12 @@ export default function index() {
               </div>
             </div>
           </div>
-          <p className={styles.update_success}>
-            Your details have been sucessfully updated.
-          </p>
-          {true && (
+          {submitDetailSuccess && (
+            <p className={styles.update_success}>
+              Your details have been sucessfully updated.
+            </p>
+          )}
+          {submitDetailFailure && (
             <p className={styles.update_error}>
               There was an error with updating your details, try again later or
               get in contact with us through our contact page to get your
