@@ -124,6 +124,9 @@
 
 .copy_button {
   position: relative;
+  &:hover {
+    filter: brightness(0.6);
+  }
   width: 55px;
   height: 30px;
   overflow: hidden;
@@ -157,8 +160,8 @@
   background: gray;
   border-radius: 15px;
   color: white;
-  animation: fade 2s linear;
-  display: flex;
+  animation: fade 2s linear forwards;
+  display: none;
   align-items: center;
 }
 

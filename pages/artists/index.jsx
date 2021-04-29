@@ -20,11 +20,20 @@ export default function index() {
   const [errorMessage, setErrorMessage] = useState("");
   const [level, setLevel] = useState(1);
   const [referralCode, setReferralCode] = useState("");
+  const [clipBoard, setClipBoard] = useState(false);
 
-  function copyCode() {
+  async function copyCode() {
     navigator.clipboard.writeText(
       `${process.env.NEXT_PUBLIC_APP_URL}/register/${referralCode}`
     );
+
+    let clipboard = document.querySelector("#clipboard");
+    if (clipboard.style.display === "none") clipboard.style.display = "flex";
+    else {
+      clipboard.style.display === "none";
+      clipboard.style.opacity = 1;
+      clipboard.style.display = "flex";
+    }
   }
 
   const router = useRouter();
@@ -125,7 +134,9 @@ export default function index() {
               </div>
             </div>
           </div>
-          <div className={styles.copied}>Copied to clipboard</div>
+          <div className={styles.copied} id="clipboard">
+            Copied to clipboard
+          </div>
         </div>
       )}
       {readMoreActive && (

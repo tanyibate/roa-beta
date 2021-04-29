@@ -91,7 +91,7 @@ export default function portfolio({ user }) {
                   value={`${process.env.NEXT_PUBLIC_APP_URL}/register/${referralCode}`}
                   readOnly
                 />
-                <div className={styles.copy_button} <button onClick={copyCode}>>
+                <div className={styles.copy_button} onClick={copyCode}>
                   <img src="/assets/icons/copy.svg" alt="" />
                 </div>
               </div>
