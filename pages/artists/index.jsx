@@ -19,7 +19,7 @@ export default function index() {
   const [readMoreActive, setReadMoreActive] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [level, setLevel] = useState(1);
-  const [referralCode, setReferralCode] = useState(0);
+  const [referralCode, setReferralCode] = useState("");
 
   function copyCode() {
     navigator.clipboard.writeText(

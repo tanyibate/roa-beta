@@ -58,13 +58,7 @@ export default function SideBar() {
             url={"/login"}
           />
         )}
-        {
-          <MenuItem
-            name={"Contact"}
-            image={"/assets/icons/contact.png"}
-            url={"/contact"}
-          />
-        }
+
         {!session && (
           <MenuItem
             name={"Register"}
@@ -74,16 +68,23 @@ export default function SideBar() {
         )}
         {session && (
           <MenuItem
-            name={"Log Out"}
-            image={"/assets/icons/logout.png"}
-            url={"/login"}
-          />
-        )}
-        {session && (
-          <MenuItem
             name={"Settings"}
             image={"/assets/icons/settings.png"}
             url={"/settings"}
+          />
+        )}
+        {
+          <MenuItem
+            name={"Contact"}
+            image={"/assets/icons/contact.png"}
+            url={"/contact"}
+          />
+        }
+        {session && (
+          <MenuItem
+            name={"Log Out"}
+            image={"/assets/icons/logout.png"}
+            url={"/login"}
           />
         )}
       </div>
@@ -150,7 +151,20 @@ export default function SideBar() {
               close={closeHamburger}
             />
           }
-
+          {session && (
+            <LargeMenuItem
+              name={"Settings"}
+              image={"/assets/icons/settings.png"}
+              url={"/settings"}
+              close={closeHamburger}
+            />
+          )}
+          <LargeMenuItem
+            name={"Contact"}
+            image={"/assets/icons/contact.png"}
+            url={"/contact"}
+            close={closeHamburger}
+          />
           {session && (
             <LargeMenuItem
               name={"Log Out"}
@@ -167,25 +181,12 @@ export default function SideBar() {
               close={closeHamburger}
             />
           )}
-          <LargeMenuItem
-            name={"Contact"}
-            image={"/assets/icons/contact.png"}
-            url={"/contact"}
-            close={closeHamburger}
-          />
+
           {!session && (
             <LargeMenuItem
               name={"Register"}
               image={"/assets/icons/logout.png"}
               url={"/register"}
-              close={closeHamburger}
-            />
-          )}
-          {session && (
-            <LargeMenuItem
-              name={"Settings"}
-              image={"/assets/icons/settings.png"}
-              url={"/settings"}
               close={closeHamburger}
             />
           )}
