@@ -232,7 +232,7 @@ export default function Register() {
               setRegistrationError(false);
               setTimeout(() => {
                 router.push("/login");
-              }, 2000);
+              }, 4000);
             })
             .catch((response) => {
               console.log(response.response);
