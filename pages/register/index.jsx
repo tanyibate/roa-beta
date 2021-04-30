@@ -29,8 +29,11 @@ export default function Register() {
   const [phone_numberValid, setPhoneNumberValid] = useState(true);
   const [phone_numberEntered, setPhoneNumberEntered] = useState(true);
   const [registrationError, setRegistrationError] = useState(false);
+  const [registrationSuccesful, setRegistrationSuccesful] = useState(false);
+
   const [recaptchaResponse, setRecaptchaResponse] = useState("");
   const [recaptchaValid, setRecaptchaValid] = useState(true);
+
   const { referral_code } = router.query;
   const [page, setPage] = useState(1);
   function keyUpHandler(event) {
@@ -225,7 +228,11 @@ export default function Register() {
               setPhoneNumber("");
               setFirstName("");
               setLastName("");
-              router.push("/login");
+              setRegistrationSuccesful(true);
+              setRegistrationError(false);
+              setTimeout(() => {
+                router.push("/login");
+              }, 2000);
             })
             .catch((response) => {
               console.log(response.response);
@@ -409,6 +416,7 @@ export default function Register() {
         style={{
           padding: "60px 0",
           height: "100%",
+          maxWidth: "300px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -444,6 +452,18 @@ export default function Register() {
 
         {registrationError && (
           <p>Registration error, refresh your page and try again</p>
+        )}
+        {registrationSuccesful && (
+          <div>
+            <p style={{ marginBottom: "10px" }}>
+              Redirecting to login ... You should receive a welcome email, if
+              not please try registering again or visit the{" "}
+              <a href="/contact" style={{ color: "#1dd760" }}>
+                contact
+              </a>{" "}
+              page.
+            </p>
+          </div>
         )}
       </div>
     </div>

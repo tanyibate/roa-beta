@@ -22,6 +22,7 @@ export default function Login() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
   const [passwordResetSuccess, setPasswordResetSuccess] = useState(false);
   const [passwordResetFailure, setPasswordResetFailure] = useState(false);
@@ -45,6 +46,16 @@ export default function Login() {
       });
     }
   }, [query]);
+  function submit() {
+    if (password != confirmPassword) {
+      setPasswordMatch(false);
+      setPasswordResetFailure(false);
+      setPasswordResetSuccess(false);
+    } else {
+      setPasswordMatch(true);
+      resetPassword();
+    }
+  }
 
   function resetPassword() {
     if (!passwordResetFailure) {
@@ -160,7 +171,9 @@ export default function Login() {
             />
           </div>
         )}
-
+        {!passwordMatch && !(emailSent || emailError) && (
+          <p className={styles.email_sent_error}>The passwords need to match</p>
+        )}
         {passwordResetSuccess && !(emailSent || emailError) && (
           <p className={styles.email_sent}>{message}</p>
         )}
@@ -178,7 +191,7 @@ export default function Login() {
             There was an error with sending the email please try again
           </p>
         )}
-        <button className="form-button" onClick={resetPassword}>
+        <button className="form-button" onClick={submit}>
           {buttonText}
         </button>
       </div>
