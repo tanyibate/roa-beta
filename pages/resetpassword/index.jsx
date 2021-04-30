@@ -9,17 +9,27 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [notInDB, setnotInDB] = useState(false);
 
   function resetPassword() {
     axios
       .post("/api/forgotpassword", { email: email })
-      .then(() => {
-        setEmailSent(true);
-        setEmailError(false);
+      .then((res) => {
+        if (res.data.notInDB) {
+          setnotInDB(true);
+          setEmailSent(false);
+          setEmailError(false);
+        } else {
+          setEmailSent(true);
+          setEmailError(false);
+          setnotInDB(false);
+        }
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         setEmailSent(false);
         setEmailError(true);
+        setnotInDB(false);
       });
   }
 
@@ -70,6 +80,12 @@ export default function Login() {
         {emailError && (
           <p className={styles.email_sent_error}>
             There was an error with sending the email please try again
+          </p>
+        )}
+        {notInDB && (
+          <p className={styles.email_sent_error}>
+            You are not a part of the ROA Neighborhood, register to join or
+            you'll miss out!
           </p>
         )}
         <button className="form-button" onClick={resetPassword}>
