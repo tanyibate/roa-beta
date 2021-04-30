@@ -5,6 +5,7 @@ import styles from "../../styles/register.module.scss";
 import { useSelector } from "react-redux";
 import { getSession, useSession } from "next-auth/client";
 import ReCAPTCHA from "react-google-recaptcha";
+import HomeIcon from "../../components/home-icon/HomeIcon";
 
 export default function Register() {
   var classNames = require("classnames");
@@ -402,6 +403,7 @@ export default function Register() {
         overflow: "scroll",
       }}
     >
+      <HomeIcon />
       <div className={styles.login_button_container}>
         <p>Already have an account? </p>
         <button

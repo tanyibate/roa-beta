@@ -1,16 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "next-auth/client";
 import styles from "../../styles/Login.module.scss";
-import { getSession, useSession } from "next-auth/client";
-
-import {
-  logIn,
-  setAccessToken,
-  setRefreshToken,
-} from "../../store/actions/index";
+import HomeIcon from "../../components/home-icon/HomeIcon";
 
 export default function Login() {
   const router = useRouter();
@@ -43,6 +36,7 @@ export default function Login() {
 
   return (
     <div className="login-container">
+      <HomeIcon />
       <div className={styles.register_button_container}>
         <p>Dont't have an account? </p>
         <button

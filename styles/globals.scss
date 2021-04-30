@@ -98,6 +98,19 @@ a {
   top: 0;
   background-color: black;
 }
+
+.home-icon {
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  left: 10px;
+  height: 50px;
+  width: 50px;
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
 .login-button {
   margin: 10px 0;
   color: rgba(29, 215, 96, 1);

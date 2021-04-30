@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import styles from "../../styles/Login.module.scss";
+import HomeIcon from "../../components/home-icon/HomeIcon";
 
 export default function Login() {
   const router = useRouter();
@@ -44,6 +45,7 @@ export default function Login() {
 
   return (
     <div className="login-container">
+      <HomeIcon />
       <div className={styles.register_button_container}>
         <p>Dont't have an account? </p>
         <button
