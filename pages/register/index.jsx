@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { getSession, useSession } from "next-auth/client";
 import ReCAPTCHA from "react-google-recaptcha";
 import HomeIcon from "../../components/home-icon/HomeIcon";
+import ReactLoading from "react-loading";
 
 export default function Register() {
   var classNames = require("classnames");
@@ -31,9 +32,16 @@ export default function Register() {
   const [phone_numberEntered, setPhoneNumberEntered] = useState(true);
   const [registrationError, setRegistrationError] = useState(false);
   const [registrationSuccesful, setRegistrationSuccesful] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [recaptchaResponse, setRecaptchaResponse] = useState("");
   const [recaptchaValid, setRecaptchaValid] = useState(true);
+
+  const override = `
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
 
   const { referral_code } = router.query;
   const [page, setPage] = useState(1);
@@ -218,9 +226,11 @@ export default function Register() {
             username,
             recaptchaResponse,
           };
+          setLoading(true);
           axios
             .post("/api/register", user)
             .then((response) => {
+              setLoading(false);
               console.log(response);
               setConfirmPassword("");
               setPassword("");
@@ -236,6 +246,7 @@ export default function Register() {
               }, 4000);
             })
             .catch((response) => {
+              setLoading(false);
               console.log(response.response);
               setRegistrationError(true);
             });
@@ -451,6 +462,19 @@ export default function Register() {
             {submitButton}
           </button>
         </div>
+        {loading && (
+          <div
+            style={{
+              padding: "5px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <ReactLoading type="spin" color="#1dd760" height={50} width={50} />
+          </div>
+        )}
 
         {registrationError && (
           <p>Registration error, refresh your page and try again</p>

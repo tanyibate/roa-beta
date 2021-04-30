@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "next-auth/client";
 import styles from "../../styles/Login.module.scss";
 import HomeIcon from "../../components/home-icon/HomeIcon";
+import ReactLoading from "react-loading";
 
 export default function Login() {
   const router = useRouter();
@@ -13,14 +14,17 @@ export default function Login() {
   const [incorrectDetails, setIncorrectDetails] = useState(false);
   const [password, setPassword] = useState("");
   const [loadApp, setLoadApp] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    setLoading(true);
     const res = await signIn("credentials", {
       email,
       password,
       callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/portal`,
       redirect: false,
     });
+    setLoading(false);
     if (res?.error) setIncorrectDetails(true);
     if (res.url) router.push(res.url);
   };
@@ -72,11 +76,26 @@ export default function Login() {
           id="password"
           onKeyUp={keyUpHandler}
         />
-        {incorrectDetails && <p>Incorrect Login Details</p>}
+        {incorrectDetails && (
+          <p style={{ color: "red" }}>Incorrect Login Details</p>
+        )}
         <button className="form-button" onClick={handleLogin}>
           Log In
         </button>
       </div>
+      {loading && (
+        <div
+          style={{
+            padding: "5px",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ReactLoading type="spin" color="#1dd760" height={50} width={50} />
+        </div>
+      )}
       <p>
         Did you forget your password?{" "}
         <a style={{ color: "#1dd760" }} href="/resetpassword">

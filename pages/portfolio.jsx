@@ -4,6 +4,7 @@ import styles from "../styles/portfolio.module.scss";
 import { getSession, useSession } from "next-auth/client";
 import axios from "axios";
 import { useRouter } from "next/router";
+import ReactLoading from "react-loading";
 
 export default function portfolio({ user }) {
   const [modalActive, setModalActive] = useState(false);
@@ -11,6 +12,7 @@ export default function portfolio({ user }) {
   const [referralCode, setReferralCode] = useState("");
   const [modalText, setModalText] = useState("");
   const [level, setLevel] = useState(1);
+  const [loading, SetLoading] = useState(false);
 
   function copyCode() {
     navigator.clipboard.writeText(
@@ -21,7 +23,9 @@ export default function portfolio({ user }) {
   }
 
   useEffect(() => {
+    SetLoading(true);
     axios.get(`/api/users/slices`).then((result) => {
+      SetLoading(false);
       console.log(result.data);
       setSlices(result.data);
     });
@@ -66,7 +70,20 @@ export default function portfolio({ user }) {
     <div className={styles.portfolio_container}>
       <div className={styles.slices_container}>
         <h1>My Slices</h1>
-        {slices.length === 0 && (
+        {loading && (
+          <div
+            style={{
+              padding: "5px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <ReactLoading type="spin" color="#1dd760" height={50} width={50} />
+          </div>
+        )}
+        {slices.length === 0 && !loading && (
           <p>Head to the artists page to buy some slices!</p>
         )}
         {slices.map((el, index) => {

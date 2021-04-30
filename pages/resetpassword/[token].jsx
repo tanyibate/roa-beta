@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import styles from "../../styles/Login.module.scss";
 import HomeIcon from "../../components/home-icon/HomeIcon";
+import ReactLoading from "react-loading";
 
 export default function Login() {
   const router = useRouter();
@@ -30,6 +31,7 @@ export default function Login() {
   const [token, setToken] = useState("");
   const [message, setMessage] = useState("");
   const [buttonText, setButtonText] = useState("Reset Password");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!query) {
@@ -60,6 +62,7 @@ export default function Login() {
 
   function resetPassword() {
     if (!passwordResetFailure) {
+      setLoading(true);
       axios
         .post("/api/resetpassword", {
           email: email,
@@ -68,6 +71,8 @@ export default function Login() {
         })
         .then((response) => {
           console.log(response);
+          setLoading(false);
+
           if (!response.data.error) {
             setPasswordResetSuccess(true);
             setPasswordResetFailure(false);
@@ -83,6 +88,7 @@ export default function Login() {
           }
         })
         .catch((err) => {
+          setLoading(false);
           console.log(err);
           setPasswordResetSuccess(false);
           setPasswordResetFailure(true);
@@ -192,6 +198,19 @@ export default function Login() {
           <p className={styles.email_sent_error}>
             There was an error with sending the email please try again
           </p>
+        )}
+        {loading && (
+          <div
+            style={{
+              padding: "5px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <ReactLoading type="spin" color="#1dd760" height={50} width={50} />
+          </div>
         )}
         <button className="form-button" onClick={submit}>
           {buttonText}

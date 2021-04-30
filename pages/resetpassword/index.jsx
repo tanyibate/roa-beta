@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import styles from "../../styles/Login.module.scss";
 import HomeIcon from "../../components/home-icon/HomeIcon";
+import ReactLoading from "react-loading";
 
 export default function Login() {
   const router = useRouter();
@@ -11,11 +12,15 @@ export default function Login() {
   const [emailSent, setEmailSent] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [notInDB, setnotInDB] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function resetPassword() {
+    setLoading(true);
     axios
       .post("/api/forgotpassword", { email: email })
       .then((res) => {
+        setLoading(false);
+
         if (res.data.notInDB) {
           setnotInDB(true);
           setEmailSent(false);
@@ -27,6 +32,7 @@ export default function Login() {
         }
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
         setEmailSent(false);
         setEmailError(true);
@@ -89,6 +95,19 @@ export default function Login() {
             You are not a part of the ROA Neighborhood, register to join or
             you'll miss out!
           </p>
+        )}
+        {loading && (
+          <div
+            style={{
+              padding: "5px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <ReactLoading type="spin" color="#1dd760" height={50} width={50} />
+          </div>
         )}
         <button className="form-button" onClick={resetPassword}>
           Reset Password
