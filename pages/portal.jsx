@@ -5,12 +5,24 @@ import { getSession, useSession } from "next-auth/client";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Portal({ accessToken }) {
+export default function Portal() {
   const router = useRouter();
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-E6QZZMLE6Z";
+    script.async = true;
+
+    document.body.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-E6QZZMLE6Z");
     axios
       .get("/api/tribetoken")
       .then((res) => {
@@ -54,7 +66,7 @@ export async function getServerSideProps(ctx) {
 
   return {
     props: {
-      accessToken: session.accessToken,
+      user: session.user,
     },
   };
 }

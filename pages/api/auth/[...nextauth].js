@@ -33,6 +33,21 @@ const providers = [
       }
     },
   }),
+  Providers.Google({
+    clientId: process.env.GOOGLE_ID,
+    clientSecret: process.env.GOOGLE_SECRET,
+  }),
+  Providers.Email({
+    server: {
+      host: "email-smtp.us-east-2.amazonaws.com",
+      port: 465,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    },
+    from: "noreply@rogueonarrival.com",
+  }),
 ];
 
 const options = {
@@ -55,7 +70,19 @@ const options = {
     jwt: true,
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  database: process.env.DATABASE_URL,
+  database: {
+    name: "default",
+    type: "postgres",
+    url:
+      "postgres://rswhaddtauirhr:731aa3056571735c91969a186d53aaa8dae106059f806a08e8676ccee30911dc@ec2-54-74-77-126.eu-west-1.compute.amazonaws.com:5432/d1a1kten5cckoa",
+    ssl: true,
+    synchronize: false,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
+  },
 };
 
 export default (req, res) => NextAuth(req, res, options);

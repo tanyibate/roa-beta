@@ -9,6 +9,9 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.1",
     "axios": "^0.21.1",
@@ -26,7 +29,7 @@
     "node-sass": "^5.0.0",
     "nodemailer": "^6.5.0",
     "password-validator": "^5.1.1",
-    "pg": "^8.5.1",
+    "pg": "^8.6.0",
     "react": "17.0.1",
     "react-collapsible": "^2.8.3",
     "react-confetti": "^6.0.1",

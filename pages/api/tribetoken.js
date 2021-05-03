@@ -22,6 +22,7 @@ export default async (req, res) => {
           exp: Math.round(new Date().getTime() / 1000) + 60, // token expiration time
           username: user.username,
         };
+        console.log(tokenContent);
         const accessToken = jwt.sign(tokenContent, process.env.TRIBE_SSO_KEY, {
           algorithm: "HS256",
         });

@@ -11,22 +11,42 @@ export default function Login() {
   const dispatch = useDispatch();
   //state
   const [email, setEmail] = useState("");
+  const [emailSignIn, setEmailSignIn] = useState(false);
+
   const [incorrectDetails, setIncorrectDetails] = useState(false);
   const [password, setPassword] = useState("");
   const [loadApp, setLoadApp] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
-    setLoading(true);
-    const res = await signIn("credentials", {
-      email,
-      password,
-      callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/portal`,
+    if (!emailSignIn) {
+      setLoading(true);
+      const res = await signIn("credentials", {
+        email,
+        password,
+        callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/portal`,
+        redirect: false,
+      });
+      setLoading(false);
+      if (res?.error) setIncorrectDetails(true);
+      if (res.url) router.push(res.url);
+    } else emailLogin();
+  };
+  const googleLogin = async () => {
+    signIn("google", {
+      callbackUrl: process.env.NEXT_PUBLIC_APP_URL,
       redirect: false,
     });
-    setLoading(false);
-    if (res?.error) setIncorrectDetails(true);
-    if (res.url) router.push(res.url);
+  };
+
+  const emailLogin = async () => {
+    signIn("email", {
+      email: email,
+      callbackUrl: process.env.NEXT_PUBLIC_APP_URL,
+      redirect: false,
+    }).then((res) => {
+      console.log(res);
+    });
   };
 
   function keyUpHandler(event) {
@@ -67,15 +87,40 @@ export default function Login() {
           onKeyUp={keyUpHandler}
         />
         <br />
-        <label htmlFor="password" className="form-label">
-          Password
-        </label>
-        <input
-          type="password"
-          className="form-input"
-          id="password"
-          onKeyUp={keyUpHandler}
-        />
+        {!emailSignIn && (
+          <div>
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-input"
+              id="password"
+              onKeyUp={keyUpHandler}
+            />
+          </div>
+        )}
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            padding: "10px",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          Passwordless Signin
+          <label class="switch">
+            <input
+              type="checkbox"
+              onChange={(e) => {
+                setEmailSignIn(e.target.checked);
+              }}
+            />
+            <span class="slider round"></span>
+          </label>
+        </div>
         {incorrectDetails && (
           <p style={{ color: "red" }}>Incorrect Login Details</p>
         )}
@@ -102,12 +147,19 @@ export default function Login() {
           Click here
         </a>
       </p>
-
-      {/*<p>Or Sign in With</p>
-      <div className="signin-with-images-container">
-        <img src="/assets/login-page/google-icon.svg" alt="" />
-        <img src="/assets/login-page/facebook-icon.svg" alt="" />
-      </div>*/}
+      {false && (
+        <div>
+          <p>Or Sign in With</p>
+          <div className="signin-with-images-container">
+            <img
+              src="/assets/login-page/google-icon.svg"
+              alt=""
+              onClick={googleLogin}
+            />
+            <img src="/assets/login-page/facebook-icon.svg" alt="" />
+          </div>
+        </div>
+      )}
 
       {loadApp && (
         <div className={styles.app_transition}>
