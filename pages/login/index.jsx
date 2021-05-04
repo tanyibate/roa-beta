@@ -33,18 +33,19 @@ export default function Login() {
       if (res.url) router.push(res.url);
     } else emailLogin();
   };
+  /*
   const googleLogin = async () => {
     signIn("google", {
       callbackUrl: process.env.NEXT_PUBLIC_APP_URL,
       redirect: false,
     });
-  };
+  };*/
 
   const emailLogin = async () => {
     setLoading(true);
     signIn("email", {
       email: email,
-      callbackUrl: process.env.NEXT_PUBLIC_APP_URL,
+      callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/portal`,
       redirect: false,
     }).then((res) => {
       setLoading(false);
@@ -152,7 +153,7 @@ export default function Login() {
           Click here
         </a>
       </p>
-      {false && (
+      {/*false && (
         <div>
           <p>Or Sign in With</p>
           <div className="signin-with-images-container">
@@ -164,7 +165,7 @@ export default function Login() {
             <img src="/assets/login-page/facebook-icon.svg" alt="" />
           </div>
         </div>
-      )}
+      )*/}
 
       {loadApp && (
         <div className={styles.app_transition}>
