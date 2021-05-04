@@ -20,6 +20,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     if (!emailSignIn) {
+      setIncorrectDetails(false);
       setLoading(true);
       const res = await signIn("credentials", {
         email,
@@ -40,12 +41,14 @@ export default function Login() {
   };
 
   const emailLogin = async () => {
+    setLoading(true);
     signIn("email", {
       email: email,
       callbackUrl: process.env.NEXT_PUBLIC_APP_URL,
       redirect: false,
     }).then((res) => {
-      console.log(res);
+      setLoading(false);
+      router.push("email-link-sent");
     });
   };
 
@@ -111,18 +114,20 @@ export default function Login() {
           }}
         >
           Passwordless Signin
-          <label class="switch">
+          <label className="switch">
             <input
               type="checkbox"
               onChange={(e) => {
                 setEmailSignIn(e.target.checked);
               }}
             />
-            <span class="slider round"></span>
+            <span className="slider round"></span>
           </label>
         </div>
         {incorrectDetails && (
-          <p style={{ color: "red" }}>Incorrect Login Details</p>
+          <p style={{ color: "red" }}>
+            Incorrect Login Details, try again or use passwordless sign in
+          </p>
         )}
         <button className="form-button" onClick={handleLogin}>
           Log In

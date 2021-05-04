@@ -39,7 +39,7 @@ export default function Portal() {
   return (
     <div className={styles.portal_container}>
       {loading && <div className={styles.loader}></div>}
-      {!loading && (
+      {!loading && token && (
         <iframe
           src={`https://community.roabeta.com/auth/sso?ssoToken=${token}`}
           frameBorder="0"
@@ -51,6 +51,18 @@ export default function Portal() {
             padding: "0",
           }}
         ></iframe>
+      )}
+      {!token && !loading && (
+        <div>
+          <h3>Please complete your profile</h3>
+          <p>
+            Please head to the
+            <a href="/settings">
+              <u>Settings</u>
+            </a>{" "}
+            page to fill in your details so that you can join the Neighborhood!
+          </p>
+        </div>
       )}
     </div>
   );

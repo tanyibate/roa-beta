@@ -33,10 +33,10 @@ const providers = [
       }
     },
   }),
-  Providers.Google({
+  /*Providers.Google({
     clientId: process.env.GOOGLE_ID,
     clientSecret: process.env.GOOGLE_SECRET,
-  }),
+  }),*/
   Providers.Email({
     server: {
       host: "email-smtp.us-east-2.amazonaws.com",
@@ -73,8 +73,7 @@ const options = {
   database: {
     name: "default",
     type: "postgres",
-    url:
-      "postgres://rswhaddtauirhr:731aa3056571735c91969a186d53aaa8dae106059f806a08e8676ccee30911dc@ec2-54-74-77-126.eu-west-1.compute.amazonaws.com:5432/d1a1kten5cckoa",
+    url: process.env.DATABASE_URL,
     ssl: true,
     synchronize: false,
     extra: {
