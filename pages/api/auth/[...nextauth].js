@@ -51,7 +51,19 @@ const providers = [
 ];
 
 const options = {
+  pages: {
+    signIn: `${process.env.NEXT_PUBLIC_APP_URL}/login`,
+  },
   providers,
+  theme: "dark",
+  events: {
+    async createUser(message) {
+      /* user created */
+      axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/welcome`, {
+        email: message.email,
+      });
+    },
+  },
   callbacks: {
     async jwt(token, user) {
       // Add access_token to the token right after signin

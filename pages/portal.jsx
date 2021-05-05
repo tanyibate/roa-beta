@@ -56,7 +56,7 @@ export default function Portal() {
         <div>
           <h3>Please complete your profile</h3>
           <p>
-            Please head to the
+            Please head to the{" "}
             <a href="/settings">
               <u>Settings</u>
             </a>{" "}

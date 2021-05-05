@@ -287,3 +287,7 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.error a.button {
+  background-color: #1dd760;
+}

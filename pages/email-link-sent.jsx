@@ -22,7 +22,9 @@ export default function EmailLinkSent() {
       />
 
       <h1>Check your email</h1>
-      <h3>A sign in link has been sent to your email address.</h3>
+      <h3 style={{ maxWidth: "500px" }}>
+        A one-use sign in link has been sent to your email address.
+      </h3>
     </div>
   );
 }
