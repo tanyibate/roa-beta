@@ -17,7 +17,7 @@ export default function Home() {
           content="A first of its kind marketplace for exclusive fan clubs"
         />
         <meta property="og:title" content="Rogue on Arrival" />
-        <meta property="og:image" content="/assets/preview.png" />
+        <meta property="og:image" content={require("/assets/preview.png")} />
       </MetaTags>
       {!session && (
         <div className={styles.login_button_container}>
