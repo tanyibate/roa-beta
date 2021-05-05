@@ -2,6 +2,7 @@ import styles from "../styles/Home.module.scss";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useSession } from "next-auth/client";
+import MetaTags from "react-meta-tags";
 
 export default function Home() {
   const [session, loading] = useSession();
@@ -9,6 +10,15 @@ export default function Home() {
   const router = useRouter();
   return (
     <div className={styles.home_container}>
+      <MetaTags>
+        <title>ROA</title>
+        <meta
+          name="description"
+          content="A first of its kind marketplace for exclusive fan clubs"
+        />
+        <meta property="og:title" content="Rogue on Arrival" />
+        <meta property="og:image" content="/assets/preview.png" />
+      </MetaTags>
       {!session && (
         <div className={styles.login_button_container}>
           <p>Already have an account? </p>

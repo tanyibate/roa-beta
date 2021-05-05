@@ -39,6 +39,7 @@
     "react-https-redirect": "^1.1.0",
     "react-images-upload": "^1.2.8",
     "react-loading": "^2.0.3",
+    "react-meta-tags": "^1.0.1",
     "react-redux": "^7.2.3",
     "react-stripe-elements": "^6.1.2",
     "react-tabs": "^3.2.2",
