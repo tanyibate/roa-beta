@@ -16,7 +16,7 @@ export default async (req, res) => {
           if (result) {
             var d1 = new Date();
             var d2 = new Date("2021-05-06T16:15:00");
-            if (d1 > d2) {
+            if (1 === 1) {
               res.json({
                 message:
                   "You missed the deadline. Watch this page as new slices will be released soon!",
