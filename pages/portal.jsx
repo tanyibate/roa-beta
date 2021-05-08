@@ -11,7 +11,7 @@ export default function Portal() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const script = document.createElement("script");
+    /*const script = document.createElement("script");
 
     script.src = "https://www.googletagmanager.com/gtag/js?id=G-E6QZZMLE6Z";
     script.async = true;
@@ -22,7 +22,7 @@ export default function Portal() {
       dataLayer.push(arguments);
     }
     gtag("js", new Date());
-    gtag("config", "G-E6QZZMLE6Z");
+    gtag("config", "G-E6QZZMLE6Z");*/
     axios
       .get("/api/tribetoken")
       .then((res) => {

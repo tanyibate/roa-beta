@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import styles from "../../styles/register.module.scss";
@@ -6,6 +6,9 @@ import { useSelector } from "react-redux";
 import { getSession, useSession } from "next-auth/client";
 import ReCAPTCHA from "react-google-recaptcha";
 import HomeIcon from "../../components/home-icon/HomeIcon";
+import ReactLoading from "react-loading";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function Register() {
   var classNames = require("classnames");
@@ -31,9 +34,28 @@ export default function Register() {
   const [phone_numberEntered, setPhoneNumberEntered] = useState(true);
   const [registrationError, setRegistrationError] = useState(false);
   const [registrationSuccesful, setRegistrationSuccesful] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const ref = useRef(null);
 
   const [recaptchaResponse, setRecaptchaResponse] = useState("");
   const [recaptchaValid, setRecaptchaValid] = useState(true);
+
+  useEffect(() => {
+    if (loading) {
+      var elmnt = document.getElementById("loader");
+      elmnt.scrollIntoView();
+    }
+    if (registrationError || registrationSuccesful) {
+      var elmnt = document.getElementById("submit");
+      elmnt.scrollIntoView();
+    }
+  }, [loading, registrationError, registrationSuccesful]);
+
+  const override = `
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
 
   const { referral_code } = router.query;
   const [page, setPage] = useState(1);
@@ -218,9 +240,12 @@ export default function Register() {
             username,
             recaptchaResponse,
           };
+          setLoading(true);
+
           axios
             .post("/api/register", user)
             .then((response) => {
+              setLoading(false);
               console.log(response);
               setConfirmPassword("");
               setPassword("");
@@ -236,6 +261,7 @@ export default function Register() {
               }, 4000);
             })
             .catch((response) => {
+              setLoading(false);
               console.log(response.response);
               setRegistrationError(true);
             });
@@ -398,6 +424,7 @@ export default function Register() {
   return (
     <div
       className={styles.register_container}
+      id="register-container"
       style={{
         height: "100%",
         overflow: "scroll",
@@ -423,6 +450,7 @@ export default function Register() {
           flexDirection: "column",
           alignItems: "center",
         }}
+        id="form"
       >
         <img
           src="/assets/Logo/ROA_logowhite.png"
@@ -431,17 +459,17 @@ export default function Register() {
             maxWidth: "100px",
           }}
         />
+        {page === 2 && (
+          <div style={{ width: "100%" }}>
+            <button className="back-button" onClick={backButtonHandler}>
+              <FontAwesomeIcon icon={faAngleLeft} />
+              Back
+            </button>
+          </div>
+        )}
         {page === 1 && loginDetails}
         {page === 2 && personalDetails}
-        {page === 2 && (
-          <button
-            className="form-button"
-            onClick={backButtonHandler}
-            style={{ marginBottom: "10px", minHeight: "50px" }}
-          >
-            Go Back One
-          </button>
-        )}
+
         <div style={{ width: "100%", padding: "5px 0" }}>
           <button
             className="form-button"
@@ -451,13 +479,37 @@ export default function Register() {
             {submitButton}
           </button>
         </div>
+        {loading && (
+          <div
+            ref={ref}
+            id="loader"
+            style={{
+              padding: "5px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            onLoad={(el) => {
+              el.scrollIntoView();
+            }}
+          >
+            <ReactLoading type="spin" color="#1dd760" height={50} width={50} />
+          </div>
+        )}
 
         {registrationError && (
-          <p>Registration error, refresh your page and try again</p>
+          <p className="form-submit-error" id="submit">
+            Registration error, refresh your page and try again
+          </p>
         )}
         {registrationSuccesful && (
           <div>
-            <p style={{ marginBottom: "10px" }}>
+            <p
+              style={{ marginBottom: "10px" }}
+              className="form-submit"
+              id="submit"
+            >
               Redirecting to login ... You should receive a welcome email, if
               not please try registering again or visit the{" "}
               <a href="/contact" style={{ color: "#1dd760" }}>

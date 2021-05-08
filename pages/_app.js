@@ -1,6 +1,7 @@
 import "../styles/globals.scss";
 import "react-tabs/style/react-tabs.css";
 import HttpsRedirect from "react-https-redirect";
+import * as gtag from "../lib/gtag";
 
 import Sidebar from "../components/sidebar/SideBar.jsx";
 import { useState, useEffect } from "react";
@@ -35,7 +36,15 @@ function MyApp({ Component, pageProps }) {
   if (router.pathname.startsWith("/") || store.getState().loggedIn) {
     showSidebar = true;
   }*/
-
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
   return (
     <HttpsRedirect>
       <Provider session={pageProps.session}>
