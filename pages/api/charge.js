@@ -16,16 +16,7 @@ export default async (req, res) => {
           if (result) {
             var d1 = new Date();
             var d2 = new Date("2021-05-06T16:15:00");
-            if (1 === 1) {
-              res.json({
-                message:
-                  "You missed the deadline. Watch this page as new slices will be released soon!",
-                maxSlices: false,
-                outOfStock: false,
-                level: result.rows[0].level,
-                referral_code: result.rows[0].referral_code,
-              });
-            } else if (result.rows[0].total_number_of_slices >= 2) {
+            if (result.rows[0].total_number_of_slices >= 2) {
               res.json({
                 message:
                   "You have bought the maximum number of slices for the beta, thank you for your participation, have a lookout on the Arrivals page for interactions with our artists.",

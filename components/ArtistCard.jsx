@@ -218,10 +218,10 @@ export default function ArtistCard(props) {
               props.artist.total_slices
             }`}</p>
           )}
-          <div>
+         {false && <div>
             <Countdown date={"2021-05-06T16:15:00"} />
-          </div>
-          <button onClick={buySlice}>Sold Out</button>
+          </div> } 
+          <button onClick={buySlice}>Slice $5.00</button>
         </div>
       </div>
     </div>
